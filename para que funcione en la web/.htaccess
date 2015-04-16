@@ -1,0 +1,11 @@
+IndexOptions +Charset=UTF-8
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .utf8
+
+DirectoryIndex controladores/controlador.php
+
+RewriteBase /
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . controladores/controlador.php [L]

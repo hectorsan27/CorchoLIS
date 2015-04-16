@@ -1,0 +1,262 @@
+﻿#body{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#contenedor{
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-width:1100px;
+    min-height:100%;
+}
+
+
+/*MENU PRINCIPAL*/
+ 
+#header_tablon{
+    background-color: white;
+    height: 132px; /*Cambiar top Board si se toca*/
+    width: 100%;
+    min-width: 1366px;
+}
+.menu_header > li > a {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+#homeIcon{
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#addBoardIcon{
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#logo{
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#boards{
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#username{
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#configuration{
+
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.elemento_menu{
+    /*display: inline-block;
+    text-align: center;*/
+}
+@media (max-width: 1050px) {
+    #logo{
+        display: none;
+    }
+}
+
+
+
+
+
+
+/*TABLERO*/
+
+#board{
+    height: calc(100% - 132px);
+    top: 132px;
+}
+
+
+
+/*MENÚ TABLERO*/
+
+#board-menu{
+    background-color: grey;
+}
+#boardName{
+    width: 20%;
+    height: 100%;
+    background-color: black;
+    color:white;
+    float: left;
+}
+#boardFunctions{
+    width: 100%;
+    height: auto;
+    background-color: orange;
+    float: left;
+}
+
+ul.menu {
+ //float:left;
+ //display:block;
+ //list-style-type:none;
+ }
+
+ .menu li {
+ //line-height:18px;
+ //font-size:13px;
+ //position:relative;
+ //float:left;
+ text-transform:uppercase;
+ }
+
+ .menu li a {
+ //color: #000;
+ //text-transform:uppercase;
+ //padding: 5px 20px;
+ //text-decoration:none;
+ }
+
+ .menu li a:hover {
+ background: #9c0101;
+ color: white;
+ }
+
+ .menu li ul {
+ display:none;
+//position:absolute;
+//top:20px;
+// width: 240px;
+// background-color: #f4f4f4;
+//padding:0;
+// list-style-type:none;
+ }
+ .menu li ul li {
+ width: auto;
+ border: 1px solid #9c0101;
+ border-top:none;
+ padding: 10px 20px;
+ }
+ .menu li ul li:first-child {
+ //border-top: 1px solid #9c0101;
+ }
+.menu li ul li a {
+ width: auto;
+ margin: 0;
+ padding:0;
+ }
+.menu li ul li a:hover {
+ //width: 240px;
+ //margin: 0;
+ //color: #9c0101;
+ //background-color: red;
+ }
+
+
+
+
+/*TABLERO*/
+#marco_tablon{
+    position: relative;
+    background-image: url("../img/tablon.png");
+    width: 1200px; 
+    height: 550px;
+    margin-left:  auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow:hidden;
+}
+#container_tablon{
+    position: relative;
+    width: 1180px; /* (1200 - 10*2)*/
+    height: 530px; /* (550 - 10*2) *Si cambias estos valores recuerda cambiarlos tambien en functionDrag  (tamano_container_x y tamano_container_y)*/
+    margin:10px;
+}
+.elem{
+    position: absolute;
+    background-color: green;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;     
+    user-select: none;
+    border:1px solid black;
+    z-index: 0;
+}
+
+#squareContainer{
+    left: 0px;
+}
+
+.square{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border:1px solid black;
+}
+#redSquare{
+    background-color: red;
+}
+#greenSquare{
+    background-color: green;
+}
+#blueSquare{
+    background-color: blue;
+}
+#deleteSquare{
+    background-color: yellow;
+}
+#editSquare{
+    background-color: orange;
+}
+/*AÑADIR ELEMENTO*/
+#anadir_elemento {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    z-index: 2;
+
+}
+
+#anadir_elemento_seleccion {
+    height: 100px;
+    cursor: pointer;
+}
+.elemento_seleccion {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+#anadir_elemento_formulario {
+}
+#elemento_seleccion_video {
+    background-color: red;
+}
+#elemento_seleccion_imagen {
+    background-color: green;
+}
+#elemento_seleccion_texto {
+    background-color: yellow;
+}
+#elemento_seleccion_enlace {
+    background-color: orange;
+}
+#anadir_elemento_formulario {
+
+}
