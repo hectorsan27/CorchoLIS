@@ -18,15 +18,20 @@ $url = array_filter($url, "eliminarEspacioEnblanco");
 switch (count($url)) {
     case 1:	//Inicio
 		require_once("../vistas/header_inicio.php"); 
-		require("../vistas/pagina_inicio.html");
+		require("../vistas/vista_inicio.html");
 		require_once("../vistas/footer.php");	
         break;
    	case 2:
-   		if($url[2] == 'tablones') {
+   		if($url[2] == 'tablon') {
    			require_once("../modelos/modelo.php");
 			require_once("../vistas/header_tablon.php");
 			require("../vistas/vista_tablon.php"); 
-   		} 
+   		}
+   		if($url[2] == 'tablones') {
+			require_once("../vistas/header_inicio.php");
+			require("../vistas/vista_tablones.php");
+			require_once("../vistas/footer.php");
+   		}
    		if($url[2] == 'cerrar_session') {
 			session_start();
 	   		if(isset($_SESSION['logeado'])){

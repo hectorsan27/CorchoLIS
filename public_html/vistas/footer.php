@@ -8,6 +8,6 @@
 						</ul>
 					</div>
 			</div>
-		</div> <!--Se cierra el div contenedor_inicial-->
-	</body>			<!--El footer se encarga de cerrar el tab body y html-->
+		</div> <!--Se cierra el div container-->
+	</body>	<!--El footer se encarga de cerrar el tab body y html-->
 </html>

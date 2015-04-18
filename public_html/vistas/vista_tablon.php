@@ -10,81 +10,81 @@ $(document).ready(function() {
 </script>
 
 <body>
-        <div id= "body">
-            <div id="header_tablon">
-                <ul class="menu menu_header">
-                        <li id = 'logo'>
-                            <a><div>
-                                <div class="elemento_menu">
-                                    <img src="static/img/logo_provisional_pequeno.png">
-                                </div>
-                            </div></a>
-                        </li>
-                        <li id = 'homeIcon'>
-                            <a><div>
-                                <div class="elemento_menu">
-                                    <p>HOME</p>
-                                </div>
-                                <div class="elemento_menu">
-                                    <img src="static/img/icono_home.png">
-                                </div>
-                            </div></a>
-                        </li>
-                        <li id = 'boards'>
-                            <a><div>
-                                <div class="elemento_menu">
-                                    <p>TABLONES</p>
-                                </div>
-                                <div class="elemento_menu">
-                                    <img src="static/img/icono_tablones.png">
-                                </div>
-                            </div></a>
-                        </li>
-                        <li  id = 'addBoardIcon'>
-                            <a><div>
-                                <div class="elemento_menu">
-                                    <p>AÑADIR TABLÓN</p>
-                                </div>
-                                <div class="elemento_menu">
-                                    <img src="static/img/icono_anadir_tablon.png">
-                                </div>
-                            </div></a>
-                        </li>
-                        <li id = 'username'>
-                            <a><div>
-                                <div class="elemento_menu">
-                                    <p>USERNAME</p>
-                                </div>
-                                <div class="elemento_menu">
-                                    <img src="static/img/icono_usuario.png">
-                                </div>
-                            </div></a>
-                        </li>
-                        <li id = 'configuration'>
-                            <a><div>
-                                <div class="elemento_menu">
-                                    <p>CONFIGURACIÓN</p>
-                                </div>
-                                <div class="elemento_menu">
-                                    <img src="static/img/icono_configuracion.png">
-                                </div>
-                            </div></a>
-                        </li>
+    <div id= "body">
+        <div id="header_tablon">
+            <ul class="menu menu_header">
+                    <li id = 'logo'>
+                        <a><div>
+                            <div class="elemento_menu">
+                                <img src="static/img/logo_provisional_pequeno.png">
+                            </div>
+                        </div></a>
+                    </li>
+                    <li id = 'homeIcon'>
+                        <a><div>
+                            <div class="elemento_menu">
+                                <p>HOME</p>
+                            </div>
+                            <div class="elemento_menu">
+                                <img src="static/img/icono_home.png">
+                            </div>
+                        </div></a>
+                    </li>
+                    <li id = 'boards'>
+                        <a><div>
+                            <div class="elemento_menu">
+                                <p>TABLONES</p>
+                            </div>
+                            <div class="elemento_menu">
+                                <img src="static/img/icono_tablones.png">
+                            </div>
+                        </div></a>
+                    </li>
+                    <li  id = 'addBoardIcon'>
+                        <a><div>
+                            <div class="elemento_menu">
+                                <p>AÑADIR TABLÓN</p>
+                            </div>
+                            <div class="elemento_menu">
+                                <img src="static/img/icono_anadir_tablon.png">
+                            </div>
+                        </div></a>
+                    </li>
+                    <li id = 'username'>
+                        <a><div>
+                            <div class="elemento_menu">
+                                <p>USERNAME</p>
+                            </div>
+                            <div class="elemento_menu">
+                                <img src="static/img/icono_usuario.png">
+                            </div>
+                        </div></a>
+                    </li>
+                    <li id = 'configuration'>
+                        <a><div>
+                            <div class="elemento_menu">
+                                <p>CONFIGURACIÓN</p>
+                            </div>
+                            <div class="elemento_menu">
+                                <img src="static/img/icono_configuracion.png">
+                            </div>
+                        </div></a>
+                    </li>
 
-                </ul>
-                
-                <div id="board-menu">
-                    <ul class="menu">
-                        <li><a>Nombre Tablón</a></li>
-                        <li><a id="div_anadir">Añadir +</a></li>
-                        <li><a>Papelera</a></li>
-                        <li><a>Marcadores</a></li>
-                    </ul> 
-                </div>
-            </div> 
+            </ul>
+            
+            <div id="board-menu">
+                <ul class="menu">
+                    <li><a>Nombre Tablón</a></li>
+                    <li><a id="div_anadir">Añadir +</a></li>
+                    <li><a>Papelera</a></li>
+                    <li><a>Marcadores</a></li>
+                </ul> 
+            </div>
+        </div> 
 
-            <div id="board">
-                <div id="marco_tablon">
+        <div id="board">
+            <div id="marco_tablon">
                 <div id='container_tablon'>
                     <div id="elem0" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                         <div>
@@ -120,7 +120,7 @@ $(document).ready(function() {
                     ?>
                    
                 </div>
-                         </div>
+            </div>
 
             <div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion">
@@ -174,10 +174,9 @@ $(document).ready(function() {
                             <button type="button" class="anadir_elemento_cerrar"> Cancelar</button>
                             
                         </fieldset>
-                    </form>
-                   
+                    </form>                      
                 </div>
-                </div> <!--Cierra container-->
-            </div>
-        </div> <!--Cierra body -->
-</body><!--Body cerrado por footer -->
+            </div> <!--Cierra container-->
+        </div><!--Cierra board -->
+    </div> <!--Cierra div body -->
+</body><!--Cierra body -->

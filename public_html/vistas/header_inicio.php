@@ -3,16 +3,19 @@
 <head>
 <title>CorchoLIS</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF8" /> 
-<link rel="stylesheet" href="static/css/style.css" type="text/css"> 
+<!-- LINKS -->
+<link rel="stylesheet" href="static/css/style_inicio.css" type="text/css"> <!-- Estilo de la página inicial-->
+<link rel="stylesheet" href="static/css/style_tablones.css" type="text/css"> <!-- Estilo de la página de tablones-->
 <link rel="stylesheet" href="static/css/kickstart.css" media="all" /> <!-- KICKSTART -->
 <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+<!--SCRIPTS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="static/js/kickstart.js"></script> <!-- KICKSTART -->
 <script type="text/javascript" src="static/js/openLogin.js"></script>
 <script type="text/javascript" src="static/js/validacion_registro.js"></script>
-
 </head> 
+
 <body> <!--El Header se encarga de abrir el tab body y html pero no lo cierra-->
 	<div id="container">
 	<!-- Barra inicial de la WEB que nos permite Registrarnos, Logearnos o Cerrar Session-->
@@ -28,10 +31,10 @@
 						session_start();
 						if(isset($_SESSION['logeado'])):			
 					?>
-					<li class="hvr-overline-from-center"><a id="perfil_usuario"><?php echo $_SESSION['logeado'];?></a><li>
-					<li class="hvr-overline-from-center"><a href="cerrar_session" id="logout">Cerrar Sesión</a><li>
+					<li><a id="perfil_usuario"><?php echo $_SESSION['logeado'];?></a></li>
+					<li class="hvr-overline-from-center"><a href="cerrar_session" id="logout">CERRAR SESSIÓN</a></li>
 					<?php else: ?>
-					<li class="hvr-overline-from-center"><a href="tablones">TESTEO DE TABLA</a></li>
+					<li class="hvr-overline-from-center"><a href="tablon">TESTEO DE TABLA</a></li>
 					<li class="hvr-overline-from-center"><a id="trigger_login">ACCEDER</a></li>
 	        		<li class="hvr-overline-from-center"><a id="trigger_registro">REGISTRARSE</a></li>
 	        		<?php endif;?>
