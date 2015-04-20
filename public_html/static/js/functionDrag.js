@@ -145,20 +145,20 @@ function addElement_note(){
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
     elements = document.getElementsByClassName("elem");
-    var length = elements.length;
+    var length = elements.length + 1;
     var id = 'elem';
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
-    //cogemos el elem0, que es una muestra de prueba (Factory Method)
-    var elem0 = document.getElementById("elem0");
-    //cambiamos elem0 por elemX, segun el id de antes
-    var inner = elem0.innerHTML.replace('elem0',id);
+    //cogemos el nota, que es una muestra de prueba (Factory Method)
+    var nota = document.getElementById("nota");
+    //cambiamos nota por elemX, segun el id de antes
+    var inner = nota.innerHTML.replace('nota',id);
     //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
-    //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
-    var note = document.getElementById("new");  
-    inner = elem0.innerHTML.replace('changethenote',note.value);
+    //nota tiene un texto de mentira porque si no, no funcionaba el editar
+    var note = document.getElementById("new_note");  
+    inner = nota.innerHTML.replace('changethenote',note.value);
     div.innerHTML = inner;
 
     //ponemos la anchura y altura
@@ -169,9 +169,9 @@ function addElement_note(){
     var container = document.getElementById("container_tablon");
     container.appendChild(div);
 
-    //añadimos el onMouseDown/UP de elem0
-    div.onmousedown= elem0.onmousedown;
-    div.onmouseup = elem0.onmouseup;
+    //añadimos el onMouseDown/UP de nota
+    div.onmousedown= nota.onmousedown;
+    div.onmouseup = nota.onmouseup;
 	
 	//variables que enviamos a la funcion
 	var idTablon = 1;
@@ -185,11 +185,112 @@ function addElement_note(){
 }
 
 function addElement_image(){
+     // creamos un nuevo div
+    var div = document.createElement("div");
+    //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
+    elements = document.getElementsByClassName("elem");
+    var length = elements.length;
+    var id = 'elem';
+    id = id+length;
+    //ponemos el ID y la clase al nuevo DIV
+    div.id = id;
+    div.className = 'elem';
+    //cogemos el elem0, que es una muestra de prueba (Factory Method)
+    var imagen = document.getElementById("imagen");
+    //cambiamos elem0 por elemX, segun el id de antes
+    var inner = imagen.innerHTML.replace('imagen',id);
+    //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
+    //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
 
+    var nombre_imagen = document.getElementById("nombre_imagen");  
+    inner = inner.replace('titulo', nombre_imagen.value);
+    div.innerHTML = inner;
+
+    var url_imagen = document.getElementById("url_imagen");  
+    inner = inner.replace('url', url_imagen.value);
+    div.innerHTML = inner;
+
+    var descripcion_imagen = document.getElementById("descripcion_imagen");  
+    inner = inner.replace('descripcion',descripcion_imagen.value);
+    div.innerHTML = inner;
+
+
+    //ponemos la anchura y altura
+    div.style.width = '200px';
+    div.style.height = '100px';
+
+    // cogemos el div del fondo y le añadimos el nuevo div
+    var container = document.getElementById("container_tablon");
+    container.appendChild(div);
+
+    //añadimos el onMouseDown/UP de elem0
+    div.onmousedown= imagen.onmousedown;
+    div.onmouseup = imagen.onmouseup;
+    
+    //variables que enviamos a la funcion
+    var idTablon = 1;
+    var posicion_x = 0;
+    var posicion_y = 0;
+    var tamano = "Pequeno";
+    var tipo = "Texto";
+    var contenido = imagen.value;
+    //guardamos el elemento en la base de datos
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function addElement_video(){
+   // creamos un nuevo div
+    var div = document.createElement("div");
+    //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
+    elements = document.getElementsByClassName("elem");
+    var length = elements.length;
+    var id = 'elem';
+    id = id+length;
+    //ponemos el ID y la clase al nuevo DIV
+    div.id = id;
+    div.className = 'elem';
+    //cogemos el elem0, que es una muestra de prueba (Factory Method)
+    var video = document.getElementById("video");
+    //cambiamos elem0 por elemX, segun el id de antes
+    var inner = video.innerHTML.replace('video',id);
+    //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
+    //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
 
+    var nombre_video = document.getElementById("nombre_video");  
+    inner = inner.replace('titulo', nombre_video.value);
+    div.innerHTML = inner;
+
+    var url_video = document.getElementById("url_video");
+    url_video.value = url_video.value.replace('watch?v=','v/');
+    inner = inner.replace('url', url_video.value);
+    div.innerHTML = inner;
+
+    var descripcion_video = document.getElementById("descripcion_video"); 
+    inner = inner.replace('descripcion',descripcion_video.value);
+    div.innerHTML = inner;
+
+
+    //ponemos la anchura y altura
+    div.style.width = '200px';
+    div.style.height = '100px';
+
+    // cogemos el div del fondo y le añadimos el nuevo div
+    var container = document.getElementById("container_tablon");
+    container.appendChild(div);
+
+    //añadimos el onMouseDown/UP de elem0
+    div.onmousedown= video.onmousedown;
+    div.onmouseup = video.onmouseup;
+    
+    //variables que enviamos a la funcion
+    var idTablon = 1;
+    var posicion_x = 0;
+    var posicion_y = 0;
+    var tamano = "Pequeno";
+    var tipo = "Texto";
+    var contenido = video.value;
+    //guardamos el elemento en la base de datos
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function deleteElement(divid){

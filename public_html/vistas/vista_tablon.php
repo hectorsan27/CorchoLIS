@@ -86,7 +86,8 @@ $(document).ready(function() {
         <div id="board">
             <div id="marco_tablon">
                 <div id='container_tablon'>
-                    <div id="elem0" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+
+                    <div id="nota" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                         <div>
                             <pre>changethenote</pre>
                         </div>
@@ -98,6 +99,29 @@ $(document).ready(function() {
                             <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                         </div>
                     </div>
+
+                    <div id="imagen" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <div>
+                            <pre>titulo</pre>
+                        </div>
+                        <img src = "url" style = 'width: 200px; height: auto'>
+                        <div>
+                            <pre>descripcion</pre>
+                        </div>    
+                    </div>
+
+                    <div id="video" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <div>
+                            <pre>titulo</pre>
+                        </div>
+                        <embed width='300' src = "url">
+                        
+                        
+                        <div>
+                            <pre>descripcion</pre>
+                        </div>    
+                    </div>
+
                     <?php
                     require_once("../modelos/modelo.php");
                     $result = obtenerElementosTablon(1);
@@ -167,7 +191,7 @@ $(document).ready(function() {
                     <form id="formulario_texto" class="vertical">
                         <fieldset>
                             <label for="text2">Nota</label>
-                            <input id='new' type="text" name="yt"/>
+                            <input id='new_note' type="text" name="yt"/>
                             <label for="destacar_nota">Destacar elemento </label>
                             <input type ='checkbox' value = 'Destacar'/>
                             <input type="button" value='Añadir' onclick="addElement_note()"/>
