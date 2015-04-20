@@ -102,7 +102,7 @@ $(document).ready(function() {
 
                     <div id="imagen" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                         <div>
-                            <pre>titulo</pre>
+                            <pre><b><center>titulo</center></b></pre>
                         </div>
                         <img src = "url" style = 'width: 200px; height: auto'>
                         <div>
@@ -114,7 +114,8 @@ $(document).ready(function() {
                         <div>
                             <pre>titulo</pre>
                         </div>
-                        <embed width='300' src = "url">
+                        <iframe width='200' src = "url" allowfullscreen>
+                        </iframe>
                         
                         
                         <div>
@@ -129,16 +130,7 @@ $(document).ready(function() {
                         $elem = $row["ID_elementos"] + 1;
                         echo 
                         '<div id="elem'. $elem . '" class = "elem" style="width: 200px;height: 100px;left: ' . $row["posicionx"] .'px; top: ' . $row["posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                            <div>
-                                <pre>' . $row["contenido"] . '</pre>
-                            </div>
-                            <div id = "squareContainer" style = "width: 64px; height: 20px; margin: auto;">
-                                <div class ="square" id ="redSquare" onclick="cambiar_fondo(this, 1);"></div>
-                                <div class ="square" id ="greenSquare" onclick="cambiar_fondo(this, 2);"></div>
-                                <div class ="square" id ="blueSquare" onclick="cambiar_fondo(this, 3);"></div>
-                                <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
-                                <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
-                            </div>
+                            ' . $row["contenido"] . '
                         </div>';
                     }
                     ?>

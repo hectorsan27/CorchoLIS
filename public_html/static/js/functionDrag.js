@@ -179,7 +179,7 @@ function addElement_note(){
 	var posicion_y = 0;
 	var tamano = "Pequeno";
 	var tipo = "Texto";
-	var contenido = note.value;
+	var contenido = inner;
 	//guardamos el elemento en la base de datos
 	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
@@ -232,8 +232,8 @@ function addElement_image(){
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
-    var tipo = "Texto";
-    var contenido = imagen.value;
+    var tipo = "imagen";
+    var contenido = inner;
     //guardamos el elemento en la base de datos
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
@@ -261,7 +261,7 @@ function addElement_video(){
     div.innerHTML = inner;
 
     var url_video = document.getElementById("url_video");
-    url_video.value = url_video.value.replace('watch?v=','v/');
+    url_video.value = url_video.value.replace('watch?v=','embed/');
     inner = inner.replace('url', url_video.value);
     div.innerHTML = inner;
 
@@ -287,8 +287,8 @@ function addElement_video(){
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
-    var tipo = "Texto";
-    var contenido = video.value;
+    var tipo = "Video";
+    var contenido = inner;
     //guardamos el elemento en la base de datos
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
