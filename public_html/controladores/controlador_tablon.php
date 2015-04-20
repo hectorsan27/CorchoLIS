@@ -38,4 +38,11 @@
 		eliminarElemento($idTablon,$element);
 		
 	}
+	if ($action == 'SHARE'){
+		$idTablon = $_POST["idTablon"];
+		$correo = $_POST["correo"];
+
+		compartirTablon($idTablon,$correo);
+		
+	}
 ?>
