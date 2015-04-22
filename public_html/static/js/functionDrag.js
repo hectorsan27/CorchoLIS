@@ -23,6 +23,8 @@ var mydragg = function(){
             }
             divid.style.zIndex = "1";
 
+
+
             //Cogemos los datos de la posicion del raton
 
             evt = evt || window.event;
@@ -39,6 +41,7 @@ var mydragg = function(){
             //Cogemos los datos del div del fondo (el corcho)
             divTop = divTop.replace('px','');
             divLeft = divLeft.replace('px','');
+
 
             //Estilo del raton pasa a movimiento (el "+")
             document.getElementById('container_tablon').style.cursor='move';
@@ -69,7 +72,9 @@ var mydragg = function(){
                     // movemos el objeto a la posicion correcta
 
                 mydragg.move(divid,aX,aY);
+
             }
+
         },
 
         stopMoving : function(divid){
@@ -85,8 +90,12 @@ var mydragg = function(){
             editarPosicion(idTablon,elem,positionx,positiony);
             document.onmousemove = function(){}
         },
+
     }
+
 }();
+
+
 
 function cambiar_fondo(divid, color) {
 
@@ -109,7 +118,6 @@ function cambiar_fondo(divid, color) {
     }
 }
 
-<<<<<<< HEAD
 
 
 function cambiar_video(){
@@ -140,8 +148,6 @@ function addUser(idTablon, correo) {
         });
 }
 
-=======
->>>>>>> da031a3562a2510beec0386a398e6a21b32b00db
 function addElement_note(){
 
     // creamos un nuevo div
@@ -182,7 +188,7 @@ function addElement_note(){
 	var posicion_y = 0;
 	var tamano = "Pequeno";
 	var tipo = "Texto";
-	var contenido = inner;
+	var contenido = note.value;
 	//guardamos el elemento en la base de datos
 	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
@@ -235,8 +241,8 @@ function addElement_image(){
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
-    var tipo = "imagen";
-    var contenido = inner;
+    var tipo = "Texto";
+    var contenido = imagen.value;
     //guardamos el elemento en la base de datos
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
@@ -264,7 +270,7 @@ function addElement_video(){
     div.innerHTML = inner;
 
     var url_video = document.getElementById("url_video");
-    url_video.value = url_video.value.replace('watch?v=','embed/');
+    url_video.value = url_video.value.replace('watch?v=','v/');
     inner = inner.replace('url', url_video.value);
     div.innerHTML = inner;
 
@@ -290,8 +296,8 @@ function addElement_video(){
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
-    var tipo = "Video";
-    var contenido = inner;
+    var tipo = "Texto";
+    var contenido = video.value;
     //guardamos el elemento en la base de datos
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
@@ -317,6 +323,8 @@ function deleteElement(divid){
     eliminarElemento(idTablon ,idElem);
 }
 
+
+
 function editElement(divid){
 
      //obtiene el div del elemento, y dentro de ese div, obtiene el div en el cual está el texto (<pre>)
@@ -331,14 +339,56 @@ function editElement(divid){
     elem.style.backgroundColor = 'orange';
 }
 
-//PERSISTENCIA
-
+function objetoAjax(){
+	//funcion para realizar conexion ajax con el servidor
+	var xmlhttp = false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch(e){
+		try {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch(E) {
+			xmlhttp = false; 
+		}
+	}
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+	
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido){
     $.ajax({
                 data:  "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+"INSERT",
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
+
+/*
+	//especificamos que es un insert
+	var action = "INSERT";
+	//instanciamos el objeto ajax
+	var ajax = objetoAjax();
+	
+	//abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
+	ajax.open("POST","../../controladores/controlador_tablon.php", true);
+	
+	
+	//cuando el objeto xmlhttprequest cambia de estado la funcion se inicia
+	ajax.onreadystatechange = function(){
+	
+		//mostrar los resultados al completar la peticion
+		if(ajax.readyState == 4){
+			//El metodo responseText contiene la respuesta del insert.
+			respuesta = document.getElementById('respuesta');
+			respuesta.value = (ajax.responseText);
+		}
+	}
+	//indicamos que los datos se envian como un formulario
+	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	//enviamos las variables a insertar.php
+	ajax.send("&idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+action);
+}*/
 }
 
 function editarPosicion(idTablon, elem, posicion_x, posicion_y){
@@ -349,6 +399,19 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
+
+
+   /*
+    //instanciamos el objeto ajax
+    var ajax = objetoAjax();
+    //abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
+    ajax.open("POST","../../controladores/controlador_tablon.php", true);
+    
+    //indicamos que los datos se envian como un formulario
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    //enviamos las variables a insertar.php
+    ajax.send("&idTablon="+idTablon+"&idElem="+elem+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&action="+action);*/
+    
 }
 
 function eliminarElemento(idTablon, elem){
@@ -358,7 +421,6 @@ function eliminarElemento(idTablon, elem){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-<<<<<<< HEAD
 }
 
 function addBoard(correo){
@@ -369,6 +431,4 @@ function addBoard(correo){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-=======
->>>>>>> da031a3562a2510beec0386a398e6a21b32b00db
 }
