@@ -23,8 +23,6 @@ var mydragg = function(){
             }
             divid.style.zIndex = "1";
 
-
-
             //Cogemos los datos de la posicion del raton
 
             evt = evt || window.event;
@@ -41,7 +39,6 @@ var mydragg = function(){
             //Cogemos los datos del div del fondo (el corcho)
             divTop = divTop.replace('px','');
             divLeft = divLeft.replace('px','');
-
 
             //Estilo del raton pasa a movimiento (el "+")
             document.getElementById('container_tablon').style.cursor='move';
@@ -72,9 +69,7 @@ var mydragg = function(){
                     // movemos el objeto a la posicion correcta
 
                 mydragg.move(divid,aX,aY);
-
             }
-
         },
 
         stopMoving : function(divid){
@@ -90,12 +85,8 @@ var mydragg = function(){
             editarPosicion(idTablon,elem,positionx,positiony);
             document.onmousemove = function(){}
         },
-
     }
-
 }();
-
-
 
 function cambiar_fondo(divid, color) {
 
@@ -117,27 +108,6 @@ function cambiar_fondo(divid, color) {
         }
     }
 }
-
-
-
-function cambiar_video(){
-
-    // Obtenemos el texto que del input de más abajo
-    var src = document.getElementById("url").value;
-    // el ID de un video de YTube va despues de esto:
-    var res = src.split("/watch?v=");
-    //Si alguien copia el video con el tiempo actual se corta
-    res = res[1].split("&t=");
-    // este es el texto necesario para poner un video de YTube, falta el ID del video
-    src = "https://www.youtube.com/embed/";
-    //ponemos el ID del video que previamente hemos cogido
-    var url= src+res[0];
-    //cambiamos el SRC para que sea el actual (se cambia solo en la pantalla)
-    document.getElementById('video').src=url;
-
-}
-
-
 
 function addElement_note(){
 
@@ -314,8 +284,6 @@ function deleteElement(divid){
     eliminarElemento(idTablon ,idElem);
 }
 
-
-
 function editElement(divid){
 
      //obtiene el div del elemento, y dentro de ese div, obtiene el div en el cual está el texto (<pre>)
@@ -330,56 +298,14 @@ function editElement(divid){
     elem.style.backgroundColor = 'orange';
 }
 
-function objetoAjax(){
-	//funcion para realizar conexion ajax con el servidor
-	var xmlhttp = false;
-	try {
-		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch(e){
-		try {
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch(E) {
-			xmlhttp = false; 
-		}
-	}
-	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-		xmlhttp = new XMLHttpRequest();
-	}
-	return xmlhttp;
-}
-	
+//PERSISTENCIA
+
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido){
     $.ajax({
                 data:  "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+"INSERT",
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-
-/*
-	//especificamos que es un insert
-	var action = "INSERT";
-	//instanciamos el objeto ajax
-	var ajax = objetoAjax();
-	
-	//abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-	ajax.open("POST","../../controladores/controlador_tablon.php", true);
-	
-	
-	//cuando el objeto xmlhttprequest cambia de estado la funcion se inicia
-	ajax.onreadystatechange = function(){
-	
-		//mostrar los resultados al completar la peticion
-		if(ajax.readyState == 4){
-			//El metodo responseText contiene la respuesta del insert.
-			respuesta = document.getElementById('respuesta');
-			respuesta.value = (ajax.responseText);
-		}
-	}
-	//indicamos que los datos se envian como un formulario
-	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	//enviamos las variables a insertar.php
-	ajax.send("&idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+action);
-}*/
 }
 
 function editarPosicion(idTablon, elem, posicion_x, posicion_y){
@@ -390,19 +316,6 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-
-
-   /*
-    //instanciamos el objeto ajax
-    var ajax = objetoAjax();
-    //abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-    ajax.open("POST","../../controladores/controlador_tablon.php", true);
-    
-    //indicamos que los datos se envian como un formulario
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    //enviamos las variables a insertar.php
-    ajax.send("&idTablon="+idTablon+"&idElem="+elem+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&action="+action);*/
-    
 }
 
 function eliminarElemento(idTablon, elem){
@@ -412,16 +325,4 @@ function eliminarElemento(idTablon, elem){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-      /*
-    //especificamos que es un editar
-    var action = "DELETE";
-    //instanciamos el objeto ajax
-    var ajax = objetoAjax();
-    //abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-    ajax.open("POST","../../controladores/controlador_tablon.php", true);
-    
-    //indicamos que los datos se envian como un formulario
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    //enviamos las variables a insertar.php
-    ajax.send("&idTablon="+idTablon+"&idElem="+elem+"&action="+action);*/
 }

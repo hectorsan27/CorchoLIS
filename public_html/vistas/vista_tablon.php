@@ -93,8 +93,6 @@ $(document).ready(function() {
                         </div>
                         <div style = 'width: 64px; height: 20px; margin: auto;'>
                             <div class ="square" id ="redSquare" onclick="cambiar_fondo(this, 1);"></div>
-                            <div class ="square" id ="greenSquare" onclick="cambiar_fondo(this, 2);"></div>
-                            <div class ="square" id ="blueSquare" onclick="cambiar_fondo(this, 3);"></div>
                             <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
                             <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                         </div>
@@ -107,12 +105,16 @@ $(document).ready(function() {
                         <img src = "url" style = 'width: 200px; height: auto'>
                         <div>
                             <pre>descripcion</pre>
-                        </div>    
+                        </div>  
+                        <div style = 'width: 64px; height: 20px; margin: auto;'>
+                            <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
+                            <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
+                        </div>  
                     </div>
 
                     <div id="video" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                         <div>
-                            <pre>titulo</pre>
+                            <pre><b><center>titulo</center></b></pre>
                         </div>
                         <iframe width='200' src = "url" allowfullscreen>
                         </iframe>
@@ -120,6 +122,10 @@ $(document).ready(function() {
                         
                         <div>
                             <pre>descripcion</pre>
+                        </div>
+                        <div style = 'width: 64px; height: 20px; margin: auto;'>
+                            <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
+                            <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                         </div>    
                     </div>
 
