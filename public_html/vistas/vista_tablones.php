@@ -1,6 +1,8 @@
 <div id="content">
-	<?php echo $_SESSION['logeado'];?>
-	<input type="button" value='Crear' onclick="addBoard()"/>
+	<?php
+	$correo = $_SESSION['logeado'];
+	echo $correo;?>
+	<input type="button" value='Crear' onclick="addBoard(<?php echo "'$correo'"; ?>)"/>
 </div>
 
 	

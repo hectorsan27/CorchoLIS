@@ -421,16 +421,14 @@ function eliminarElemento(idTablon, elem){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-      /*
-    //especificamos que es un editar
-    var action = "DELETE";
-    //instanciamos el objeto ajax
-    var ajax = objetoAjax();
-    //abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-    ajax.open("POST","../../controladores/controlador_tablon.php", true);
-    
-    //indicamos que los datos se envian como un formulario
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    //enviamos las variables a insertar.php
-    ajax.send("&idTablon="+idTablon+"&idElem="+elem+"&action="+action);*/
+}
+
+function addBoard(correo){
+	var action = "ADDBOARD";
+	alert(correo);
+	$.ajax({
+                data: "correo="+correo+"&action="+action,
+                url:   'controladores/controlador_tablon.php',
+                type:  'POST',
+        });
 }

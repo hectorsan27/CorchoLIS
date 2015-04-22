@@ -45,4 +45,10 @@
 		compartirTablon($idTablon,$correo);
 		
 	}
+	if ($action == 'ADDBOARD'){
+		$correo = $_POST["correo"];
+
+		agregarTablon($correo);
+		
+	}
 ?>

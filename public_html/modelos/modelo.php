@@ -200,5 +200,18 @@ function compartirTablon($idTablon, $correo){
 	$result = mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
 }
+function agregarTablon($correo){
+
+	$connexion=conectarBasedeDatos();
+	$query = "INSERT INTO tablones (Nombre, Descripcion) VALUES ('Tablon', 'Hola');";
+	$result = mysql_query($query, $connexion);
+	
+
+	$id =  mysql_insert_id();
+
+	$query = "INSERT INTO usuarios_tablones (Correo_usuario, ID_tablon, Privilegio) VALUES ('$correo', '$id', '4');";
+	$result = mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+}
 
 ?>

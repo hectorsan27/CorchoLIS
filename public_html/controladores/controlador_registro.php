@@ -8,7 +8,7 @@
 	$fr_password = $_POST['fr_password']; 
 
 	//Incluimos el modelo para usar sus funciones
-	require_once("modelos/modelo.php");
+	require_once("../modelos/modelo.php");
 
 	//Comprobación de que los datos són correctos desde el lado del servidor
 	$validado = validarFormularioRegistro($fr_correo, $fr_nombre, $fr_nacimiento, $fr_provincia, $fr_password);

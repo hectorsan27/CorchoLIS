@@ -77,7 +77,7 @@ $(document).ready(function() {
                 <ul class="menu">
                     <li><a>Nombre Tablón</a></li>
 					<?php
-						$privilegio = obtenerPrivilegiosTablon(1,"carlos@gmail.com");
+						$privilegio = obtenerPrivilegiosTablon(1,"pere@gmail.com");
 						//echo $privilegio;
 						if ($privilegio > 0){
 					?>
@@ -115,33 +115,7 @@ $(document).ready(function() {
                             <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                         </div>
                     </div>
-<<<<<<< HEAD
 
-                    <div id="imagen" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                        <div>
-                            <pre>titulo</pre>
-                        </div>
-                        <img src = "url" style = 'width: 200px; height: auto'>
-                        <div>
-                            <pre>descripcion</pre>
-                        </div>    
-                    </div>
-
-                    <div id="video" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                        <div>
-                            <pre>titulo</pre>
-                        </div>
-                        <embed width='300' src = "url">
-                        
-                        
-                        <div>
-                            <pre>descripcion</pre>
-                        </div>    
-                    </div>
-
-=======
-					
->>>>>>> Develope2
                     <?php
                     $result = obtenerElementosTablon(1);
                     while($row=mysql_fetch_assoc($result)) {
