@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2015 a las 18:46:50
+-- Tiempo de generación: 20-04-2015 a las 11:39:28
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -74,7 +74,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Correo`, `Nombre`, `Nacimiento`, `Provincia`, `Password`) VALUES
-('danielgarcia@gmail.com', 'Daniel', '2015-04-09', 'Sevilla', '5985166d1051f1d51dbe9024231271ae');
+('carlos@gmail.com', 'carlos', '1991-04-17', 'Barcelona', '1234'),
+('danielgarcia@gmail.com', 'Daniel', '2015-04-09', 'Sevilla', '5985166d1051f1d51dbe9024231271ae'),
+('javi@gmail.com', 'javi', '2015-04-01', 'Barcelona', '1234'),
+('pere@gmail.com', 'pere', '2015-04-02', 'Barcelona', '1234');
 
 -- --------------------------------------------------------
 
@@ -84,8 +87,19 @@ INSERT INTO `usuarios` (`Correo`, `Nombre`, `Nacimiento`, `Provincia`, `Password
 
 CREATE TABLE IF NOT EXISTS `usuarios_tablones` (
   `Correo_usuario` varchar(64) COLLATE latin1_spanish_ci NOT NULL,
-  `ID_tablon` int(10) unsigned NOT NULL
+  `ID_tablon` int(10) unsigned NOT NULL,
+  `Privilegio` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios_tablones`
+--
+
+INSERT INTO `usuarios_tablones` (`Correo_usuario`, `ID_tablon`, `Privilegio`) VALUES
+('carlos@gmail.com', 1, 0),
+('danielgarcia@gmail.com', 1, 1),
+('javi@gmail.com', 1, 3),
+('pere@gmail.com', 1, 4);
 
 --
 -- Índices para tablas volcadas
@@ -113,7 +127,7 @@ ALTER TABLE `usuarios`
 -- Indices de la tabla `usuarios_tablones`
 --
 ALTER TABLE `usuarios_tablones`
- ADD PRIMARY KEY (`Correo_usuario`,`ID_tablon`), ADD UNIQUE KEY `Correo_usuario` (`Correo_usuario`), ADD UNIQUE KEY `ID_tablon` (`ID_tablon`);
+ ADD PRIMARY KEY (`Correo_usuario`,`ID_tablon`), ADD KEY `ID_tablon` (`ID_tablon`), ADD KEY `Correo_usuario` (`Correo_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas

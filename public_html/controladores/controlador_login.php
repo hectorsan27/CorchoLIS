@@ -7,7 +7,7 @@
 	//Incluimos el modelo para usar sus funciones
 	require_once("../modelos/modelo.php");
 	$validado = validarFormularioLogin($fl_correo, $fl_password);
-
+	echo "<script type='text/javascript'>alert('hola');</script>";
 	if ($validado) {
 		$resultado = loginUsuario($fl_correo,$fl_password);
 		if ($resultado) {

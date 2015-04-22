@@ -14,6 +14,7 @@
 <script src="static/js/kickstart.js"></script> <!-- KICKSTART -->
 <script type="text/javascript" src="static/js/openLogin.js"></script>
 <script type="text/javascript" src="static/js/validacion_registro.js"></script>
+<script type="text/javascript" src="static/js/functionDrag.js"></script>
 </head> 
 
 <body> <!--El Header se encarga de abrir el tab body y html pero no lo cierra-->

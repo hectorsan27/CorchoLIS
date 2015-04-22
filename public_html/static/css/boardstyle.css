@@ -93,6 +93,7 @@
 
 #board-menu{
     background-color: grey;
+	margin-top: 15px;
 }
 #boardName{
     width: 20%;

@@ -23,8 +23,6 @@ var mydragg = function(){
             }
             divid.style.zIndex = "1";
 
-
-
             //Cogemos los datos de la posicion del raton
 
             evt = evt || window.event;
@@ -41,7 +39,6 @@ var mydragg = function(){
             //Cogemos los datos del div del fondo (el corcho)
             divTop = divTop.replace('px','');
             divLeft = divLeft.replace('px','');
-
 
             //Estilo del raton pasa a movimiento (el "+")
             document.getElementById('container_tablon').style.cursor='move';
@@ -72,9 +69,7 @@ var mydragg = function(){
                     // movemos el objeto a la posicion correcta
 
                 mydragg.move(divid,aX,aY);
-
             }
-
         },
 
         stopMoving : function(divid){
@@ -90,12 +85,8 @@ var mydragg = function(){
             editarPosicion(idTablon,elem,positionx,positiony);
             document.onmousemove = function(){}
         },
-
     }
-
 }();
-
-
 
 function cambiar_fondo(divid, color) {
 
@@ -118,47 +109,26 @@ function cambiar_fondo(divid, color) {
     }
 }
 
-
-
-function cambiar_video(){
-
-    // Obtenemos el texto que del input de más abajo
-    var src = document.getElementById("url").value;
-    // el ID de un video de YTube va despues de esto:
-    var res = src.split("/watch?v=");
-    //Si alguien copia el video con el tiempo actual se corta
-    res = res[1].split("&t=");
-    // este es el texto necesario para poner un video de YTube, falta el ID del video
-    src = "https://www.youtube.com/embed/";
-    //ponemos el ID del video que previamente hemos cogido
-    var url= src+res[0];
-    //cambiamos el SRC para que sea el actual (se cambia solo en la pantalla)
-    document.getElementById('video').src=url;
-
-}
-
-
-
 function addElement_note(){
 
     // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
     elements = document.getElementsByClassName("elem");
-    var length = elements.length;
+    var length = elements.length + 1;
     var id = 'elem';
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
-    //cogemos el elem0, que es una muestra de prueba (Factory Method)
-    var elem0 = document.getElementById("elem0");
-    //cambiamos elem0 por elemX, segun el id de antes
-    var inner = elem0.innerHTML.replace('elem0',id);
+    //cogemos el nota, que es una muestra de prueba (Factory Method)
+    var nota = document.getElementById("nota");
+    //cambiamos nota por elemX, segun el id de antes
+    var inner = nota.innerHTML.replace('nota',id);
     //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
-    //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
-    var note = document.getElementById("new");  
-    inner = elem0.innerHTML.replace('changethenote',note.value);
+    //nota tiene un texto de mentira porque si no, no funcionaba el editar
+    var note = document.getElementById("new_note");  
+    inner = nota.innerHTML.replace('changethenote',note.value);
     div.innerHTML = inner;
 
     //ponemos la anchura y altura
@@ -169,9 +139,9 @@ function addElement_note(){
     var container = document.getElementById("container_tablon");
     container.appendChild(div);
 
-    //añadimos el onMouseDown/UP de elem0
-    div.onmousedown= elem0.onmousedown;
-    div.onmouseup = elem0.onmouseup;
+    //añadimos el onMouseDown/UP de nota
+    div.onmousedown= nota.onmousedown;
+    div.onmouseup = nota.onmouseup;
 	
 	//variables que enviamos a la funcion
 	var idTablon = 1;
@@ -179,17 +149,118 @@ function addElement_note(){
 	var posicion_y = 0;
 	var tamano = "Pequeno";
 	var tipo = "Texto";
-	var contenido = note.value;
+	var contenido = inner;
 	//guardamos el elemento en la base de datos
 	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function addElement_image(){
+     // creamos un nuevo div
+    var div = document.createElement("div");
+    //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
+    elements = document.getElementsByClassName("elem");
+    var length = elements.length;
+    var id = 'elem';
+    id = id+length;
+    //ponemos el ID y la clase al nuevo DIV
+    div.id = id;
+    div.className = 'elem';
+    //cogemos el elem0, que es una muestra de prueba (Factory Method)
+    var imagen = document.getElementById("imagen");
+    //cambiamos elem0 por elemX, segun el id de antes
+    var inner = imagen.innerHTML.replace('imagen',id);
+    //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
+    //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
 
+    var nombre_imagen = document.getElementById("nombre_imagen");  
+    inner = inner.replace('titulo', nombre_imagen.value);
+    div.innerHTML = inner;
+
+    var url_imagen = document.getElementById("url_imagen");  
+    inner = inner.replace('url', url_imagen.value);
+    div.innerHTML = inner;
+
+    var descripcion_imagen = document.getElementById("descripcion_imagen");  
+    inner = inner.replace('descripcion',descripcion_imagen.value);
+    div.innerHTML = inner;
+
+
+    //ponemos la anchura y altura
+    div.style.width = '200px';
+    div.style.height = '100px';
+
+    // cogemos el div del fondo y le añadimos el nuevo div
+    var container = document.getElementById("container_tablon");
+    container.appendChild(div);
+
+    //añadimos el onMouseDown/UP de elem0
+    div.onmousedown= imagen.onmousedown;
+    div.onmouseup = imagen.onmouseup;
+    
+    //variables que enviamos a la funcion
+    var idTablon = 1;
+    var posicion_x = 0;
+    var posicion_y = 0;
+    var tamano = "Pequeno";
+    var tipo = "imagen";
+    var contenido = inner;
+    //guardamos el elemento en la base de datos
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function addElement_video(){
+   // creamos un nuevo div
+    var div = document.createElement("div");
+    //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
+    elements = document.getElementsByClassName("elem");
+    var length = elements.length;
+    var id = 'elem';
+    id = id+length;
+    //ponemos el ID y la clase al nuevo DIV
+    div.id = id;
+    div.className = 'elem';
+    //cogemos el elem0, que es una muestra de prueba (Factory Method)
+    var video = document.getElementById("video");
+    //cambiamos elem0 por elemX, segun el id de antes
+    var inner = video.innerHTML.replace('video',id);
+    //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
+    //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
 
+    var nombre_video = document.getElementById("nombre_video");  
+    inner = inner.replace('titulo', nombre_video.value);
+    div.innerHTML = inner;
+
+    var url_video = document.getElementById("url_video");
+    url_video.value = url_video.value.replace('watch?v=','embed/');
+    inner = inner.replace('url', url_video.value);
+    div.innerHTML = inner;
+
+    var descripcion_video = document.getElementById("descripcion_video"); 
+    inner = inner.replace('descripcion',descripcion_video.value);
+    div.innerHTML = inner;
+
+
+    //ponemos la anchura y altura
+    div.style.width = '200px';
+    div.style.height = '100px';
+
+    // cogemos el div del fondo y le añadimos el nuevo div
+    var container = document.getElementById("container_tablon");
+    container.appendChild(div);
+
+    //añadimos el onMouseDown/UP de elem0
+    div.onmousedown= video.onmousedown;
+    div.onmouseup = video.onmouseup;
+    
+    //variables que enviamos a la funcion
+    var idTablon = 1;
+    var posicion_x = 0;
+    var posicion_y = 0;
+    var tamano = "Pequeno";
+    var tipo = "Video";
+    var contenido = inner;
+    //guardamos el elemento en la base de datos
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function deleteElement(divid){
@@ -213,8 +284,6 @@ function deleteElement(divid){
     eliminarElemento(idTablon ,idElem);
 }
 
-
-
 function editElement(divid){
 
      //obtiene el div del elemento, y dentro de ese div, obtiene el div en el cual está el texto (<pre>)
@@ -229,56 +298,14 @@ function editElement(divid){
     elem.style.backgroundColor = 'orange';
 }
 
-function objetoAjax(){
-	//funcion para realizar conexion ajax con el servidor
-	var xmlhttp = false;
-	try {
-		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-	} catch(e){
-		try {
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		} catch(E) {
-			xmlhttp = false; 
-		}
-	}
-	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-		xmlhttp = new XMLHttpRequest();
-	}
-	return xmlhttp;
-}
-	
+//PERSISTENCIA
+
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido){
     $.ajax({
                 data:  "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+"INSERT",
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-
-/*
-	//especificamos que es un insert
-	var action = "INSERT";
-	//instanciamos el objeto ajax
-	var ajax = objetoAjax();
-	
-	//abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-	ajax.open("POST","../../controladores/controlador_tablon.php", true);
-	
-	
-	//cuando el objeto xmlhttprequest cambia de estado la funcion se inicia
-	ajax.onreadystatechange = function(){
-	
-		//mostrar los resultados al completar la peticion
-		if(ajax.readyState == 4){
-			//El metodo responseText contiene la respuesta del insert.
-			respuesta = document.getElementById('respuesta');
-			respuesta.value = (ajax.responseText);
-		}
-	}
-	//indicamos que los datos se envian como un formulario
-	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	//enviamos las variables a insertar.php
-	ajax.send("&idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+action);
-}*/
 }
 
 function editarPosicion(idTablon, elem, posicion_x, posicion_y){
@@ -289,19 +316,6 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-
-
-   /*
-    //instanciamos el objeto ajax
-    var ajax = objetoAjax();
-    //abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-    ajax.open("POST","../../controladores/controlador_tablon.php", true);
-    
-    //indicamos que los datos se envian como un formulario
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    //enviamos las variables a insertar.php
-    ajax.send("&idTablon="+idTablon+"&idElem="+elem+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&action="+action);*/
-    
 }
 
 function eliminarElemento(idTablon, elem){
@@ -311,16 +325,26 @@ function eliminarElemento(idTablon, elem){
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
-      /*
-    //especificamos que es un editar
-    var action = "DELETE";
-    //instanciamos el objeto ajax
-    var ajax = objetoAjax();
-    //abrimos conexion ajax pasando como parametros el metodo de envio y el archivo php
-    ajax.open("POST","../../controladores/controlador_tablon.php", true);
-    
-    //indicamos que los datos se envian como un formulario
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    //enviamos las variables a insertar.php
-    ajax.send("&idTablon="+idTablon+"&idElem="+elem+"&action="+action);*/
+}
+
+
+function addUser(idTablon, correo) {
+	alert(correo);
+	var action = "SHARE";
+	var correo = document.getElementById("container_tablon");
+      $.ajax({
+                data:  "idTablon="+idTablon+"&correo="+correo+"&action="+action,
+                url:   'controladores/controlador_tablon.php',
+                type:  'POST',
+        });
+}
+
+function addBoard(correo){
+	var action = "ADDBOARD";
+	alert(correo);
+	$.ajax({
+                data: "correo="+correo+"&action="+action,
+                url:   'controladores/controlador_tablon.php',
+                type:  'POST',
+        });
 }

@@ -12,6 +12,13 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+	$("#formulario_invitar").hide();
+	$("#div_invitar").click(function () {
+		$("#formulario_invitar").show();
+	});
+});
+
+$(document).ready(function(){
 	$("#formulario_imagen").hide();
 	$("#formulario_video").hide();
 	$("#formulario_texto").hide();
