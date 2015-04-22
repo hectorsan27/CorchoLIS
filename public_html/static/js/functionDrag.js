@@ -137,7 +137,16 @@ function cambiar_video(){
 
 }
 
-
+function addUser(idTablon, correo) {
+	alert(correo);
+	var action = "SHARE";
+	var correo = document.getElementById("container_tablon");
+      $.ajax({
+                data:  "idTablon="+idTablon+"&correo="+correo+"&action="+action,
+                url:   'controladores/controlador_tablon.php',
+                type:  'POST',
+        });
+}
 
 function addElement_note(){
 

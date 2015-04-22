@@ -76,9 +76,25 @@ $(document).ready(function() {
             <div id="board-menu">
                 <ul class="menu">
                     <li><a>Nombre Tablón</a></li>
+					<?php
+						$privilegio = obtenerPrivilegiosTablon(1,"carlos@gmail.com");
+						//echo $privilegio;
+						if ($privilegio > 0){
+					?>
                     <li><a id="div_anadir">Añadir +</a></li>
+					<?php 
+						}
+					?>
                     <li><a>Papelera</a></li>
                     <li><a>Marcadores</a></li>
+					<?php
+						//echo $privilegio;
+						if ($privilegio > 2){
+					?>
+					<li><a id="div_invitar">Invitar</a></li>
+					<?php 
+						}
+					?>
                 </ul> 
             </div>
         </div> 
@@ -99,6 +115,7 @@ $(document).ready(function() {
                             <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
                     <div id="imagen" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                         <div>
@@ -122,8 +139,10 @@ $(document).ready(function() {
                         </div>    
                     </div>
 
+=======
+					
+>>>>>>> Develope2
                     <?php
-                    require_once("../modelos/modelo.php");
                     $result = obtenerElementosTablon(1);
                     while($row=mysql_fetch_assoc($result)) {
                         $elem = $row["ID_elementos"] + 1;
@@ -139,13 +158,21 @@ $(document).ready(function() {
                                 <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
                                 <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                             </div>
-                        </div>';
-                    }
-                    ?>
+                        </div>';}
+						?>
                    
                 </div>
             </div>
-
+			<div id="invitar">
+                <form id="formulario_invitar" class="vertical">
+					<fieldset>
+						<label for="correo">Correo</label>
+						<input id='correo' type="text" name="yt"/>
+						<input type="button" value='Invitar' onclick="addUser(1,correo.value)"/>
+						<button type="button" class="anadir_elemento_cerrar"> Cancelar</button>  
+					</fieldset>
+                </form>
+			</div>
             <div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion">
                     <div id="elemento_seleccion_texto" class="elemento_seleccion"><img src="static/img/anadir_texto.png"></div>
@@ -200,7 +227,7 @@ $(document).ready(function() {
                         </fieldset>
                     </form>                      
                 </div>
-            </div> <!--Cierra container-->
+            </div> <!--Cierra container--> 
         </div><!--Cierra board -->
     </div> <!--Cierra div body -->
 </body><!--Cierra body -->

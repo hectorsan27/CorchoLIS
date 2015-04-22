@@ -185,4 +185,20 @@ function obtenerElementosTablon($idTablon){
 	return $result;
 }
 
+function obtenerPrivilegiosTablon($idTablon, $correo){
+	$connexion=conectarBasedeDatos();
+	$query = "Select Privilegio From usuarios_tablones where ID_tablon = '$idTablon' AND Correo_usuario = '$correo';";
+	$result = mysql_query($query, $connexion);
+	$privilegio =  mysql_result($result, 0);
+	desconectarDeBasedeDatos($connexion);
+	return $privilegio;
+}
+//Invitar a un usuario al tablon, por defecto privilegio 0
+function compartirTablon($idTablon, $correo){
+	$connexion=conectarBasedeDatos();
+	$query = "INSERT INTO usuarios_tablones (Correo_usuario, ID_tablon, Privilegio) VALUES ('$correo', '$idTablon', '0');";
+	$result = mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+}
+
 ?>
