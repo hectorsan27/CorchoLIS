@@ -1,6 +1,8 @@
 <div id="content_inicio">
 	<div class="container_tablones">
-		<h5>MIS TABLONES</h5>
+		<div class="categoria">
+			<img src="static/img/categoria_privados.png">
+		</div>
 		<div class="tablones">
 			<div class="tablon hvr-grow">
 				<div class="descripcion" id="descripcion_1">
@@ -41,7 +43,9 @@
 	<div class="separador">
 	</div>
 	<div class="container_tablones">
-		<h5>TABLONES COMPARTIDOS</h5>
+		<div class="categoria">
+			<img src="static/img/categoria_compartidos.png">
+		</div>
 		<div class="tablones">
 			<div class="tablon hvr-grow">
 				<div class="descripcion" id="descripcion_4">

@@ -11,10 +11,24 @@
 }
 .container_tablones {
 	padding: 10px 20px 10px 20px;
+  margin-left:60px;
+  margin-right:60px; 
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .container_tablones h5{
-	color: white;
+  margin: 10px 20px 10px 20px;
+  text-align: center;
+  color: white;
 }
+.categoria {
+  text-align: center;
+}
+.categoria img {
+  height: 40px;
+
+}
+
 .tablones {
 	text-align: center;
 }
@@ -62,10 +76,6 @@
 	background-image: url("../img/placeholder_anadir_tablon.png");
 }
 .titulo{
-}
-.container_tablones h5{
-	margin: 10px 20px 10px 20px;
-
 }
 
 /* Grow */
