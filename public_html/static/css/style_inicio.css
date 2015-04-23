@@ -44,7 +44,7 @@ div#header {
 div#content {
   min-width: 1000px;
   padding:20px; /* bottom padding for footer */
-  background: url("../img/fondo_body.jpg") no-repeat center center; 
+  background: url("../img/fondo_inicio.jpg") no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -54,6 +54,7 @@ div#content {
     margin-right:  auto;
     margin-left: auto;
     padding-top: 100px;
+    padding-bottom: 100px;
     width: 640px;
 }
 #presentacion {
@@ -196,7 +197,7 @@ div#footer {
   left: 50%;
   right: 50%;
   top: 0;
-  background: #2098d1;
+  background: #FF9C1A;
   height: 4px;
   -webkit-transition-property: left, right;
   transition-property: left, right;

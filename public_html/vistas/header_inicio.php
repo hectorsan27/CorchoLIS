@@ -15,6 +15,8 @@
 <script type="text/javascript" src="static/js/openLogin.js"></script>
 <script type="text/javascript" src="static/js/validacion_registro.js"></script>
 <script type="text/javascript" src="static/js/functionDrag.js"></script>
+<script type="text/javascript" src="static/js/funciones_home.js"></script>
+<script type="text/javascript" src="static/js/jquery.dotdotdot.js"></script> <!--Usado en home-->
 </head> 
 
 <body> <!--El Header se encarga de abrir el tab body y html pero no lo cierra-->

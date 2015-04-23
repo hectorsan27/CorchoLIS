@@ -14,11 +14,11 @@ $(document).ready(function() {
         <div id="header_tablon">
             <ul class="menu menu_header">
                     <li id = 'logo'>
-                        <a><div>
+                       <div>
                             <div class="elemento_menu">
-                                <img src="static/img/logo_provisional_pequeno.png">
+                                <a href="tablones"><img src="static/img/logo_provisional_pequeno.png"></a>
                             </div>
-                        </div></a>
+                        </div>
                     </li>
                     <li id = 'homeIcon'>
                         <a><div>

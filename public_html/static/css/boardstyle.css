@@ -19,7 +19,7 @@
  
 #header_tablon{
     background-color: white;
-    height: 132px; /*Cambiar top Board si se toca*/
+    height: 171px; /*Cambiar top Board si se toca*/
     width: 100%;
     min-width: 1366px;
 }
@@ -83,7 +83,7 @@
 /*TABLERO*/
 
 #board{
-    height: calc(100% - 132px);
+    height: calc(100% - 171px);
     top: 132px;
 }
 
