@@ -16,7 +16,7 @@ $(document).ready(function() {
                     <li id = 'logo'>
                        <div>
                             <div class="elemento_menu">
-                                <a href="tablones"><img src="static/img/logo_provisional_pequeno.png"></a>
+                                <a href="home"><img src="static/img/logo_provisional_pequeno.png"></a>
                             </div>
                         </div>
                     </li>

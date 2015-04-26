@@ -32,10 +32,10 @@ switch (count($url)) {
 			require_once("../vistas/header_tablon.php");
 			require("../vistas/vista_tablon.php"); 
    		}
-   		if($url[2] == 'tablones') {
+   		if($url[2] == 'home') {
 			require_once("../modelos/modelo.php");
 			require_once("../vistas/header_inicio.php");
-			require("../vistas/vista_tablones.php");
+			require("../vistas/vista_home.php");
 			require_once("../vistas/footer.php");
    		}
    		if($url[2] == 'cerrar_session') {

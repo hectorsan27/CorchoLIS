@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF8" /> 
 <!-- LINKS -->
 <link rel="stylesheet" href="static/css/style_inicio.css" type="text/css"> <!-- Estilo de la página inicial-->
-<link rel="stylesheet" href="static/css/style_tablones.css" type="text/css"> <!-- Estilo de la página de tablones-->
+<link rel="stylesheet" href="static/css/style_home.css" type="text/css"> <!-- Estilo de la página home-->
 <link rel="stylesheet" href="static/css/kickstart.css" media="all" /> <!-- KICKSTART -->
 <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
@@ -17,6 +17,7 @@
 <script type="text/javascript" src="static/js/functionDrag.js"></script>
 <script type="text/javascript" src="static/js/funciones_home.js"></script>
 <script type="text/javascript" src="static/js/jquery.dotdotdot.js"></script> <!--Usado en home-->
+<script type="text/javascript" src="static/js/funciones_inicio.js"></script>
 </head> 
 
 <body> <!--El Header se encarga de abrir el tab body y html pero no lo cierra-->
@@ -49,6 +50,8 @@
 		<div id="div_registro" class="div_login_y_registro div_registro">
 			<form class="vertical" action="controladores/controlador_registro.php"  method="post">
 				<fieldset>
+					<p>Registrarse</p>
+
 					<label id="lab_correo">Correo electrónico</label>
 					<input type="text" name="fr_correo" id="fr_correo">
 
@@ -126,6 +129,7 @@
 		<div id="div_login" class="div_login_y_registro div_login">
 			<form class="vertical" action="controladores/controlador_login.php" method="post">
 				<fieldset>
+					<p>Inicio de Sesión</p>
 					<label>Correo electrónico</label>
 					<input type="text" name="fl_correo">
 					<label>Password</label>

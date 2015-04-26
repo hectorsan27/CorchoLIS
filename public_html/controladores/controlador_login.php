@@ -15,7 +15,7 @@
 			session_start();
 			$_SESSION['logeado']= $fl_correo;
 			echo "<script type='text/javascript'>alert('Logeado con éxito');</script>";
-			header("Location: /public_html/tablones");
+			header("Location: /public_html/home");
 			exit();
 
 		} else {
