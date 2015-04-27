@@ -117,7 +117,7 @@ function addElement_note(){
     elements = document.getElementsByClassName("elem");
     var length = elements.length + 1;
     var id = 'elem';
-    id = id+length;
+    id = id+length-3;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
@@ -149,7 +149,7 @@ function addElement_note(){
 	var posicion_y = 0;
 	var tamano = "Pequeno";
 	var tipo = "Texto";
-	var contenido = inner;
+	var contenido = note.value;
 	//guardamos el elemento en la base de datos
 	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
@@ -161,7 +161,7 @@ function addElement_image(){
     elements = document.getElementsByClassName("elem");
     var length = elements.length;
     var id = 'elem';
-    id = id+length;
+    id = id+length-3;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
@@ -215,7 +215,7 @@ function addElement_video(){
     elements = document.getElementsByClassName("elem");
     var length = elements.length;
     var id = 'elem';
-    id = id+length;
+    id = id+length-3;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';

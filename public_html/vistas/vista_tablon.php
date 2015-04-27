@@ -94,6 +94,13 @@ $(document).ready(function() {
 					<li><a id="div_invitar">Invitar</a></li>
 					<?php 
 						}
+						if ($privilegio > 3){
+					?>
+					<li><a id="div_administrar">Administrar</a>
+					</li>
+					<?php
+					}
+					?>
 					?>
                 </ul> 
             </div>
@@ -175,6 +182,28 @@ $(document).ready(function() {
 						<button type="button" class="anadir_elemento_cerrar"> Cancelar</button>  
 					</fieldset>
                 </form>
+			</div>
+			<div id="administrar">
+                
+					<table class="sorteable">
+						<?php
+						$usuarios = obtenerUsuariosTablon(1);
+						while($fila=mysql_fetch_array($usuarios)){ ?>
+							<tr><td>
+								<?php echo $fila['Correo_usuario']; ?>
+							</td><td>
+								<?php echo $fila['Privilegio']; ?> 
+							</td><td>
+							<form  method= "post" action="controladores/controlador_tablon.php" class="vertical"><?php if($fila['Privilegio']<4){ ?>
+								<input name="priv" id="priv" type="number"/> <?php } ?>
+								<input name="action" id="action" type="hidden" value="ADMIN"/>
+								<input name="correo" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
+								<input name="id_tablon" id="id_tablon" type="hidden" value="1"/>
+							</form></td></tr>
+						<?php	
+						}
+						?>
+					</table>
 			</div>
             <div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion">

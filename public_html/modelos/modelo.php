@@ -213,5 +213,34 @@ function agregarTablon($correo){
 	$result = mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
 }
-
+function obtenerUsuariosTablon($idTablon){
+	$connexion=conectarBasedeDatos();
+	$query = "Select Correo_usuario, Privilegio From usuarios_tablones where ID_tablon = '$idTablon';";
+	$usuarios = mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+	return $usuarios;
+}
+function modificarPrivilegios($idTablon, $correo, $privilegio){
+	$connexion=conectarBasedeDatos();
+	$query = "REPLACE INTO usuarios_tablones (Correo_usuario, ID_tablon, Privilegio) VALUES ('$correo', '$idTablon', '$privilegio');";
+	$result = mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+	}
+function cargarTablones($correo){
+	$connexion=conectarBasedeDatos();
+	$query = "SELECT * from usuarios_tablones group by ID_tablon having count(ID_tablon) = 1 and Correo_usuario = '$correo';";
+	$result = mysql_query($query, $connexion);
+	$i = 0;
+	while ($row=mysql_fetch_assoc($result)) {
+		$id = $row["ID_tablon"];
+		$query = "SELECT * from tablones WHERE ID = '$id';";
+		$result2 = mysql_query($query, $connexion);
+		$row2=mysql_fetch_assoc($result2,0);
+		$array[$i][0] = $row2["Nombre"];
+		$array[$i][1] = $row2["Descripcion"];
+		$i = $i + 1;
+	}
+	desconectarDeBasedeDatos($connexion);
+	return $array;
+	}
 ?>

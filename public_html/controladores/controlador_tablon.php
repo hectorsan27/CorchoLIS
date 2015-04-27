@@ -51,4 +51,11 @@
 		agregarTablon($correo);
 		
 	}
+	if ($action == 'ADMIN'){
+		$correo = $_POST["correo"];
+		$idTablon = $_POST["id_tablon"];
+		$privilegio = $_POST["priv"];
+		modificarPrivilegios($idTablon, $correo, $privilegio);
+		header('Location: /public_html/tablon');
+	}
 ?>

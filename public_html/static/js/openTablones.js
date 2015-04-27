@@ -17,6 +17,12 @@ $(document).ready(function(){
 		$("#formulario_invitar").show();
 	});
 });
+$(document).ready(function(){
+	$("#administrar_usuarios").hide();
+	$("#div_administrar").click(function () {
+		$("#administrar_usuarios").show();
+	});
+});
 
 $(document).ready(function(){
 	$("#formulario_imagen").hide();
