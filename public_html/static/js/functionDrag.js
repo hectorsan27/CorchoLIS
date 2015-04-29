@@ -141,16 +141,16 @@ function addElement_note(){
     //añadimos el onMouseDown/UP de nota
     div.onmousedown= nota.onmousedown;
     div.onmouseup = nota.onmouseup;
-    
-    //variables que enviamos a la funcion
-    var idTablon = 1;
-    var posicion_x = 0;
-    var posicion_y = 0;
-    var tamano = "Pequeno";
-    var tipo = "Texto";
-    var contenido = note.value;
-    //guardamos el elemento en la base de datos
-    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
+	
+	//variables que enviamos a la funcion
+	var idTablon = 1;
+	var posicion_x = 0;
+	var posicion_y = 0;
+	var tamano = "Pequeno";
+	var tipo = "Texto";
+	var contenido = note.value;
+	//guardamos el elemento en la base de datos
+	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function addElement_image(){
@@ -269,15 +269,15 @@ function deleteElement(divid){
     var elem = document.getElementById(idElem);
     document.getElementById("container_tablon").removeChild(elem);
     idElem = idElem.replace('elem','');
+    idElem = parseInt(idElem);
 
     var elements = document.getElementsByClassName("elem");
     var i;
     var item;
-    for (i = idElem; i <= elements.length; i++){
-        item = parseInt(i)+3;
-        elements.item(item).id = "elem" + i;
+    for (i = idElem; i < elements.length - 3; i++){
+        elements[i+3].id = "elem" + i;
     }
-    alert(idTablon + "," + idElem);
+    //alert(idTablon + "," + idElem);
     eliminarElemento(idTablon ,idElem);
 }
 
@@ -326,9 +326,9 @@ function eliminarElemento(idTablon, elem){
 
 
 function addUser(idTablon, correo) {
-    alert(correo);
-    var action = "SHARE";
-    var correo = document.getElementById("container_tablon");
+	alert(correo);
+	var action = "SHARE";
+	var correo = document.getElementById("container_tablon");
       $.ajax({
                 data:  "idTablon="+idTablon+"&correo="+correo+"&action="+action,
                 url:   'controladores/controlador_tablon.php',
@@ -337,9 +337,9 @@ function addUser(idTablon, correo) {
 }
 
 function addBoard(correo){
-    var action = "ADDBOARD";
-    alert(correo);
-    $.ajax({
+	var action = "ADDBOARD";
+	alert(correo);
+	$.ajax({
                 data: "correo="+correo+"&action="+action,
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
