@@ -76,32 +76,32 @@ $(document).ready(function() {
             <div id="board-menu">
                 <ul class="menu">
                     <li><a>Nombre Tablón</a></li>
-					<?php
-						$privilegio = obtenerPrivilegiosTablon(1,"pere@gmail.com");
-						//echo $privilegio;
-						if ($privilegio > 0){
-					?>
+                    <?php
+                        $privilegio = obtenerPrivilegiosTablon(1,"pere@gmail.com");
+                        //echo $privilegio;
+                        if ($privilegio > 0){
+                    ?>
                     <li><a id="div_anadir">Añadir +</a></li>
-					<?php 
-						}
-					?>
+                    <?php 
+                        }
+                    ?>
                     <li><a>Papelera</a></li>
                     <li><a>Marcadores</a></li>
-					<?php
-						//echo $privilegio;
-						if ($privilegio > 2){
-					?>
-					<li><a id="div_invitar">Invitar</a></li>
-					<?php 
-						}
-						if ($privilegio > 3){
-					?>
-					<li><a id="div_administrar">Administrar</a>
-					</li>
-					<?php
-					}
-					?>
-					?>
+                    <?php
+                        //echo $privilegio;
+                        if ($privilegio > 2){
+                    ?>
+                    <li><a id="div_invitar">Invitar</a></li>
+                    <?php 
+                        }
+                        if ($privilegio > 3){
+                    ?>
+                    <li><a id="div_administrar">Administrar</a>
+                    </li>
+                    <?php
+                    }
+                    ?>
+                    ?>
                 </ul> 
             </div>
         </div> 
@@ -155,7 +155,7 @@ $(document).ready(function() {
                     <?php
                     $result = obtenerElementosTablon(1);
                     while($row=mysql_fetch_assoc($result)) {
-                        $elem = $row["ID_elementos"] + 1;
+                        $elem = $row["ID_elementos"];
                         echo 
                         '<div id="elem'. $elem . '" class = "elem" style="width: 200px;height: 100px;left: ' . $row["posicionx"] .'px; top: ' . $row["posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                             <div>
@@ -163,48 +163,46 @@ $(document).ready(function() {
                             </div>
                             <div id = "squareContainer" style = "width: 64px; height: 20px; margin: auto;">
                                 <div class ="square" id ="redSquare" onclick="cambiar_fondo(this, 1);"></div>
-                                <div class ="square" id ="greenSquare" onclick="cambiar_fondo(this, 2);"></div>
-                                <div class ="square" id ="blueSquare" onclick="cambiar_fondo(this, 3);"></div>
                                 <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
                                 <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
                             </div>
                         </div>';}
-						?>
+                        ?>
                    
                 </div>
             </div>
-			<div id="invitar">
+            <div id="invitar">
                 <form id="formulario_invitar" class="vertical">
-					<fieldset>
-						<label for="correo">Correo</label>
-						<input id='correo' type="text" name="yt"/>
-						<input type="button" value='Invitar' onclick="addUser(1,correo.value)"/>
-						<button type="button" class="anadir_elemento_cerrar"> Cancelar</button>  
-					</fieldset>
+                    <fieldset>
+                        <label for="correo">Correo</label>
+                        <input id='correo' type="text" name="yt"/>
+                        <input type="button" value='Invitar' onclick="addUser(1,correo.value)"/>
+                        <button type="button" class="anadir_elemento_cerrar"> Cancelar</button>  
+                    </fieldset>
                 </form>
-			</div>
-			<div id="administrar">
+            </div>
+            <div id="administrar">
                 
-					<table class="sorteable">
-						<?php
-						$usuarios = obtenerUsuariosTablon(1);
-						while($fila=mysql_fetch_array($usuarios)){ ?>
-							<tr><td>
-								<?php echo $fila['Correo_usuario']; ?>
-							</td><td>
-								<?php echo $fila['Privilegio']; ?> 
-							</td><td>
-							<form  method= "post" action="controladores/controlador_tablon.php" class="vertical"><?php if($fila['Privilegio']<4){ ?>
-								<input name="priv" id="priv" type="number"/> <?php } ?>
-								<input name="action" id="action" type="hidden" value="ADMIN"/>
-								<input name="correo" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
-								<input name="id_tablon" id="id_tablon" type="hidden" value="1"/>
-							</form></td></tr>
-						<?php	
-						}
-						?>
-					</table>
-			</div>
+                    <table class="sorteable">
+                        <?php
+                        $usuarios = obtenerUsuariosTablon(1);
+                        while($fila=mysql_fetch_array($usuarios)){ ?>
+                            <tr><td>
+                                <?php echo $fila['Correo_usuario']; ?>
+                            </td><td>
+                                <?php echo $fila['Privilegio']; ?> 
+                            </td><td>
+                            <form  method= "post" action="controladores/controlador_tablon.php" class="vertical"><?php if($fila['Privilegio']<4){ ?>
+                                <input name="priv" id="priv" type="number"/> <?php } ?>
+                                <input name="action" id="action" type="hidden" value="ADMIN"/>
+                                <input name="correo" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
+                                <input name="id_tablon" id="id_tablon" type="hidden" value="1"/>
+                            </form></td></tr>
+                        <?php   
+                        }
+                        ?>
+                    </table>
+            </div>
             <div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion">
                     <div id="elemento_seleccion_texto" class="elemento_seleccion"><img src="static/img/anadir_texto.png"></div>
