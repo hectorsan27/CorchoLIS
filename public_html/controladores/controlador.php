@@ -35,6 +35,7 @@ switch (count($url)) {
    		if($url[2] == 'home') {
 			session_start();
 			require_once("../modelos/modelo.php");
+			$correo = $_SESSION['logeado'];
 			$tablones = cargarTablones($_SESSION['logeado']);
 			require_once("../vistas/header_inicio.php");
 			require("../vistas/vista_home.php");

@@ -231,6 +231,7 @@ function cargarTablones($correo){
 	$query = "SELECT * from usuarios_tablones group by ID_tablon having count(ID_tablon) = 1 and Correo_usuario = '$correo';";
 	$result = mysql_query($query, $connexion);
 	$i = 0;
+	$array = array();
 	while ($row=mysql_fetch_assoc($result)) {
 		$id = $row["ID_tablon"];
 		$query = "SELECT * from tablones WHERE ID = '$id';";

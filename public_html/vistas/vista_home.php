@@ -18,11 +18,7 @@
 			</div>
 			<?php } 
 			} ?>
-			<div class="tablon anadir_tablon hvr-grow" onclick="addBoard(<?php echo "'$correo'"; ?>)"> 
-				
-			</div> 
-				
-			</div>
+			<div class="tablon anadir_tablon hvr-grow" onclick="addBoard(<?php echo "'$correo'"; ?>)"></div> 
 		</div>
 	</div>
 	<div class="separador">

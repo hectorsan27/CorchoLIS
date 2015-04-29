@@ -32,7 +32,6 @@
 	    	<div id="container_login">
 	    		<ul class="lista_horizontal lista_login">
 	    			<?php
-						session_start();
 						if(isset($_SESSION['logeado'])):			
 					?>
 					<li><a id="perfil_usuario"><?php echo $_SESSION['logeado'];?></a></li>
