@@ -81,7 +81,6 @@ var mydragg = function(){
             positiony = positiony.replace('px','');
             var elem = divid.id;
             elem = elem.replace('elem','');
-            elem = elem-1;
             editarPosicion(idTablon,elem,positionx,positiony);
             document.onmousemove = function(){}
         },
@@ -114,10 +113,10 @@ function addElement_note(){
     // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    elements = document.getElementsByClassName("elem");
-    var length = elements.length + 1;
+    var elements = document.getElementsByClassName("elem");
+    var length = elements.length - 3;
     var id = 'elem';
-    id = id+length-3;
+    id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
@@ -142,26 +141,26 @@ function addElement_note(){
     //añadimos el onMouseDown/UP de nota
     div.onmousedown= nota.onmousedown;
     div.onmouseup = nota.onmouseup;
-	
-	//variables que enviamos a la funcion
-	var idTablon = 1;
-	var posicion_x = 0;
-	var posicion_y = 0;
-	var tamano = "Pequeno";
-	var tipo = "Texto";
-	var contenido = note.value;
-	//guardamos el elemento en la base de datos
-	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
+    
+    //variables que enviamos a la funcion
+    var idTablon = 1;
+    var posicion_x = 0;
+    var posicion_y = 0;
+    var tamano = "Pequeno";
+    var tipo = "Texto";
+    var contenido = note.value;
+    //guardamos el elemento en la base de datos
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function addElement_image(){
      // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    elements = document.getElementsByClassName("elem");
-    var length = elements.length;
+    var elements = document.getElementsByClassName("elem");
+    var length = elements.length -3;
     var id = 'elem';
-    id = id+length-3;
+    id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
@@ -212,10 +211,10 @@ function addElement_video(){
    // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    elements = document.getElementsByClassName("elem");
-    var length = elements.length;
+    var elements = document.getElementsByClassName("elem");
+    var length = elements.length - 3;
     var id = 'elem';
-    id = id+length-3;
+    id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elem';
@@ -273,13 +272,11 @@ function deleteElement(divid){
 
     var elements = document.getElementsByClassName("elem");
     var i;
-    var id;
-    for (i = idElem; i < elements.length; i++){
-        id = "elem" + i;
-        console.log(id);
-        elements[i].id = id;
+    var item;
+    for (i = idElem; i <= elements.length; i++){
+        item = parseInt(i)+3;
+        elements.item(item).id = "elem" + i;
     }
-    idElem = idElem-1;
     alert(idTablon + "," + idElem);
     eliminarElemento(idTablon ,idElem);
 }
@@ -329,9 +326,9 @@ function eliminarElemento(idTablon, elem){
 
 
 function addUser(idTablon, correo) {
-	alert(correo);
-	var action = "SHARE";
-	var correo = document.getElementById("container_tablon");
+    alert(correo);
+    var action = "SHARE";
+    var correo = document.getElementById("container_tablon");
       $.ajax({
                 data:  "idTablon="+idTablon+"&correo="+correo+"&action="+action,
                 url:   'controladores/controlador_tablon.php',
@@ -340,9 +337,9 @@ function addUser(idTablon, correo) {
 }
 
 function addBoard(correo){
-	var action = "ADDBOARD";
-	alert(correo);
-	$.ajax({
+    var action = "ADDBOARD";
+    alert(correo);
+    $.ajax({
                 data: "correo="+correo+"&action="+action,
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
