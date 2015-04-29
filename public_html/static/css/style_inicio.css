@@ -51,8 +51,9 @@ div#content {
   z-index: 1;
   position: relative;
   min-width: 1000px;
+  min-height: 620px;
   padding:20px; /* bottom padding for footer */
-  background: url("../img/fondo_inicio_2.jpg") no-repeat center center; 
+  background: url("../img/fondo_inicio_12.jpg") no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -66,15 +67,14 @@ div#content {
     width: 720px;
 }
 #presentacion {
-    /*width: 100%;*/
-    /*height: 400px;*/
-    position: relative;
-    min-width: 1000px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 50px 200px 50px 200px;
-    background-color: #d7dfe2;
-
+  position: relative;
+  min-width: 1000px;
+  min-height: 620px;
+  background: url("../img/fondo_inicio_6.jpg") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .contenedor_salto_abajo {
@@ -88,6 +88,30 @@ div#content {
   top: 0;
   left: 50%;
   margin-left: -50px;
+}
+/*PRESENTACION*/
+.contenedor_informacion {
+  padding: 100px 50px 100px 50px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+}
+.info h4{
+  color: #3b3b3b;
+  font-size: 20px;
+  line-height: 1.25;
+
+}
+.info h5 {
+  color: #3b3b3b;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: normal;
+}
+.info ul {
+  list-style-type: none;
 }
 /*SEPARADOR*/
 #separador{

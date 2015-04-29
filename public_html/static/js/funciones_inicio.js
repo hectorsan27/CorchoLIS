@@ -23,3 +23,21 @@ $(document).ready(function(){
 	});
 
 });
+
+$(document).ready(function(){ 
+  $('.info').hide();
+  $('#about_us').show();
+
+  $('#about_us_footer').click(function(){
+    $('.info').hide({ effect: "scale", direction: "vertical" });
+    $('#about_us').delay("400").show({ effect: "scale", direction: "vertical" });
+  });
+  $('#tos_footer').click(function(){
+    $('.info').hide({ effect: "scale", direction: "vertical" });
+    $('#tos').delay("400").show({ effect: "scale", direction: "vertical" });
+  });
+  $('#contacto_footer').click(function(){
+    $('.info').hide({ effect: "scale", direction: "vertical" });
+    $('#contacto').delay("400").show({ effect: "scale", direction: "vertical" });
+  });
+});

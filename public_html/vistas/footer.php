@@ -2,9 +2,9 @@
 			<div id="footer">
 					<div class="container_footer">
 						<ul class="lista_footer lista_horizontal">
-							<li class="hvr-reveal"><a>ABOUT US<a/></li>
-							<li class="hvr-reveal"><a>TERMINOS DE USO<a/></li>
-							<li class="hvr-reveal"><a>CONTACTO<a/></li>
+							<li id="about_us_footer" class="hvr-reveal"><a>ABOUT US<a/></li>
+							<li id="tos_footer" class="hvr-reveal"><a>TERMINOS DE USO<a/></li>
+							<li id="contacto_footer" class="hvr-reveal"><a>CONTACTO<a/></li>
 						</ul>
 					</div>
 			</div>
