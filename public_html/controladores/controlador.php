@@ -13,12 +13,13 @@ function eliminarEspacioEnblanco($elemento) {
 }
 $url = array_filter($url, "eliminarEspacioEnblanco");
 
+if (!isset($_SESSION)){
+	session_start();
+}
 //Enviamos los requires necesarios segun la URI analizada
-
 switch (count($url)) {
 	case 0: 
     case 1:	//Inicio
-		
 		require_once("../vistas/header_inicio.php"); 
 		require("../vistas/vista_inicio.html");
 		require_once("../vistas/footer.php");	
@@ -33,7 +34,6 @@ switch (count($url)) {
 			require("../vistas/vista_tablon.php"); 
    		}
    		if($url[2] == 'home') {
-			session_start();
 			require_once("../modelos/modelo.php");
 			$correo = $_SESSION['logeado'];
 			$tablones = cargarTablones($_SESSION['logeado']);
@@ -42,7 +42,6 @@ switch (count($url)) {
 			require_once("../vistas/footer.php");
    		}
    		if($url[2] == 'cerrar_session') {
-			session_start();
 	   		if(isset($_SESSION['logeado'])){
 				unset($_SESSION['logeado']); 
 			}
