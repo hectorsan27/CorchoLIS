@@ -29,15 +29,18 @@ $(document).ready(function(){
   $('#about_us').show();
 
   $('#about_us_footer').click(function(){
-    $('.info').hide({ effect: "scale", direction: "vertical" });
-    $('#about_us').delay("400").show({ effect: "scale", direction: "vertical" });
+    $('#tos').hide("scale");
+    $('#contacto').hide("scale");
+    $('#about_us').delay(400).show("scale");
   });
   $('#tos_footer').click(function(){
-    $('.info').hide({ effect: "scale", direction: "vertical" });
-    $('#tos').delay("400").show({ effect: "scale", direction: "vertical" });
+    $('#about_us').hide("scale");
+    $('#contacto').hide("scale");
+    $('#tos').delay(400).show("scale");
   });
   $('#contacto_footer').click(function(){
-    $('.info').hide({ effect: "scale", direction: "vertical" });
-    $('#contacto').delay("400").show({ effect: "scale", direction: "vertical" });
+    $('#tos').hide("scale");
+    $('#about_us').hide("scale");
+    $('#contacto').delay(400).show("scale");
   });
 });

@@ -51,7 +51,6 @@ div#content {
   z-index: 1;
   position: relative;
   min-width: 1000px;
-  min-height: 620px;
   padding:20px; /* bottom padding for footer */
   background: url("../img/fondo_inicio_12.jpg") no-repeat center center; 
   -webkit-background-size: cover;
@@ -69,7 +68,6 @@ div#content {
 #presentacion {
   position: relative;
   min-width: 1000px;
-  min-height: 620px;
   background: url("../img/fondo_inicio_6.jpg") no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -90,13 +88,25 @@ div#content {
   margin-left: -50px;
 }
 /*PRESENTACION*/
-.contenedor_informacion {
-  padding: 100px 50px 100px 50px;
-  width: 100%;
+/*.contenedor_informacion {
+  padding: 50px 50px 50px 50px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background-color: white;
+  text-align: justify;
+  width: 100%;
+  box-sizing: border-box;
+}*/
+.info{
+  padding: 50px 50px 50px 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  text-align: justify;
+  width: 100%;
+  box-sizing: border-box;
 }
 .info h4{
   color: #3b3b3b;
@@ -128,9 +138,6 @@ div#footer {
 }
 
 .lista_footer {
-    margin:20px;
-    margin-left: auto;
-    margin-right: auto;
     cursor: pointer;
 }
 .lista_footer li{
@@ -141,20 +148,38 @@ div#footer {
   color: white;
 }
 
+.container_footer {
+    /*width: 50%;
+    margin: 0 auto;*/
+    text-align: center;
+}
+.copyright {
+  height: 18px;
+  display: block;
+}
+.copyright p{
+  margin: 0px;
+  color: #999;
+}
+
 
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
 .lista_horizontal{
     margin: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
 }
 .lista_horizontal li{
 	list-style-type: none;
 	display: inline-block;
-	padding-top: 10px;
-  padding-bottom: 10px;
+	padding-top: 6px;
+  padding-bottom: 6px;
   padding-right: 12px;
   padding-left: 12px;
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 .lista_horizontal li a{
 	text-decoration: none;
@@ -165,22 +190,42 @@ div#footer {
     opacity: 0.5;
 }
 
-/*LOGIN Y REGISTRO*/
-.div_registro {
+/*LOGIN Y REGISTRO http://www.sanwebe.com/2014/08/css-html-forms-designs*/
+#div_login {
+  background-color: white;
+  border: 2px solid #ddd;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin-top: -129px;
+  margin-left: -203px;
+  width: 406px;
+  height: 258px;
+  z-index: 3000;
+}
+#div_registro {
+  background-color: white;
+  border: 2px solid #ddd;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin-top: -222px;
+  margin-left: -203px;
+  width: 406px;
+  height: 454px;
+  z-index: 3001;
+}
+.fondo_oscurecido {
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  bottom: 0; 
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+}
 
-}
-.div_login {
-}
-.div_login_y_registro {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    margin-top: -200px;
-    margin-left: -200px;
-    width: 400px;
-    height: 400px;
-    z-index: 3000;
-}
+
 fieldset p {
   text-align: center;
 }
@@ -210,18 +255,6 @@ fieldset p {
     float:right;
     margin: 10px;
 }
-
-
-.container_footer {
-    height: 55px;
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-/*Indices
-  Header: 2;
-  Content 1;
 
 /*EFECTOS BOTONES https://github.com/IanLunn/Hover/blob/master/css/hover.css */
 
@@ -301,4 +334,114 @@ fieldset p {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
 }
+
+/*Formulario*/
+.form-style-1 {
+    margin:10px auto;
+    max-width: 400px;
+    padding: 20px 12px 10px 20px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.form-style-1-heading{
+  text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    border-bottom: 2px solid #ddd;
+    font-size: 15px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.form-style-1 li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin: 10px 0 0 0;
+}
+.form-style-1 label{
+    margin:0 0 3px 0;
+    padding:0px;
+    display:block;
+    font-weight: bold;
+}
+.form-style-1 input[type=text], 
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+.form-style-1 input[type=password],
+textarea, 
+select{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;  
+}
+.form-style-1 input[type=text]:focus, 
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 input[type=password]:focus,
+.form-style-1 textarea:focus, 
+.form-style-1 select:focus{
+    -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+.form-style-1 .field-divided{
+    width: 49%;
+}
+
+.form-style-1 .field-long{
+    width: 100%;
+}
+.form-style-1 .field-select{
+    width: 100%;
+}
+.form-style-1 .field-textarea{
+    height: 100px;
+}
+.form-style-1 input[type=submit], .form-style-1 input[type=button]{
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+}
+.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.form-style-1 .required{
+    color:red;
+}
+
+.correct {
+  -moz-box-shadow:    inset 0 0 10px #8AC007;
+  -webkit-box-shadow: inset 0 0 10px #8AC007;
+  box-shadow:         inset 0 0 10px #8AC007;
+}
+.error {
+  -moz-box-shadow:    inset 0 0 10px #FF5959;
+  -webkit-box-shadow: inset 0 0 10px #FF5959;
+  box-shadow:         inset 0 0 10px #FF5959;
+}
+
 

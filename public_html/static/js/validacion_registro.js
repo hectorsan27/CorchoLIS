@@ -6,14 +6,10 @@ $(document).ready(function(){
 		var fr_correo = $(this).val();
 		var correcto = validarEmail(fr_correo);
 		if(!correcto) {
-			$('#lab_correo').removeClass();
-            $('#fr_correo').removeClass();
-            $('#lab_correo').addClass('error');
+            $('#fr_correo').removeClass('correct');
             $('#fr_correo').addClass('error');
 		} else {
-			$('#lab_correo').removeClass();
-            $('#fr_correo').removeClass();
-			$('#lab_correo').addClass('correct');
+            $('#fr_correo').removeClass('error');
             $('#fr_correo').addClass('correct');
 		}
 		actualizarSubmit();
@@ -27,14 +23,10 @@ $(document).ready(function(){
 		var fr_nombre = $(this).val();
 		var correcto = validarNombre(fr_nombre);
     		if(!correcto) {
-			$('#lab_nombre').removeClass();
-            $('#fr_nombre').removeClass();
-            $('#lab_nombre').addClass('error');
+            $('#fr_nombre').removeClass('correct');
             $('#fr_nombre').addClass('error');
 		} else {
-			$('#lab_nombre').removeClass();
-            $('#fr_nombre').removeClass();
-			$('#lab_nombre').addClass('correct');
+            $('#fr_nombre').removeClass('error');
             $('#fr_nombre').addClass('correct');
 		}
 		actualizarSubmit();
@@ -47,14 +39,10 @@ $(document).ready(function(){
 	$('#fr_nacimiento').blur(function(){
 		var fr_nacimiento = $(this).val();
     	if(fr_nacimiento == "" ) {
-			$('#lab_nacimiento').removeClass();
-            $('#fr_nacimiento').removeClass();
-            $('#lab_nacimiento').addClass('error');
+            $('#fr_nacimiento').removeClass('correct');
             $('#fr_nacimiento').addClass('error');
 		} else {
-        $('#lab_nacimiento').removeClass();
-        $('#fr_nacimiento').removeClass();
-        $('#lab_nacimiento').addClass('correct');
+        $('#fr_nacimiento').removeClass('error');
         $('#fr_nacimiento').addClass('correct');
         }
 		actualizarSubmit();
@@ -67,14 +55,10 @@ $(document).ready(function(){
 	$('#fr_provincia').blur(function(){
 		var fr_provincia = $(this).val();
     	if(fr_provincia == "Default" ) {
-			$('#lab_provincia').removeClass();
-            $('#fr_provincia').removeClass();
-            $('#lab_provincia').addClass('error');
+            $('#fr_provincia').removeClass('correct');
             $('#fr_provincia').addClass('error');
 		} else {
-        $('#lab_provincia').removeClass();
-        $('#fr_provincia').removeClass();
-        $('#lab_provincia').addClass('correct');
+        $('#fr_provincia').removeClass('error');
         $('#fr_provincia').addClass('correct');
         }
 		actualizarSubmit();
@@ -88,14 +72,10 @@ $(document).ready(function(){
 		var fr_password = $(this).val();
 		var correcto = validarPassword(fr_password);
     	if(!correcto) {
-			$('#lab_password').removeClass();
-            $('#fr_password').removeClass();
-            $('#lab_password').addClass('error');
+            $('#fr_password').removeClass('correct');
             $('#fr_password').addClass('error');
 		} else {
-			$('#lab_password').removeClass();
-            $('#fr_password').removeClass();
-			$('#lab_password').addClass('correct');
+            $('#fr_password').removeClass('error');
             $('#fr_password').addClass('correct');
 		}
 		actualizarSubmit();
