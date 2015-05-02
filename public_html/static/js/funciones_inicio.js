@@ -29,18 +29,18 @@ $(document).ready(function(){
   $('#about_us').show();
 
   $('#about_us_footer').click(function(){
-    $('#tos').hide("scale");
-    $('#contacto').hide("scale");
-    $('#about_us').delay(400).show("scale");
+    $('#tos').hide();
+    $('#contacto').hide();
+    $('#about_us').show();
   });
   $('#tos_footer').click(function(){
-    $('#about_us').hide("scale");
-    $('#contacto').hide("scale");
-    $('#tos').delay(400).show("scale");
+    $('#about_us').hide();
+    $('#contacto').hide();
+    $('#tos').show();
   });
   $('#contacto_footer').click(function(){
-    $('#tos').hide("scale");
-    $('#about_us').hide("scale");
-    $('#contacto').delay(400).show("scale");
+    $('#tos').hide();
+    $('#about_us').hide();
+    $('#contacto').show();
   });
 });

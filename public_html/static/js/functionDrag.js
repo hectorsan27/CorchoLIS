@@ -1,7 +1,7 @@
 var mydragg = function(){
     //Tamaño del container que contendra los elementos
-    var tamano_container_x = 1180;
-    var tamano_container_y = 530;
+    var tamano_container_x = 1200;
+    var tamano_container_y = 550;
     return {
 
         move : function(divid,xpos,ypos){

@@ -23,10 +23,7 @@ switch (count($url)) {
 		require_once("../vistas/header_inicio.php"); 
 		require("../vistas/vista_inicio.html");
 		require_once("../vistas/footer.php");	
-        break;/*
-		require_once("../modelos/modelo.php");
-		require_once("../vistas/header_tablon.php");
-		require("../vistas/vista_tablon.php"); */
+        break;
    	case 2:
    		if($url[2] == 'tablon') {
    			require_once("../modelos/modelo.php");

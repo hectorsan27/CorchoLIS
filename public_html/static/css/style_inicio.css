@@ -41,10 +41,6 @@ div#header {
   margin-top: auto;
   margin-bottom: auto;
 }
-.lista_login {
-    float: right;
-    color: grey;
-}
 
 /*CONTENIDO*/
 div#content {
@@ -87,17 +83,7 @@ div#content {
   left: 50%;
   margin-left: -50px;
 }
-/*PRESENTACION*/
-/*.contenedor_informacion {
-  padding: 50px 50px 50px 50px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: white;
-  text-align: justify;
-  width: 100%;
-  box-sizing: border-box;
-}*/
+
 .info{
   padding: 50px 50px 50px 50px;
   position: absolute;
@@ -137,17 +123,32 @@ div#footer {
   background-color: #212121;
 }
 
-.lista_footer {
+.lista_horizontal_footer {
     cursor: pointer;
+    margin: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
 }
-.lista_footer li{
-    margin-right: 10px;
-    margin-left: 10px;
+.lista_horizontal_footer li{
+  list-style-type: none;
+  display: inline-block;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
-.lista_footer li a{
+.lista_horizontal_footer li a{
   color: white;
+  text-decoration: none;
+  font-size: 16px;
 }
-
+.lista_horizontal_footer li a:hover {
+    opacity: 0.5;
+}
 .container_footer {
     /*width: 50%;
     margin: 0 auto;*/
@@ -164,14 +165,16 @@ div#footer {
 
 
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
-.lista_horizontal{
+.lista_horizontal_inicio {
+    color: grey;
+    float: right;
     margin: 0px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding: 0px;
 }
-.lista_horizontal li{
+.lista_horizontal_inicio li{
 	list-style-type: none;
 	display: inline-block;
 	padding-top: 6px;
@@ -181,12 +184,12 @@ div#footer {
   margin-top: 9px;
   margin-bottom: 9px;
 }
-.lista_horizontal li a{
+.lista_horizontal_inicio li a{
 	text-decoration: none;
 	/*font-weight:700;*/
 	font-size: 16px;
 }
-.lista_horizontal li a:hover {
+.lista_horizontal_inicio li a:hover {
     opacity: 0.5;
 }
 
@@ -335,7 +338,7 @@ fieldset p {
   transform: translateY(-8px);
 }
 
-/*Formulario*/
+/*Formulario http://www.sanwebe.com/2013/10/css-html-form-styles*/
 .form-style-1 {
     margin:10px auto;
     max-width: 400px;
@@ -343,14 +346,15 @@ fieldset p {
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 .form-style-1-heading{
-  text-align: center;
+    text-align: center;
     font-weight: bold;
     font-style: italic;
     border-bottom: 2px solid #ddd;
     font-size: 15px;
     padding-bottom: 10px;
+    /*
     padding-right: 10px;
-    padding-left: 10px;
+    padding-left: 10px;*/
     padding-top: 10px;
 }
 .form-style-1 li {
