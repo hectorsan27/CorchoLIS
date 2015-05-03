@@ -248,14 +248,6 @@
 	                        $elem = $row["ID_elementos"];
 	                        echo 
 	                        '<div id="elem'. $elem . '" class = "elem" style="width: 200px;height: 100px;left: ' . $row["posicionx"] .'px; top: ' . $row["posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-	                            <div>
-	                                <pre>' . $row["contenido"] . '</pre>
-	                            </div>
-	                            <div id = "squareContainer" style = "width: 64px; height: 20px; margin: auto;">
-	                                <div class ="square" id ="redSquare" onclick="cambiar_fondo(this, 1);"></div>
-	                                <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
-	                                <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
-	                            </div>
 	                        </div>';}
 	                        ?>
 	                   
