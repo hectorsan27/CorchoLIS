@@ -4,7 +4,7 @@ html,body {
   margin:0;
   padding:0;
   height:100%; /* needed for container min-height */
-  font-family:arial,sans-serif;
+  font-family:'Lato',sans-serif;
 }
 div#container {
   position:relative; /* needed for footer positioning*/

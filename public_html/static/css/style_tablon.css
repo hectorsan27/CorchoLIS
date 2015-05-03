@@ -4,6 +4,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family:'Lato',sans-serif;
 }
 /*TABLERO*/
 div#content_tablon {
@@ -32,6 +33,10 @@ div#content_tablon {
 #marco_tablon {
     position: relative;
     background-image: url("../img/tablon.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     width: 1200px; 
     height: 550px;
 }
@@ -41,7 +46,69 @@ div#content_tablon {
     height: 550px;
 }
 
-/*Otras cosas tablero*/
+/*ELEMENTOS DEL TABLERO*/
+.elemento_tablon_2 {
+  position: absolute;
+  width: 400px;
+  height: 330px;
+  left: 500px;
+  top: 0px;
+
+  background-color: #C7A782;
+  border: 10px solid #fff;
+  margin: 0 0 30px 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+}
+.elemento_tablon {
+  position: absolute;
+  width: 400px;
+  height: 330px;
+  left: 0;
+  top:0;
+
+  background-color: #C7A782;
+  border: 10px solid #fff;
+  margin: 0 0 30px 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+}
+/*Videos e imagenes*/
+.elemento_tablon_imagen {
+  width: 400px;
+  height: 225px;
+}
+.elemento_tablon_titulo {
+  margin: 10px 20px 10px 20px;
+  color: #32323e;
+  width: 360px;
+  height: 22px;
+}
+.elemento_tablon_titulo h3 {
+  margin: 0px;
+}
+.elemento_tablon_descripcion {
+  margin: 10px 20px 10px 20px;
+  color: #32323e;
+  font-size: 16px;
+  width: 360px;
+  height: 50px;
+}
+.elemento_tablon_descripcion p{
+  margin: 0px;
+}
+/*Notas*/
+.elemento_tablon_nota{
+  margin: 10px 20px 10px 20px;
+  color: #32323e;
+  font-size: 16px;
+  width: 360px;
+  height: 300px;
+  text-align: justify;
+}
+.elemento_tablon_nota p{
+  margin: 0px;
+}
+
+/*
 .elem{
     position: absolute;
     background-color: green;
@@ -79,7 +146,7 @@ div#content_tablon {
 }
 #editSquare{
     background-color: orange;
-}
+}*/
 
 /*Añadir elementos al tablon*/
 #anadir_elemento {
@@ -129,15 +196,14 @@ div#content_tablon {
     background-color: #D6E8FF;
 }
 
-/*AÑADIR
-/*
-#rotate_1:hover, #rotate_2:hover, #rotate_3:hover {
+/*AÑADIR*/
+#elemento_seleccion_texto:hover, #elemento_seleccion_video:hover, #elemento_seleccion_imagen:hover {
  -webkit-animation: rotate 3s linear infinite;
 }
 @-webkit-keyframes rotate {
     from { -webkit-transform: rotateY(0deg)}
     to{ -webkit-transform: rotateY(360deg)}
-}*/
+}
 
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
 .lista_horizontal_tablon{

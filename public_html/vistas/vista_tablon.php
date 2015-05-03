@@ -178,6 +178,28 @@
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
 
+                        <div class="elemento_tablon">
+                            <a href="https://www.youtube.com/watch?v=S3PPXX9fa5U" target="_blank"><img class="elemento_tablon_imagen" src="http://img.youtube.com/vi/S3PPXX9fa5U/0.jpg"></img></a>
+                            <div class="elemento_tablon_titulo">
+                                <h3>Star Wars: Battlefront - Reveal Trailer waf waf wf waf wa g</h3>
+                            </div>
+                            <div class="elemento_tablon_descripcion">
+                                <p>Check out the official reveal trailer for Star Wars: Battlefront, coming to PC, PS4, and Xbox One November 17, 2015.</p>
+                            </div>
+                        </div>
+
+                        <div class="elemento_tablon_2">
+                            <div class="elemento_tablon_nota">
+                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                </p>
+                            </div>
+                        </div>
+
+
 	                    <div id="nota" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
 	                        <div>
 	                            <pre>changethenote</pre>

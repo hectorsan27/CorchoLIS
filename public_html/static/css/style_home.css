@@ -8,6 +8,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family:'Lato',sans-serif;
 }
 .container_tablones {
 	padding: 10px 20px 10px 20px;

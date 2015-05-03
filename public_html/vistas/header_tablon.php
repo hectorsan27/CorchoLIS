@@ -15,6 +15,7 @@
 <script src="static/js/functionDrag.js"></script>
 <script src="static/js/boardFunctions.js"></script>
 <script src="static/js/funciones_tablon.js"></script>
+<script type="text/javascript" src="static/js/jquery.dotdotdot.js"></script>
 <script src="static/js/kickstart.js"></script> <!-- KICKSTART -->
 <script type="text/javascript" src="static/js/openLogin.js"></script>
 <script type="text/javascript" src="static/js/validacion_registro.js"></script>
