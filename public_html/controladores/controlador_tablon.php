@@ -12,6 +12,8 @@
 		$tamano = $_POST["tamano"];
 		$tipo = $_POST["tipo"];
 		$contenido = $_POST["contenido"];
+		$nombre = $_POST["nombre"];
+		$papelera = 0;
 
 		anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano, $tipo,$contenido);
 
@@ -30,6 +32,11 @@
 		$contenido = $_POST["contenido"];
 
 		editarContenidoElemento($idTablon,$element,$contenido);
+	}
+	if ($action == 'DISCARD'){
+		$idTablon = $_POST["idTablon"];
+		$element = $_POST["idElem"];
+		enviarPapelera($idTablon,$element);	
 	}
 	if ($action == 'DELETE'){
 		$idTablon = $_POST["idTablon"];

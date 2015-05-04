@@ -126,14 +126,14 @@ function validarFormularioLogin($fr_correo, $fr_password) {
     }
     return true;
 }
-function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano, $tipo,$contenido){
+function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano, $tipo,$contenido,$nombre,$papelera){
 		$connexion=conectarBasedeDatos();
 	// Saber elementos hay
 			$query = "SELECT COUNT(DISTINCT ID_elementos) FROM tablones_elementos WHERE ID_tablones = '$idTablon';";
 			$numElement =  mysql_query($query, $connexion);
 			$numElement =  mysql_result($numElement, 0);
 			//insertar nuevo elemento con el numero de elemento correspondiente
-			$query = "INSERT INTO tablones_elementos (ID_tablones, ID_elementos, Posicionx, Posiciony, Tamano, Tipo, Contenido) VALUES ('$idTablon','$numElement', '$posicion_x', '$posicion_y', '$tamano', '$tipo','$contenido');";
+			$query = "INSERT INTO tablones_elementos (ID_tablones, ID_elementos, Posicionx, Posiciony, Tamano, Tipo, Contenido, Nombre, Papelera) VALUES ('$idTablon','$numElement', '$posicion_x', '$posicion_y', '$tamano', '$tipo','$contenido','$nombre','$papelera');";
 			mysql_query($query, $connexion);
 		desconectarDeBasedeDatos($connexion);
 
@@ -177,13 +177,19 @@ function editarContenidoElemento($idTablon,$element,$contenido){
 		desconectarDeBasedeDatos($connexion);
 
 }
-function obtenerElementosTablon($idTablon){
+function obtenerElementosTablon($idTablon, $papelera){
 	$connexion=conectarBasedeDatos();
-	$query = "Select ID_elementos,posicionx,posiciony,tamano,tipo,contenido From tablones_elementos where ID_tablones = '$idTablon';";
+	$query = "Select ID_elementos,Posicionx,Posiciony,Tamano,Tipo,Contenido,Nombre From tablones_elementos where ID_tablones = '$idTablon' AND Papelera = '$papelera';";
 	$result = mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
 	return $result;
 }
+function enviarPapelera($idTablon,$element){
+	$connexion=conectarBasedeDatos();
+	$query = "UPDATE tablones_elementos SET Papelera ='1' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
+	mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+	}
 
 function obtenerPrivilegiosTablon($idTablon, $correo){
 	$connexion=conectarBasedeDatos();
@@ -201,7 +207,7 @@ function compartirTablon($idTablon, $correo){
 	desconectarDeBasedeDatos($connexion);
 }
 function agregarTablon($correo){
-
+	
 	$connexion=conectarBasedeDatos();
 	$query = "INSERT INTO tablones (Nombre, Descripcion) VALUES ('Tablon', 'Hola');";
 	$result = mysql_query($query, $connexion);

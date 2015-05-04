@@ -21,7 +21,16 @@ div#content_tablon {
     -o-background-size: cover;
     background-size: cover;
 }
-
+#papelera{
+    background-color: white;
+    border: 2px solid #ddd;
+    position: absolute;
+    width: 400px;
+    min-height: 291px; /*Tamaño del formulario mas pequeño*/
+    top:0px;
+    right: 0px;
+    z-index: 3000;
+}
 #board {
     position: relative;
   display: block;

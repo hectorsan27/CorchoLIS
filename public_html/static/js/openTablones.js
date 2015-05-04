@@ -12,6 +12,17 @@ $(document).ready(function(){
 		}
 	});
 });
+$(document).ready(function(){
+	$("#papelera").hide();
+	$("#div_papelera").click(function () {
+		if ($("#papelera").is(':visible')) {
+			$("#papelera").hide("drop",{direction: "vertical" });
+		} else {
+			$("#papelera").show("drop",{direction: "vertical" });
+			$("#formulario_papelera").show();
+		}
+	});
+});
 /*Formulario compartir tablon*/
 $(document).ready(function(){
 	$("#compartir_tablon").hide();

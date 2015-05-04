@@ -291,7 +291,7 @@ function deleteElement(divid){
         elements[i+3].id = "elem" + i;
     }
     //alert(idTablon + "," + idElem);
-    eliminarElemento(idTablon ,idElem);
+    enviarPapelera(idTablon ,idElem);
 }
 
 function editElement(divid){
@@ -348,7 +348,14 @@ function addUser(idTablon, correo) {
                 type:  'POST',
         });
 }
-
+function enviarPapelera(idTablon, elem){
+      var action = "DISCARD";
+      $.ajax({
+                data:  "idTablon="+idTablon+"&idElem="+elem+"&action="+action,
+                url:   'controladores/controlador_tablon.php',
+                type:  'POST',
+        });
+}
 function addBoard(correo){
 	var action = "ADDBOARD";
 	alert(correo);

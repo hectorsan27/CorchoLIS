@@ -153,6 +153,33 @@
                     </ul>
                 </form>
            	</div>
+			<div id="papelera">
+			 <div id="mostrarElementosPapelera" class="form-style-1-heading">
+                </div>
+				<form id="formulario_papelera">	
+				<ul class="form-style-1">
+					<li>
+						<label>Papelera</label>
+					</li>
+					<?php 
+					$elementos = obtenerElementosTablon(1,1);
+					while($fila=mysql_fetch_array($elementos)){ ?>
+					<li>
+						<label><?php echo $fila['Nombre']; ?></label>
+						<input class="eliminar" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(1,<?php echo $fila['ID_elementos']; ?>)"/>
+					</li>
+					<?php } ?>
+					<li>
+					<label>Vaciar Papelera</label>
+					</li>
+					<li>
+					<input class="eliminar" type= "button" value='vaciar papelera' onclick="vaciarPapelera(1)"/>
+					</li>
+				</ul>
+					
+				</form>
+				</div>				
+			</div>
            	<div id="compartir_tablon">
            		<div id="compartir_tablon_header" class="form-style-1-heading">
            			<img src="static/img/compartir_tablon.png"></img>
@@ -243,7 +270,7 @@
 	                    </div>
 
 	                    <?php
-	                    $result = obtenerElementosTablon(1);
+	                    $result = obtenerElementosTablon(1,0);
 	                    while($row=mysql_fetch_assoc($result)) {
 	                        $elem = $row["ID_elementos"];
 	                        echo 
