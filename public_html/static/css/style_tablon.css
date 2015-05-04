@@ -21,16 +21,7 @@ div#content_tablon {
     -o-background-size: cover;
     background-size: cover;
 }
-#papelera{
-    background-color: white;
-    border: 2px solid #ddd;
-    position: absolute;
-    width: 400px;
-    min-height: 291px; /*Tamaño del formulario mas pequeño*/
-    top:0px;
-    right: 0px;
-    z-index: 3000;
-}
+
 #board {
     position: relative;
   display: block;
@@ -60,24 +51,18 @@ div#content_tablon {
   position: absolute;
   width: 170px;
   height: 120px;
-  left: 500px;
-  top: 0px;
-
   background-color: #C7A782;
   border: 10px solid #fff;
-  margin: 0 0 30px 0;
+  margin: 0 0 0 0;
   box-shadow: 0 0 8px rgba(0, 0, 0, 1);
 }
 .elemento_tablon {
   position: absolute;
   width: 400px;
   height: 330px;
-  left: 0;
-  top:0;
-
   background-color: #C7A782;
   border: 10px solid #fff;
-  margin: 0 0 30px 0;
+  margin: 0 0 0 0;
   box-shadow: 0 0 8px rgba(0, 0, 0, 1);
 }
 /*Videos e imagenes*/
@@ -116,7 +101,6 @@ div#content_tablon {
 .elemento_tablon_nota p{
   margin: 0px;
 }
-
 /*
 .elem{
     position: absolute;
@@ -182,7 +166,7 @@ div#content_tablon {
 #anadir_elemento_seleccion {
     height: 100px;
     cursor: pointer;
-    background-color: #FFFAD9;
+    background-color: #FFED79;
 }
 .elemento_seleccion {
     width: 133px;
@@ -190,6 +174,9 @@ div#content_tablon {
     float: left;
     text-align: center;
 }
+
+
+
 /*Compartir el tablon*/
 #compartir_tablon {
     background-color: white;
@@ -204,15 +191,20 @@ div#content_tablon {
 #compartir_tablon_header {
     background-color: #D6E8FF;
 }
+#papelera{
+    background-color: white;
+    border: 2px solid #ddd;
+    position: absolute;
+    width: 400px;
+    min-height: 291px; /*Tamaño del formulario mas pequeño*/
+    top:0px;
+    right: 0px;
+    z-index: 3000;
+}
+#papelera_header {
+  background-color: #C7A973;
+}
 
-/*AÑADIR*/
-#elemento_seleccion_texto:hover, #elemento_seleccion_video:hover, #elemento_seleccion_imagen:hover {
- -webkit-animation: rotate 3s linear infinite;
-}
-@-webkit-keyframes rotate {
-    from { -webkit-transform: rotateY(0deg)}
-    to{ -webkit-transform: rotateY(360deg)}
-}
 
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
 .lista_horizontal_tablon{

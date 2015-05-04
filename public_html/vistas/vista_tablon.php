@@ -87,9 +87,9 @@
 		<div id="content_tablon">
 			<div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion" class="form-style-1-heading">
-                    <div id="elemento_seleccion_texto" class="elemento_seleccion" class="movedown"><img src="static/img/anadir_nota.png"></div>
-                    <div id="elemento_seleccion_imagen" class="elemento_seleccion"><img class="movedown " src="static/img/anadir_imagen.png"></div>
-                    <div id="elemento_seleccion_video" class="elemento_seleccion"><img class="movedown" src="static/img/anadir_video.png"></div>
+                    <div id="elemento_seleccion_texto" class="elemento_seleccion"><img src="static/img/anadir_nota.png"></div>
+                    <div id="elemento_seleccion_imagen" class="elemento_seleccion"><img src="static/img/anadir_imagen.png"></div>
+                    <div id="elemento_seleccion_video" class="elemento_seleccion"><img src="static/img/anadir_video.png"></div>
                 </div>
                 <form id="formulario_nota">
                 	<ul class="form-style-1">
@@ -153,33 +153,6 @@
                     </ul>
                 </form>
            	</div>
-			<div id="papelera">
-			 <div id="mostrarElementosPapelera" class="form-style-1-heading">
-                </div>
-				<form id="formulario_papelera">	
-				<ul class="form-style-1">
-					<li>
-						<label>Papelera</label>
-					</li>
-					<?php 
-					$elementos = obtenerElementosTablon(1,1);
-					while($fila=mysql_fetch_array($elementos)){ ?>
-					<li>
-						<label><?php echo $fila['Nombre']; ?></label>
-						<input class="eliminar" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(1,<?php echo $fila['ID_elementos']; ?>)"/>
-					</li>
-					<?php } ?>
-					<li>
-					<label>Vaciar Papelera</label>
-					</li>
-					<li>
-					<input class="eliminar" type= "button" value='vaciar papelera' onclick="vaciarPapelera(1)"/>
-					</li>
-				</ul>
-					
-				</form>
-				</div>				
-			</div>
            	<div id="compartir_tablon">
            		<div id="compartir_tablon_header" class="form-style-1-heading">
            			<img src="static/img/compartir_tablon.png"></img>
@@ -198,14 +171,35 @@
                     </ul>
                 </form>
 	        </div>
-
+			<div id="papelera">
+				<div id="papelera_header" class="form-style-1-heading">
+                    <img src="static/img/papelera.png"></img>
+                </div>
+				<form id="formulario_papelera">	
+				<ul class="form-style-1">
+					<li>
+						<label>Papelera</label>
+					</li>
+					<?php 
+					$elementos = obtenerElementosTablon(1,1);
+					while($fila=mysql_fetch_array($elementos)){ ?>
+					<li>
+						<label><?php echo $fila['Nombre']; ?></label>
+						<input class="eliminar" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(1,<?php echo $fila['ID_elementos']; ?>)"/>
+					</li>
+					<?php } ?>
+					<li>
+					   <input class="eliminar" type= "button" value='Vaciar papelera' onclick="vaciarPapelera(1)"/>
+					</li>
+				</ul>		
+				</form>
+			</div>	
 
 
 			<div id="board">
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
-
-                        <div class="elemento_tablon" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <div id="elemento_1" class="elemento_tablon" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <a href="https://www.youtube.com/watch?v=S3PPXX9fa5U" target="_blank"><img class="elemento_tablon_imagen" src="http://img.youtube.com/vi/S3PPXX9fa5U/0.jpg"></img></a>
                             <div class="elemento_tablon_titulo">
                                 <h3>Star Wars: Battlefront - Reveal Trailer waf waf wf waf wa g</h3>
@@ -215,9 +209,14 @@
                             </div>
                         </div>
 
-                        <div class="elemento_tablon_2" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                            <div class="elemento_tablon_nota">
-                                <p><h4>Lorem Ipsum es simplemente el texto de relleno</h4></p>
+                        <div id="elemento_2" class="elemento_tablon_2" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                            <div class="elemento_tablon_nota" >
+                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
+                                </p>
                             </div>
                         </div>
 
@@ -270,9 +269,8 @@
 	                        $elem = $row["ID_elementos"];
 	                        echo 
 	                        '<div id="elem'. $elem . '" class = "elem" style="width: 200px;height: 100px;left: ' . $row["posicionx"] .'px; top: ' . $row["posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-	                        </div>';
-                        }
-                        ?>
+	                        </div>';}
+	                        ?>
 	                   
 	                </div>
 	            </div>

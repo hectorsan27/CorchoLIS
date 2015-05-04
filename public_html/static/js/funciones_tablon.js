@@ -28,7 +28,7 @@ var mydragg = function(){
 
             //Ponemos todos los elementos atras y el elemento seleccionado se pone adelante
 
-            elements = document.getElementsByClassName("elem");
+            var elements = document.getElementsByClassName("elemento_tablon elemento_tablon_2");
 
             var i;
             for (i = 0; i < elements.length; i++){
@@ -43,11 +43,11 @@ var mydragg = function(){
             var posY = evt.clientY;
 
             //Cogemos los datos del elemento que ha tocado
-
             var divTop = divid.style.top;
             var divLeft = divid.style.left;
-            var eWi = parseInt(divid.style.width);
-            var eHe = parseInt(divid.style.height);
+            var width = divid.offsetWidth;
+            var height = divid.offsetHeight;
+
 
             //Cogemos los datos del div del fondo (el corcho)
             divTop = divTop.replace('px','');
@@ -66,7 +66,7 @@ var mydragg = function(){
                 //Se volverá a coger la posicion del raton
                 var posX = evt.clientX,
                     posY = evt.clientY,
-                    // La posicion ACTUAL deberia ser aX y aY
+                    // La posicion ACTUAL de la esquina del div es aX y aY
                     aX = posX - diffX,
                     aY = posY - diffY;
 
@@ -74,11 +74,11 @@ var mydragg = function(){
                     if (aX < 0) aX = 0;
                     if (aY < 0) aY = 0;
                     // Se comprueba que este dentre de la anchura del container
-                    if (aX + eWi > tamano_container_x){
-                      aX = tamano_container_x - eWi;
+                    if (aX + width > tamano_container_x){
+                      aX = tamano_container_x - width;
                     }
                     //Se comprueba que este dentro d ela altura del container
-                    if (aY + eHe > tamano_container_y) aY = tamano_container_y -eHe;
+                    if (aY + height > tamano_container_y) aY = tamano_container_y -height;
                     // movemos el objeto a la posicion correcta
 
                 mydragg.move(divid,aX,aY);

@@ -56,6 +56,10 @@ $(document).ready(function(){
 	    $("#compartir_tablon").hide("drop",{direction: "vertical" });
 	    $("#formulario_invitar").hide();
 	  }
+	  if(e.target.id != 'papelera' && !$('#papelera').find(e.target).length) {
+	    $("#papelera").hide("drop",{direction: "vertical" });
+	    $("#formulario_papelera").hide();
+	  }
 	});
 	
 	$(".aceptar").click(function(){
