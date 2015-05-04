@@ -205,7 +205,7 @@
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
 
-                        <div class="elemento_tablon">
+                        <div class="elemento_tablon" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <a href="https://www.youtube.com/watch?v=S3PPXX9fa5U" target="_blank"><img class="elemento_tablon_imagen" src="http://img.youtube.com/vi/S3PPXX9fa5U/0.jpg"></img></a>
                             <div class="elemento_tablon_titulo">
                                 <h3>Star Wars: Battlefront - Reveal Trailer waf waf wf waf wa g</h3>
@@ -215,14 +215,9 @@
                             </div>
                         </div>
 
-                        <div class="elemento_tablon_2">
+                        <div class="elemento_tablon_2" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_nota">
-                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                </p>
+                                <p><h4>Lorem Ipsum es simplemente el texto de relleno</h4></p>
                             </div>
                         </div>
 
@@ -275,8 +270,9 @@
 	                        $elem = $row["ID_elementos"];
 	                        echo 
 	                        '<div id="elem'. $elem . '" class = "elem" style="width: 200px;height: 100px;left: ' . $row["posicionx"] .'px; top: ' . $row["posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-	                        </div>';}
-	                        ?>
+	                        </div>';
+                        }
+                        ?>
 	                   
 	                </div>
 	            </div>

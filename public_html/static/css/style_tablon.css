@@ -58,8 +58,8 @@ div#content_tablon {
 /*ELEMENTOS DEL TABLERO*/
 .elemento_tablon_2 {
   position: absolute;
-  width: 400px;
-  height: 330px;
+  width: 170px;
+  height: 120px;
   left: 500px;
   top: 0px;
 
@@ -109,8 +109,8 @@ div#content_tablon {
   margin: 10px 20px 10px 20px;
   color: #32323e;
   font-size: 16px;
-  width: 360px;
-  height: 300px;
+  width: 150px;
+  height: 100px;
   text-align: justify;
 }
 .elemento_tablon_nota p{

@@ -139,7 +139,7 @@ function addElement_note(){
     var inner = nota.innerHTML.replace('nota',id);
     //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
     //nota tiene un texto de mentira porque si no, no funcionaba el editar
-    var note = document.getElementById("new_note");  
+    var note = document.getElementById("contenido_nota");  
     inner = nota.innerHTML.replace('changethenote',note.value);
     div.innerHTML = inner;
 

@@ -14,7 +14,6 @@
 <script src="static/js/kickstart.js"></script> <!-- KICKSTART -->
 <script type="text/javascript" src="static/js/openLogin.js"></script>
 <script type="text/javascript" src="static/js/validacion_registro.js"></script>
-<script type="text/javascript" src="static/js/functionDrag.js"></script>
 <script type="text/javascript" src="static/js/funciones_home.js"></script>
 <script type="text/javascript" src="static/js/jquery.dotdotdot.js"></script> <!--Usado en home-->
 <script type="text/javascript" src="static/js/funciones_inicio.js"></script>
