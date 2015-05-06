@@ -226,46 +226,7 @@
                         </div>
 
 
-	                    <div id="nota" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-	                        <div>
-	                            <pre>changethenote</pre>
-	                        </div>
-	                        <div style = 'width: 64px; height: 20px; margin: auto;'>
-	                            <div class ="square" id ="redSquare" onclick="cambiar_fondo(this, 1);"></div>
-	                            <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
-	                            <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
-	                        </div>
-	                    </div>
-
-	                    <div id="imagen" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-	                        <div>
-	                            <pre><b><center>titulo</center></b></pre>
-	                        </div>
-	                        <img src = "url" style = 'width: 200px; height: auto'>
-	                        <div>
-	                            <pre>descripcion</pre>
-	                        </div>  
-	                        <div style = 'width: 64px; height: 20px; margin: auto;'>
-	                            <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
-	                            <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
-	                        </div>  
-	                    </div>
-
-	                    <div id="video" class = "elem" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-	                        <div>
-	                            <pre><b><center>titulo</center></b></pre>
-	                        </div>
-	                        <iframe width='200' src = "url" allowfullscreen>
-	                        </iframe>
-	                        
-	                        
-	                        <div>
-	                            <pre>descripcion</pre>
-	                        </div>
-	                        <div style = 'width: 64px; height: 20px; margin: auto;'>
-	                            <div class ="square" id ="deleteSquare" onclick="deleteElement(this);"></div>
-	                            <div class ="square" id ="editSquare" onclick="editElement(this);"></div>
-	                        </div>    
+	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
 	                    </div>
 
 	                    <?php
@@ -279,8 +240,8 @@
                                 $class = 'elemento_tablon';
                             }
 	                        echo 
-	                        '<div id="elem'. $elem . '" class = "' . $class . '" style="width: 200px;height: 100px;left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                            ' . $row["Contenido"] . '
+	                        '<div id="elem'. $elem . '" class = "' . $class . '" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                <p>' . $row["Contenido"] . '</p>
                             </div>';}
 	                        ?>
 	                   

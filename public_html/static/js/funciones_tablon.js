@@ -27,10 +27,12 @@ var mydragg = function(){
         startMoving : function(divid,evt){
 
             //Ponemos todos los elementos atras y el elemento seleccionado se pone adelante
-
-            var elements = document.getElementsByClassName("elemento_tablon elemento_tablon_2");
-
             var i;
+            var elements = document.getElementsByClassName("elemento_tablon");
+            for (i = 0; i < elements.length; i++){
+                elements[i].style.zIndex = "0";
+            }
+            elements = document.getElementsByClassName("elemento_tablon_2");
             for (i = 0; i < elements.length; i++){
                 elements[i].style.zIndex = "0";
             }
@@ -126,35 +128,28 @@ function addElement_note(){
     // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    var elements = document.getElementsByClassName("elem");
-    var length = elements.length - 3;
+    var elements = document.getElementsByClassName("elemento_tablon");
+    var elements2 = document.getElementsByClassName("elemento_tablon_2");
+    var length = elements.length + elements2.length - 2;
     var id = 'elem';
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
     div.className = 'elemento_tablon_2';
-    //cogemos el nota, que es una muestra de prueba (Factory Method)
-    var nota = document.getElementById("nota");
-    //cambiamos nota por elemX, segun el id de antes
-    var inner = nota.innerHTML.replace('nota',id);
-    //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
+
     //nota tiene un texto de mentira porque si no, no funcionaba el editar
     var note = document.getElementById("contenido_nota");  
-    inner = nota.innerHTML.replace('changethenote',note.value);
+    var inner = '<p>' + note.value + '</p>';
     div.innerHTML = inner;
-
-    //ponemos la anchura y altura
-    div.style.width = '200px';
-    div.style.height = '100px';
 
     // cogemos el div del fondo y le añadimos el nuevo div
     var container = document.getElementById("container_tablon");
     container.appendChild(div);
 
-    //añadimos el onMouseDown/UP de nota
-    div.onmousedown= nota.onmousedown;
-    div.onmouseup = nota.onmouseup;
-	
+    //añadimos el onMouseDown/UP
+    div.onmousedown= document.getElementById("sample").onmousedown;
+    div.onmouseup = document.getElementById("sample").onmouseup;
+
 	//variables que enviamos a la funcion
 	var idTablon = 1;
 	var posicion_x = 0;
@@ -170,8 +165,9 @@ function addElement_image(){
      // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    var elements = document.getElementsByClassName("elem");
-    var length = elements.length -3;
+    var elements = document.getElementsByClassName("elemento_tablon");
+    var elements2 = document.getElementsByClassName("elemento_tablon_2");
+    var length = elements.length + elements2.length - 2;
     var id = 'elem';
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
@@ -196,18 +192,13 @@ function addElement_image(){
     inner = inner.replace('descripcion',descripcion_imagen.value);
     div.innerHTML = inner;
 
-
-    //ponemos la anchura y altura
-    div.style.width = '200px';
-    div.style.height = '100px';
-
     // cogemos el div del fondo y le añadimos el nuevo div
     var container = document.getElementById("container_tablon");
     container.appendChild(div);
 
-    //añadimos el onMouseDown/UP de elem0
-    div.onmousedown= imagen.onmousedown;
-    div.onmouseup = imagen.onmouseup;
+    //añadimos el onMouseDown/UP
+    div.onmousedown= document.getElementById("sample").onmousedown;
+    div.onmouseup = document.getElementById("sample").onmouseup;
     
     //variables que enviamos a la funcion
     var idTablon = 1;
@@ -224,8 +215,9 @@ function addElement_video(){
    // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    var elements = document.getElementsByClassName("elem");
-    var length = elements.length - 3;
+    var elements = document.getElementsByClassName("elemento_tablon");
+    var elements2 = document.getElementsByClassName("elemento_tablon_2");
+    var length = elements.length + elements2.length - 2;
     var id = 'elem';
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
@@ -251,18 +243,13 @@ function addElement_video(){
     inner = inner.replace('descripcion',descripcion_video.value);
     div.innerHTML = inner;
 
-
-    //ponemos la anchura y altura
-    div.style.width = '200px';
-    div.style.height = '100px';
-
     // cogemos el div del fondo y le añadimos el nuevo div
     var container = document.getElementById("container_tablon");
     container.appendChild(div);
 
-    //añadimos el onMouseDown/UP de elem0
-    div.onmousedown= video.onmousedown;
-    div.onmouseup = video.onmouseup;
+    //añadimos el onMouseDown/UP
+    div.onmousedown= document.getElementById("sample").onmousedown;
+    div.onmouseup = document.getElementById("sample").onmouseup;
     
     //variables que enviamos a la funcion
     var idTablon = 1;
