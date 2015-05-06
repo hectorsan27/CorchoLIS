@@ -277,12 +277,10 @@ function deleteElement(divid){
     for (i = idElem; i < elements.length - 3; i++){
         elements[i+3].id = "elem" + i;
     }
-    //alert(idTablon + "," + idElem);
     enviarPapelera(idTablon ,idElem);
 }
 
 function editElement(divid){
-
      //obtiene el div del elemento, y dentro de ese div, obtiene el div en el cual está el texto (<pre>)
     var idElem = divid.parentNode.parentNode.id;
     var elem = document.getElementById(idElem);
@@ -295,8 +293,7 @@ function editElement(divid){
     elem.style.backgroundColor = 'orange';
 }
 
-//PERSISTENCIA
-
+//LLAMADAS AJAX
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido){
     var action = "INSERT";
     var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+action;
@@ -316,7 +313,7 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
 function deleteElement(idTablon, elem){
     var action = "DELETE";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
-    var url = 'controladores/controlador_tablon.php',
+    var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -326,7 +323,7 @@ function addUser(idTablon, correo) {
 	var action = "SHARE";
 	var correo = document.getElementById("container_tablon");
     var data = "idTablon="+idTablon+"&correo="+correo+"&action="+action;
-    var url = 'controladores/controlador_tablon.php',
+    var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -334,7 +331,7 @@ function addUser(idTablon, correo) {
 function enviarPapelera(idTablon, elem){
     var action = "DISCARD";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
-    var url = 'controladores/controlador_tablon.php',
+    var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -342,7 +339,7 @@ function enviarPapelera(idTablon, elem){
 function recoverElement(idTablon, elem){
 	var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
-    var url = 'controladores/controlador_tablon.php',
+    var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -350,15 +347,15 @@ function recoverElement(idTablon, elem){
 function emptyTrash(idTablon){
 	var action = "EMPTY";
     var data = "idTablon="+idTablon+"&action="+action;
-    var url = 'controladores/controlador_tablon.php',
+    var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
 	ajaxCall(data,url,type);
 }
 
 function ajaxCall(data,url,type){
     $.ajax({
-        data:  "idTablon="+idTablon+"&action="+action,
-        url:   'controladores/controlador_tablon.php',
-        type:  'POST',
+        data:  data,
+        url:   url,
+        type:  type,
     });
 }
