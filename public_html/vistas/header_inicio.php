@@ -31,9 +31,9 @@
 	    	<div id="container_login">
 	    		<ul class="lista_horizontal_inicio">
 	    			<?php
-						if(isset($_SESSION['logeado'])):			
+						if(isset($_SESSION['correo'])):			
 					?>
-					<li><a id="perfil_usuario"><?php echo $_SESSION['logeado'];?></a></li>
+					<li><a id="perfil_usuario"><?php echo $_SESSION['correo'];?></a></li>
 					<li class="hvr-overline-from-center"><a href="cerrar_session" id="logout">CERRAR SESSIÓN</a></li>
 					<?php else: ?>
 					<li class="hvr-overline-from-center"><a href="tablon">TESTEO DE TABLA</a></li>

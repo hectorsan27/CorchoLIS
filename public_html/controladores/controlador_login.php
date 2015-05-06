@@ -13,7 +13,7 @@
 		if ($resultado) {
 			//Guardamos en la variable de sesión el usuario logeado
 			session_start();
-			$_SESSION['logeado']= $fl_correo;
+			$_SESSION['correo']= $fl_correo;
 			echo "<script type='text/javascript'>alert('Logeado con éxito');</script>";
 			header("Location: /public_html/home");
 			exit();

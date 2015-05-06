@@ -153,8 +153,26 @@ function eliminarElemento($idTablon,$element){
 				mysql_query($query, $connexion);
 			}
 		desconectarDeBasedeDatos($connexion);
-
 }
+function recuperarElemento($idTablon,$element){
+	$connexion=conectarBasedeDatos();
+	$query = "UPDATE tablones_elementos SET Papelera ='0' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
+	mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+}
+function vaciarPapelera($idTablon){
+	$connexion=conectarBasedeDatos();
+	$query = "DELETE FROM tablones_elementos WHERE ID_tablones = '$idTablon' AND Papelera = '1';";
+	mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+	header("Location: /public_html/tablon");
+}
+function enviarPapelera($idTablon,$element){
+	$connexion=conectarBasedeDatos();
+	$query = "UPDATE tablones_elementos SET Papelera ='1' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
+	mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
+	}
 function editarPosicionElemento($idTablon,$element,$posicion_x,$posicion_y){
 		$connexion=conectarBasedeDatos();
 			$query = "
@@ -181,15 +199,13 @@ function obtenerElementosTablon($idTablon, $papelera){
 	$connexion=conectarBasedeDatos();
 	$query = "Select ID_elementos,Posicionx,Posiciony,Tamano,Tipo,Contenido,Nombre From tablones_elementos where ID_tablones = '$idTablon' AND Papelera = '$papelera';";
 	$result = mysql_query($query, $connexion);
+	if ($result == null){
+		$result = array();
+	}
 	desconectarDeBasedeDatos($connexion);
 	return $result;
 }
-function enviarPapelera($idTablon,$element){
-	$connexion=conectarBasedeDatos();
-	$query = "UPDATE tablones_elementos SET Papelera ='1' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
-	mysql_query($query, $connexion);
-	desconectarDeBasedeDatos($connexion);
-	}
+
 
 function obtenerPrivilegiosTablon($idTablon, $correo){
 	$connexion=conectarBasedeDatos();

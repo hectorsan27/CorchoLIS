@@ -17,13 +17,14 @@
 		$insertado = registrarUsuario($fr_correo, $fr_nombre ,$fr_nacimiento,$fr_provincia,$fr_password );
 
 		if($insertado){
-			echo "<script type='text/javascript'>alert('Registrado con éxito');</script>";
+			session_start();
+			$_SESSION['correo']= $fr_correo;
+			header("Location: /public_html/home");
+			exit();
 		} else {
 			echo "<script type='text/javascript'>alert('Error en el registro');</script>";
 		}
 	} else {
 			echo "<script type='text/javascript'>alert('Error en el registro');</script>";
 	}
-
-
 ?>

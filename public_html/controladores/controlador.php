@@ -11,6 +11,7 @@ $url = explode("/", $url);
 function eliminarEspacioEnblanco($elemento) { 
 	return( $elemento != '' ); 
 }
+
 $url = array_filter($url, "eliminarEspacioEnblanco");
 
 if (!isset($_SESSION)){
@@ -32,15 +33,15 @@ switch (count($url)) {
    		}
    		if($url[2] == 'home') {
 			require_once("../modelos/modelo.php");
-			$correo = $_SESSION['logeado'];
-			$tablones = cargarTablones($_SESSION['logeado']);
+			$correo = $_SESSION['correo'];
+			$tablones = cargarTablones($_SESSION['correo']);
 			require_once("../vistas/header_inicio.php");
 			require("../vistas/vista_home.php");
 			require_once("../vistas/footer.php");
    		}
    		if($url[2] == 'cerrar_session') {
-	   		if(isset($_SESSION['logeado'])){
-				unset($_SESSION['logeado']); 
+	   		if(isset($_SESSION['correo'])){
+				unset($_SESSION['correo']); 
 			}
 			header("Location: /public_html");
 			exit();

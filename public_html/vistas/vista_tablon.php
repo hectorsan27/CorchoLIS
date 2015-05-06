@@ -182,15 +182,20 @@
 					</li>
 					<?php 
 					$elementos = obtenerElementosTablon(1,1);
-					while($fila=mysql_fetch_array($elementos)){ ?>
+					$i = 0;
+					while($fila=mysql_fetch_array($elementos)){
+						$idElem = $fila['ID_elementos'];
+						$i = $i+1;?>
 					<li>
 						<label><?php echo $fila['Nombre']; ?></label>
-						<input class="eliminar" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(1,<?php echo $fila['ID_elementos']; ?>)"/>
+						<input class="eliminar" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="deleteElement(1,<?php echo "'$idElem'"; ?>)"/>
+						<input class="recuperar" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recoverElement(1,<?php echo "'$idElem'"; ?>)"/>
 					</li>
-					<?php } ?>
+					<?php } if ($i > 1){ ?>
 					<li>
-					   <input class="eliminar" type= "button" value='Vaciar papelera' onclick="vaciarPapelera(1)"/>
+					   <input class="vaciar" type= "button" value='Vaciar papelera' onclick="emptyTrash(1)"/>
 					</li>
+					<?php }else if($i < 1) echo "Vacia";?>
 				</ul>		
 				</form>
 			</div>	
@@ -267,9 +272,16 @@
 	                    $result = obtenerElementosTablon(1,0);
 	                    while($row=mysql_fetch_assoc($result)) {
 	                        $elem = $row["ID_elementos"];
+                            if ($row["Tipo"] == 'Texto'){
+                                $class = 'elemento_tablon_2';
+                            }
+                            else {
+                                $class = 'elemento_tablon';
+                            }
 	                        echo 
-	                        '<div id="elem'. $elem . '" class = "elem" style="width: 200px;height: 100px;left: ' . $row["posicionx"] .'px; top: ' . $row["posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-	                        </div>';}
+	                        '<div id="elem'. $elem . '" class = "' . $class . '" style="width: 200px;height: 100px;left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                            ' . $row["Contenido"] . '
+                            </div>';}
 	                        ?>
 	                   
 	                </div>

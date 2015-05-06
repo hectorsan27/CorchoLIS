@@ -2,6 +2,7 @@
 
 	$action =  $_POST["action"];
 	require_once("../modelos/modelo.php");
+	
 
 	//crear nuevos elementos
 	if ($action == 'INSERT'){
@@ -37,6 +38,15 @@
 		$idTablon = $_POST["idTablon"];
 		$element = $_POST["idElem"];
 		enviarPapelera($idTablon,$element);	
+	}
+	if ($action == 'RECOVER'){
+		$idTablon = $_POST["idTablon"];
+		$element = $_POST["idElem"];
+		recuperarElemento($idTablon,$element);	
+	}
+	if ($action == 'EMPTY'){
+		$idTablon = $_POST["idTablon"];
+		vaciarPapelera($idTablon);	
 	}
 	if ($action == 'DELETE'){
 		$idTablon = $_POST["idTablon"];

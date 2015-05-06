@@ -132,7 +132,7 @@ function addElement_note(){
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
-    div.className = 'elem';
+    div.className = 'elemento_tablon_2';
     //cogemos el nota, que es una muestra de prueba (Factory Method)
     var nota = document.getElementById("nota");
     //cambiamos nota por elemX, segun el id de antes
@@ -176,7 +176,7 @@ function addElement_image(){
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
-    div.className = 'elem';
+    div.className = 'elemento_tablon';
     //cogemos el elem0, que es una muestra de prueba (Factory Method)
     var imagen = document.getElementById("imagen");
     //cambiamos elem0 por elemX, segun el id de antes
@@ -230,7 +230,7 @@ function addElement_video(){
     id = id+length;
     //ponemos el ID y la clase al nuevo DIV
     div.id = id;
-    div.className = 'elem';
+    div.className = 'elemento_tablon';
     //cogemos el elem0, que es una muestra de prueba (Factory Method)
     var video = document.getElementById("video");
     //cambiamos elem0 por elemX, segun el id de antes
@@ -328,7 +328,7 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
         });
 }
 
-function eliminarElemento(idTablon, elem){
+function deleteElement(idTablon, elem){
       var action = "DELETE";
       $.ajax({
                 data:  "idTablon="+idTablon+"&idElem="+elem+"&action="+action,
@@ -336,7 +336,6 @@ function eliminarElemento(idTablon, elem){
                 type:  'POST',
         });
 }
-
 
 function addUser(idTablon, correo) {
 	alert(correo);
@@ -348,6 +347,7 @@ function addUser(idTablon, correo) {
                 type:  'POST',
         });
 }
+
 function enviarPapelera(idTablon, elem){
       var action = "DISCARD";
       $.ajax({
@@ -356,11 +356,22 @@ function enviarPapelera(idTablon, elem){
                 type:  'POST',
         });
 }
-function addBoard(correo){
-	var action = "ADDBOARD";
+
+function recoverElement(idTablon, elem){
+	var action = "RECOVER";
 	alert(correo);
 	$.ajax({
-                data: "correo="+correo+"&action="+action,
+                data:  "idTablon="+idTablon+"&idElem="+elem+"&action="+action,
+                url:   'controladores/controlador_tablon.php',
+                type:  'POST',
+        });
+}
+
+function emptyTrash(idTablon){
+	var action = "EMPTY";
+	alert(correo);
+	$.ajax({
+                data:  "idTablon="+idTablon+"&action="+action,
                 url:   'controladores/controlador_tablon.php',
                 type:  'POST',
         });
