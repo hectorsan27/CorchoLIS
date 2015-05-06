@@ -196,7 +196,7 @@ div#content_tablon {
     border: 2px solid #ddd;
     position: absolute;
     width: 400px;
-    min-height: 291px; /*Tamaño del formulario mas pequeño*/
+    min-height: 232px; /*Tamaño del formulario mas pequeño*/
     top:0px;
     right: 0px;
     z-index: 3000;

@@ -7,19 +7,19 @@
 					<img src="static/img/logo_provisional.png" alt="Logo">
 				</a>
 	    	</div>
-	    	<div id="container_login">
+	    	<div id="container_login" >
 	    		<ul class="lista_horizontal_tablon">
-                    <li id = 'homeIcon' class="hvr-rotate">
-                        <a>
+                    <li id = 'homeIcon' class="hvr-rotate" title="Home">
+                        <a href="/public_html/home">
                             <div class="elemento_menu">
-                                <img src="static/img/icono_home.png">
+                                <img src="static/img/icono_home.png" >
                             </div>
                         </a>
                     </li>
-                    <li id = 'username' class="hvr-rotate">
+                    <li id = 'username' class="hvr-rotate" title="Perfil de usuario">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="static/img/icono_usuario.png">
+	                            <img src="static/img/icono_usuario.png" >
 	                        </div>
                         </a>
                     </li>
@@ -39,28 +39,25 @@
                         //echo $privilegio;
                         if ($privilegio > 0){
                     ?>
-                    <li id = 'div_anadir' class="hvr-rotate">
+                    <li id = 'div_anadir' class="hvr-rotate" title="Añadir elemento">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="static/img/icono_anadir_elemento.png">
+	                            <img src="static/img/icono_anadir_elemento.png"> 
 	                        </div>
                         </a>
                     </li>
-                    <?php 
-                        }
-                    ?>
-                    <li id = 'div_papelera' class="hvr-rotate">
+                    <li id = 'div_papelera' class="hvr-rotate" title="Papelera">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="static/img/icono_papelera.png">
+	                            <img src="static/img/icono_papelera.png" >
 	                        </div>
                         </a>
                     </li>
-                    <?php
+                     <?php }
                         //echo $privilegio;
                         if ($privilegio > 2){
                     ?>
-                    <li id = 'div_compartir' class="hvr-rotate">
+                    <li id = 'div_compartir' class="hvr-rotate" title="Compartir tablón">
                         <a>
 	                        <div class="elemento_menu">
 	                            <img src="static/img/icono_compartir.png">
@@ -69,9 +66,19 @@
                     </li>
                     <?php 
                         }
+                    ?>
+                     <li id = 'div_permisos' class="hvr-rotate" title="Permisos">
+                        <a>
+                            <div class="elemento_menu">
+                                <img src="static/img/icono_permisos.png">
+                            </div>
+                        </a>
+                    </li>
+
+                    <?php
                         if ($privilegio > 3){
                     ?>
-                    <li id = 'div_configurar' class="hvr-rotate">
+                    <li id = 'div_configurar' class="hvr-rotate" title="Configuración">
                         <a>
 	                        <div class="elemento_menu">
 	                            <img src="static/img/icono_configuracion.png">
