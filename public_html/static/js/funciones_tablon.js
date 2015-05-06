@@ -124,7 +124,6 @@ function cambiar_fondo(divid, color) {
 }
 
 function addElement_note(){
-
     // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
@@ -150,19 +149,19 @@ function addElement_note(){
     div.onmousedown= document.getElementById("sample").onmousedown;
     div.onmouseup = document.getElementById("sample").onmouseup;
 
-	//variables que enviamos a la funcion
-	var idTablon = 1;
-	var posicion_x = 0;
-	var posicion_y = 0;
-	var tamano = "Pequeno";
-	var tipo = "Texto";
-	var contenido = note.value;
-	//guardamos el elemento en la base de datos
-	nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
+    //variables que enviamos a la funcion
+    var idTablon = 1;
+    var posicion_x = 0;
+    var posicion_y = 0;
+    var tamano = "Pequeno";
+    var tipo = "Texto";
+    var contenido = note.value;
+    //guardamos el elemento en la base de datos
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
 }
 
 function addElement_image(){
-     // creamos un nuevo div
+    // creamos un nuevo div
     var div = document.createElement("div");
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
     var elements = document.getElementsByClassName("elemento_tablon");
@@ -271,11 +270,13 @@ function deleteElement(divid){
     idElem = idElem.replace('elem','');
     idElem = parseInt(idElem);
 
-    var elements = document.getElementsByClassName("elem");
+    var elements = document.querySelectorAll('.elemento_tablon, .elemento_tablon_2');
     var i;
     var item;
-    for (i = idElem; i < elements.length - 3; i++){
-        elements[i+3].id = "elem" + i;
+    var id;
+    for (i = idElem; i < elements.length - 2; i++){
+        id = elements[i+2].id.substring(0,4) + i;
+        elements[i+2].id = id;
     }
     enviarPapelera(idTablon ,idElem);
 }
@@ -319,9 +320,8 @@ function deleteElement(idTablon, elem){
 }
 
 function addUser(idTablon, correo) {
-	alert(correo);
-	var action = "SHARE";
-	var correo = document.getElementById("container_tablon");
+    var action = "SHARE";
+    var correo = document.getElementById("container_tablon");
     var data = "idTablon="+idTablon+"&correo="+correo+"&action="+action;
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
@@ -337,7 +337,7 @@ function enviarPapelera(idTablon, elem){
 }
 
 function recoverElement(idTablon, elem){
-	var action = "RECOVER";
+    var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
@@ -345,11 +345,11 @@ function recoverElement(idTablon, elem){
 }
 
 function emptyTrash(idTablon){
-	var action = "EMPTY";
+    var action = "EMPTY";
     var data = "idTablon="+idTablon+"&action="+action;
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
-	ajaxCall(data,url,type);
+    ajaxCall(data,url,type);
 }
 
 function ajaxCall(data,url,type){
