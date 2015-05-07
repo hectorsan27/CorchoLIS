@@ -28,32 +28,20 @@
 			<img src="static/img/categoria_compartidos.png">
 		</div>
 		<div class="tablones">
+			<?php
+				if (count($tablonesComp) > 0){
+					for ($i=0;$i<count($tablonesComp);$i++){?>
 			<div class="tablon hvr-grow">
-				<div class="descripcion" id="descripcion_4">
-					<p>Red bull</p>
+				<div class="descripcion" id="descripcion_1">
+					<p><?php echo $tablonesComp[$i][1];?></p>
+					
 				</div>
 				<div class="titulo">
-					<p>Deportes extremos</p>
+					<p><?php echo $tablonesComp[$i][0];?></p>
 				</div>
 			</div>
-			<div class="tablon hvr-grow">
-				<div class="descripcion" id="descripcion_5">
-					<p>Kappa</p>
-				</div>
-				<div class="titulo">
-					<p>Hearthstone UAB</p>
-				</div>
-			</div>
-			<div class="tablon hvr-grow">
-				<div class="descripcion" id="descripcion_6">
-					<p>Exposiciones</p>
-				</div>
-				<div class="titulo">
-					<p>Ética Tercero</p>
-				</div>
-			</div>
-			<div class="anadir_tablon tablon hvr-grow">
-			</div>
+			<?php } 
+			} ?>
 		</div>
 	</div>
 </div>

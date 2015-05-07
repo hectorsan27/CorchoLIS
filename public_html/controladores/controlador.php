@@ -35,6 +35,7 @@ switch (count($url)) {
 			require_once("../modelos/modelo.php");
 			$correo = $_SESSION['correo'];
 			$tablones = cargarTablones($_SESSION['correo']);
+			$tablonesComp = cargarTablonesComp($_SESSION['correo']);
 			require_once("../vistas/header_inicio.php");
 			require("../vistas/vista_home.php");
 			require_once("../vistas/footer.php");

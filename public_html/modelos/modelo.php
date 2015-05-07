@@ -266,4 +266,27 @@ function cargarTablones($correo){
 	desconectarDeBasedeDatos($connexion);
 	return $array;
 	}
+function cargarTablonesComp($correo){
+	$connexion=conectarBasedeDatos();
+	$query = "SELECT * from usuarios_tablones WHERE Correo_usuario = '$correo';";
+	$result = mysql_query($query, $connexion);
+	$i = 0;
+	$array = array();
+	while ($row=mysql_fetch_assoc($result)) {
+		$id = $row["ID_tablon"];
+		$query = "SELECT * from usuarios_tablones WHERE ID_tablon = '$id' group by ID_tablon having count(ID_tablon) > 1;";
+		$result2 = mysql_query($query, $connexion);
+		while ($row2=mysql_fetch_assoc($result2)){
+			$id = $row2["ID_tablon"];
+			$query = "SELECT * from tablones WHERE ID = '$id';";
+			$result3 = mysql_query($query, $connexion);
+			$row3=mysql_fetch_assoc($result3,0);
+			$array[$i][0] = $row3["Nombre"];
+			$array[$i][1] = $row3["Descripcion"];
+			$i = $i + 1;
+		}
+	}
+	desconectarDeBasedeDatos($connexion);
+	return $array;
+	}
 ?>
