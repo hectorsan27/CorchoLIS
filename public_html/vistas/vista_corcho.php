@@ -4,7 +4,7 @@
 		<div id="header">
 			<div id="container_logo">
 				<a href="">
-					<img src="../static/img/logo_provisional.png" alt="Logo">
+					<img src="static/img/logo_provisional.png" alt="Logo">
 				</a>
 	    	</div>
 	    	<div id="container_login" >
@@ -12,14 +12,14 @@
                     <li id = 'homeIcon' class="hvr-rotate" title="Home">
                         <a href="/public_html/home">
                             <div class="elemento_menu">
-                                <img src="../static/img/icono_home.png" >
+                                <img src="static/img/icono_home.png" >
                             </div>
                         </a>
                     </li>
                     <li id = 'username' class="hvr-rotate" title="Perfil de usuario">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="../static/img/icono_usuario.png" >
+	                            <img src="static/img/icono_usuario.png" >
 	                        </div>
                         </a>
                     </li>
@@ -35,21 +35,21 @@
                         </a>
                     </li>
                     <?php
-                        $privilegio = obtenerPrivilegiosTablon($curtablon,$correo);
+                        $privilegio = obtenerPrivilegiosTablon(1,"pere@gmail.com");
                         //echo $privilegio;
                         if ($privilegio > 0){
                     ?>
                     <li id = 'div_anadir' class="hvr-rotate" title="Añadir elemento">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="../static/img/icono_anadir_elemento.png"> 
+	                            <img src="static/img/icono_anadir_elemento.png"> 
 	                        </div>
                         </a>
                     </li>
                     <li id = 'div_papelera' class="hvr-rotate" title="Papelera">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="../static/img/icono_papelera.png" >
+	                            <img src="static/img/icono_papelera.png" >
 	                        </div>
                         </a>
                     </li>
@@ -60,7 +60,7 @@
                     <li id = 'div_compartir' class="hvr-rotate" title="Compartir tablón">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="../static/img/icono_compartir.png">
+	                            <img src="static/img/icono_compartir.png">
 	                        </div>
                         </a>
                     </li>
@@ -70,7 +70,7 @@
                      <li id = 'div_permisos' class="hvr-rotate" title="Permisos">
                         <a>
                             <div class="elemento_menu">
-                                <img src="../static/img/icono_permisos.png">
+                                <img src="static/img/icono_permisos.png">
                             </div>
                         </a>
                     </li>
@@ -81,7 +81,7 @@
                     <li id = 'div_configurar' class="hvr-rotate" title="Configuración">
                         <a>
 	                        <div class="elemento_menu">
-	                            <img src="../static/img/icono_configuracion.png">
+	                            <img src="static/img/icono_configuracion.png">
 	                        </div>
                         </a>
                     </li>
@@ -94,9 +94,9 @@
 		<div id="content_tablon">
 			<div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion" class="form-style-1-heading">
-                    <div id="elemento_seleccion_texto" class="elemento_seleccion"><img src="../static/img/anadir_nota.png"></div>
-                    <div id="elemento_seleccion_imagen" class="elemento_seleccion"><img src="../static/img/anadir_imagen.png"></div>
-                    <div id="elemento_seleccion_video" class="elemento_seleccion"><img src="../static/img/anadir_video.png"></div>
+                    <div id="elemento_seleccion_texto" class="elemento_seleccion"><img src="static/img/anadir_nota.png"></div>
+                    <div id="elemento_seleccion_imagen" class="elemento_seleccion"><img src="static/img/anadir_imagen.png"></div>
+                    <div id="elemento_seleccion_video" class="elemento_seleccion"><img src="static/img/anadir_video.png"></div>
                 </div>
                 <form id="formulario_nota">
                     <div class="form-style-1-heading">
@@ -163,7 +163,7 @@
            	</div>
            	<div id="compartir_tablon">
            		<div id="compartir_tablon_header" class="form-style-1-heading">
-           			<img src="../static/img/compartir_tablon.png"></img>
+           			<img src="static/img/compartir_tablon.png"></img>
            		</div>
                 <form id="formulario_invitar">
                     <div class="form-style-1-heading">
@@ -184,7 +184,7 @@
 	        </div>
 			<div id="papelera">
 				<div id="papelera_header" class="form-style-1-heading">
-                    <img src="../static/img/papelera.png"></img>
+                    <img src="static/img/papelera.png"></img>
                 </div>
 				<form id="formulario_papelera">	
                     <div class="form-style-1-heading">
@@ -192,7 +192,7 @@
                     </div>
 				<ul class="form-style-1">
 					<?php 
-					$elementos = obtenerElementosTablon($curtablon,0);
+					$elementos = obtenerElementosTablon(1,1);
 					$i = 0;
 					while($fila=mysql_fetch_array($elementos)){
 						$idElem = $fila['ID_elementos'];
@@ -247,7 +247,7 @@
 	                    </div>
 
 	                    <?php
-	                    $result = obtenerElementosTablon($curtablon,0);
+	                    $result = obtenerElementosTablon(1,0);
 	                    while($row=mysql_fetch_assoc($result)) {
 	                        $elem = $row["ID_elementos"];
                             if ($row["Tipo"] == 'Texto'){

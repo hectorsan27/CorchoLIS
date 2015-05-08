@@ -68,6 +68,16 @@
 		agregarTablon($correo);
 		
 	}
+	if ($action == 'OPENBOARD'){
+		$correo = $_POST["correo"];
+		$idTablon = $_POST["idTablon"];
+		abrirTablon($id,$correo);
+		
+		$_SESSION['tablonid']= $idTablon;
+		
+		header('Location: /public_html/tablon/'.$idTablon);
+		exit();
+	}
 	if ($action == 'ADMIN'){
 		$correo = $_POST["correo"];
 		$idTablon = $_POST["id_tablon"];

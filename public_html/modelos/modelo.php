@@ -216,16 +216,48 @@ function obtenerPrivilegiosTablon($idTablon, $correo){
 	return $privilegio;
 }
 //Invitar a un usuario al tablon, por defecto privilegio 0
-function compartirTablon($idTablon, $correo){
+function compartirTablon($idTablon, $correo, $privilegio){
 	$connexion=conectarBasedeDatos();
+	$query = "Select pass From Tablones where ID_tablon = '$idTablon';";
+	$result = mysql_query($query, $connexion);
+	$codigo = mysql_result($result, 0);
+	
+			$subject = "Corcholis";
+    		$message = "Hola, ha compartido un tablon contigo, para acceder a el utiliza este link: http://localhost/public_html/shared.php <br>\n Introduce el codigo=".$codigo."";
+    		$headers = "From:" . "projectlis15@gmail.com";
+    		mail($correo,$subject,$message,$headers);
 	$query = "INSERT INTO usuarios_tablones (Correo_usuario, ID_tablon, Privilegio) VALUES ('$correo', '$idTablon', '0');";
 	$result = mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
 }
+function generar_password($longitud)
+{
+  $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
+  $password = '';
+  for ($i=0; $i<$longitud; $i++) {
+  	$password .= substr($caracteres,rand(0,61), 1);
+  }
+  return $password;
+}
 function agregarTablon($correo){
-	
 	$connexion=conectarBasedeDatos();
-	$query = "INSERT INTO tablones (Nombre, Descripcion) VALUES ('Tablon', 'Hola');";
+	$codigovalido = 0;
+	while($codigovalido != 1){
+		$pass = generar_password(8);
+		$query = "SELECT 1 From tablones Where pass = '$pass';";
+		$passvalida = mysql_query($query, $connexion);
+
+		$num_rows = mysql_num_rows($passvalida);
+		if($num_rows == 1) {
+		$codigovalido = 0;
+		}
+		else{
+		$codigovalido = 1;
+		}
+	}
+
+
+	$query = "INSERT INTO `tablones`(`ID`, `Nombre`, `Descripcion`, `Pass`) VALUES ('0','Tablon','Descripcion','$pass')";
 	$result = mysql_query($query, $connexion);
 	
 
@@ -235,6 +267,7 @@ function agregarTablon($correo){
 	$result = mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
 }
+
 function obtenerUsuariosTablon($idTablon){
 	$connexion=conectarBasedeDatos();
 	$query = "Select Correo_usuario, Privilegio From usuarios_tablones where ID_tablon = '$idTablon';";
@@ -261,6 +294,7 @@ function cargarTablones($correo){
 		$row2=mysql_fetch_assoc($result2,0);
 		$array[$i][0] = $row2["Nombre"];
 		$array[$i][1] = $row2["Descripcion"];
+		$array[$i][2] = $row2["ID"];
 		$i = $i + 1;
 	}
 	desconectarDeBasedeDatos($connexion);
@@ -283,6 +317,7 @@ function cargarTablonesComp($correo){
 			$row3=mysql_fetch_assoc($result3,0);
 			$array[$i][0] = $row3["Nombre"];
 			$array[$i][1] = $row3["Descripcion"];
+			$array[$i][2] = $row2["ID"];
 			$i = $i + 1;
 		}
 	}

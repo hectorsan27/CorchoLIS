@@ -89,7 +89,7 @@ var mydragg = function(){
 
         stopMoving : function(divid){
             document.getElementById('container_tablon').style.cursor='default';
-            var idTablon = 1;
+            var idTablon = getCookie("idTablon");
             var positionx = divid.style.left;
             positionx = positionx.replace('px','');
             var positiony = divid.style.top;
@@ -150,7 +150,7 @@ function addElement_note(){
     div.onmouseup = document.getElementById("sample").onmouseup;
 
     //variables que enviamos a la funcion
-    var idTablon = 1;
+    var idTablon = getCookie("idTablon");
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
@@ -200,7 +200,7 @@ function addElement_image(){
     div.onmouseup = document.getElementById("sample").onmouseup;
     
     //variables que enviamos a la funcion
-    var idTablon = 1;
+    var idTablon = getCookie("idTablon");
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
@@ -251,7 +251,7 @@ function addElement_video(){
     div.onmouseup = document.getElementById("sample").onmouseup;
     
     //variables que enviamos a la funcion
-    var idTablon = 1;
+    var idTablon = getCookie("idTablon");
     var posicion_x = 0;
     var posicion_y = 0;
     var tamano = "Pequeno";
@@ -264,7 +264,7 @@ function addElement_video(){
 function deleteElement(divid){
     //obtiene el div del elemento y lo elimina del div del fondo
     var idElem = divid.parentNode.parentNode.id;
-    var idTablon = 1;
+    var idTablon = getCookie("idTablon");
     var elem = document.getElementById(idElem);
     document.getElementById("container_tablon").removeChild(elem);
     idElem = idElem.replace('elem','');
@@ -350,6 +350,16 @@ function emptyTrash(idTablon){
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
 }
 
 function ajaxCall(data,url,type){
