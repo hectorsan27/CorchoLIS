@@ -6,6 +6,7 @@
 <!-- LINKS -->
 <link rel="stylesheet" href="static/css/style_inicio.css" type="text/css"> <!-- Estilo de la página inicial-->
 <link rel="stylesheet" href="static/css/style_home.css" type="text/css"> <!-- Estilo de la página home-->
+<link rel="stylesheet" href="static/css/style_shared.css" type="text/css"> <!-- Estilo de la página shared-->
 <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 <!--SCRIPTS-->
