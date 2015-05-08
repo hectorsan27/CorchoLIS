@@ -6,6 +6,9 @@
     padding: 0;
     font-family:'Lato',sans-serif;
 }
+.pointer {
+  cursor: pointer;
+}
 /*TABLERO*/
 div#content_tablon {
     padding-top: 50px;
@@ -101,53 +104,12 @@ div#content_tablon {
 .elemento_tablon_nota p{
   margin: 0px;
 }
-/*
-.elem{
-    position: absolute;
-    background-color: green;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    -ms-user-select: none;
-    -khtml-user-select: none;     
-    user-select: none;
-    border:1px solid black;
-    z-index: 0;
-}
-
-#squareContainer{
-    left: 0px;
-}
-
-.square{
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border:1px solid black;
-}
-#redSquare{
-    background-color: red;
-}
-#greenSquare{
-    background-color: green;
-}
-#blueSquare{
-    background-color: blue;
-}
-#deleteSquare{
-    background-color: yellow;
-}
-#editSquare{
-    background-color: orange;
-}*/
-
 /*Añadir elementos al tablon*/
 #anadir_elemento {
     background-color: white;
     border: 2px solid #ddd;
     position: absolute;
     width: 400px;
-    min-height: 420px; /*Tamaño del formulario mas pequeño*/
     top:0px;
     right: 0px;
     z-index: 3000;
@@ -183,7 +145,6 @@ div#content_tablon {
     border: 2px solid #ddd;
     position: absolute;
     width: 400px;
-    min-height: 291px; /*Tamaño del formulario mas pequeño*/
     top:0px;
     right: 0px;
     z-index: 3000;
@@ -191,12 +152,13 @@ div#content_tablon {
 #compartir_tablon_header {
     background-color: #D6E8FF;
 }
+
+/*Papelera*/
 #papelera{
     background-color: white;
     border: 2px solid #ddd;
     position: absolute;
     width: 400px;
-    min-height: 232px; /*Tamaño del formulario mas pequeño*/
     top:0px;
     right: 0px;
     z-index: 3000;
@@ -204,8 +166,28 @@ div#content_tablon {
 #papelera_header {
   background-color: #C7A973;
 }
-
-
+#formulario_papelera div {
+  border: 0;
+}
+#formulario_papelera ul {
+  padding: 0px 0px 0px 0px;
+}
+#formulario_papelera li {
+  border-top: 2px solid #ddd;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+#formulario_papelera li:last-child {
+  padding-top: 10px;
+}
+#formulario_papelera li label p{
+  display: inline;
+  font-weight:normal;
+}
+.footer_papelera {
+  text-align: center;
+}
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
 .lista_horizontal_tablon{
     color: grey;

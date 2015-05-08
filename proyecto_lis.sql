@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2015 a las 11:55:51
+-- Tiempo de generación: 08-05-2015 a las 16:46:44
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -58,6 +58,14 @@ CREATE TABLE IF NOT EXISTS `tablones_elementos` (
   `Nombre` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   `Papelera` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tablones_elementos`
+--
+
+INSERT INTO `tablones_elementos` (`ID_tablones`, `ID_elementos`, `Posicionx`, `Posiciony`, `Tamano`, `Tipo`, `Contenido`, `Nombre`, `Papelera`) VALUES
+(1, 0, 545, 116, '', 'Texto', 'Esta es una nota de prueba', 'Nota de prueba 1', 1),
+(1, 1, 0, 0, '', 'Texto', 'Descripción de la nota 2', 'Esta es la segundo nota', 1);
 
 -- --------------------------------------------------------
 

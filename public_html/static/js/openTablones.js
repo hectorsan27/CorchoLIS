@@ -7,19 +7,21 @@ $(document).ready(function(){
 		if ($("#anadir_elemento").is(':visible')) {
 			$("#anadir_elemento").hide("drop",{direction: "vertical" });
 		} else {
-			$("#anadir_elemento").show("drop",{direction: "vertical" });
 			$("#formulario_nota").show();
+			$("#anadir_elemento").show("drop",{direction: "vertical" });		
 		}
 	});
 });
+/*Formulario papelere*/
 $(document).ready(function(){
 	$("#papelera").hide();
 	$("#div_papelera").click(function () {
 		if ($("#papelera").is(':visible')) {
 			$("#papelera").hide("drop",{direction: "vertical" });
 		} else {
-			$("#papelera").show("drop",{direction: "vertical" });
 			$("#formulario_papelera").show();
+			$("#papelera").show("drop",{direction: "vertical" });
+			
 		}
 	});
 });
@@ -30,8 +32,9 @@ $(document).ready(function(){
 		if ($("#compartir_tablon").is(':visible')) {
 			$("#compartir_tablon").hide("drop",{direction: "vertical" });
 		} else {
-			$("#compartir_tablon").show("drop",{direction: "vertical" });
 			$("#formulario_invitar").show();
+			$("#compartir_tablon").show("drop",{direction: "vertical" });
+			
 		}
 	});
 });

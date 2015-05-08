@@ -111,11 +111,11 @@ div#content {
 }
 /*SEPARADOR*/
 #separador{
-  height: 66px; /*Tiene que ser igual que el footer. hace que el footer se choque con el y no se meta en el content*/
+  height: 68px; /*Tiene que ser igual que el footer. hace que el footer se choque con el y no se meta en el content*/
 }
 /*FOOTER*/
 div#footer {
-  height: 66px;
+  height: 68px;
   min-width: 1000px;
   position:absolute;
   width:100%;
@@ -193,7 +193,7 @@ div#footer {
     opacity: 0.5;
 }
 
-/*LOGIN Y REGISTRO http://www.sanwebe.com/2014/08/css-html-forms-designs*/
+/*LOGIN Y REGISTRO*/
 #div_login {
   background-color: white;
   border: 2px solid #ddd;
@@ -342,10 +342,10 @@ fieldset p {
 .form-style-1 {
     margin:10px auto;
     max-width: 400px;
-    padding: 20px 12px 10px 20px;
-    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    padding: 10px 12px 10px 20px;
+    font: 14px 'Lato', sans-serif;
 }
-.form-style-1-heading{
+.form-style-1-heading {
     text-align: center;
     font-weight: bold;
     font-style: italic;
@@ -357,6 +357,24 @@ fieldset p {
     padding-left: 10px;*/
     padding-top: 10px;
 }
+.form-style-1-heading p {
+  margin: 5px 0px 5px 0px;
+}
+
+
+.form-style-1-heading-menutablon {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    border-bottom: 2px solid #ddd;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+.form-style-1-heading-menutablon p {
+  margin: 5px;
+  padding: 0;
+}
+
 .form-style-1 li {
     padding: 0;
     display: block;
@@ -390,7 +408,7 @@ select{
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
-    outline: none;  
+    outline: none; 
 }
 .form-style-1 input[type=text]:focus, 
 .form-style-1 input[type=date]:focus,

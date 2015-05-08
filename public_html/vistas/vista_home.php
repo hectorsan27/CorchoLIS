@@ -4,6 +4,7 @@
 			<img src="static/img/categoria_privados.png">
 		</div>
 		<div class="tablones">
+			<div class="tablon anadir_tablon hvr-grow" onclick="addBoard(<?php echo "'$correo'"; ?>)"></div> 
 			<?php
 				if (count($tablones) > 0){
 					for ($i=0;$i<count($tablones);$i++){?>
@@ -18,7 +19,6 @@
 			</div>
 			<?php } 
 			} ?>
-			<div class="tablon anadir_tablon hvr-grow" onclick="addBoard(<?php echo "'$correo'"; ?>)"></div> 
 		</div>
 	</div>
 	<div class="separador">
@@ -28,6 +28,7 @@
 			<img src="static/img/categoria_compartidos.png">
 		</div>
 		<div class="tablones">
+			<div class="tablon anadir_tablon hvr-grow"></div> 
 			<?php
 				if (count($tablonesComp) > 0){
 					for ($i=0;$i<count($tablonesComp);$i++){?>

@@ -99,6 +99,9 @@
                     <div id="elemento_seleccion_video" class="elemento_seleccion"><img src="static/img/anadir_video.png"></div>
                 </div>
                 <form id="formulario_nota">
+                    <div class="form-style-1-heading">
+                            <p>Añadir nota</p>
+                    </div>
                 	<ul class="form-style-1">
                         <li>
                             <label>Nombre</label>
@@ -109,11 +112,14 @@
                             <textarea id="contenido_nota" class="field-long field-textarea"></textarea>
                         </li>
                         <li>
-                            <input class="aceptar" type="button" value='Añadir' onclick="addElement_note()">
+                            <input class="aceptar pointer" type="button" value='Añadir' onclick="addElement_note()">
                         </li>
                     </ul>
                 </form>
                 <form id="formulario_imagen">
+                    <div class="form-style-1-heading">
+                            <p>Añadir imagen</p>
+                        </div>
                     <ul class="form-style-1">
                         <li>
                             <label>Nombre</label>
@@ -128,15 +134,14 @@
                             <input id="url_imagen" type="text" class="field-long"/>
                         </li>
                         <li>
-                            <label>Destacar elemento </label>
-                            <input type ='checkbox' value = 'Destacar'>
-                        </li>
-                        <li>
-                            <input class="aceptar" type="button" value='Añadir' onclick="addElement_image()">
+                            <input class="aceptar pointer" type="button" value='Añadir' onclick="addElement_image()">
                         </li>
                     </ul>
                 </form>
                 <form id="formulario_video">
+                     <div class="form-style-1-heading">
+                            <p>Añadir video</p>
+                        </div>
                     <ul class="form-style-1">
                         <li>
                             <label>Nombre</label>
@@ -151,11 +156,7 @@
                             <input id="url_video" type="text" class="field-long"/>
                         </li>
                         <li>
-                            <label>Destacar elemento </label>
-                            <input type ='checkbox' value = 'Destacar'>
-                        </li>
-                        <li>
-                            <input class="aceptar" type="button" value='Añadir' onclick="addElement_video()">
+                            <input class="aceptar pointer" type="button" value='Añadir' onclick="addElement_video()">
                         </li>
                     </ul>
                 </form>
@@ -165,6 +166,9 @@
            			<img src="static/img/compartir_tablon.png"></img>
            		</div>
                 <form id="formulario_invitar">
+                    <div class="form-style-1-heading">
+                            <p>Compartir tablón</p>
+                    </div>
                     <ul class="form-style-1">
                     	<li>
                         	<label>Correo</label>
@@ -173,7 +177,7 @@
                         	<input id='correo' type="text" class="field-long" placeholder="example@domain.com"/>
                     	</li>
                     	<li>
-                        	<input class="aceptar" type="button" value='Invitar' onclick="addUser(1,correo.value)"/>
+                        	<input class="aceptar pointer" type="button" value='Invitar' onclick="addUser(1,correo.value)"/>
                     	</li>
                     </ul>
                 </form>
@@ -183,10 +187,10 @@
                     <img src="static/img/papelera.png"></img>
                 </div>
 				<form id="formulario_papelera">	
+                    <div class="form-style-1-heading">
+                            <p>Papelera</p>
+                    </div>
 				<ul class="form-style-1">
-					<li>
-						<label>Papelera</label>
-					</li>
 					<?php 
 					$elementos = obtenerElementosTablon(1,1);
 					$i = 0;
@@ -194,15 +198,21 @@
 						$idElem = $fila['ID_elementos'];
 						$i = $i+1;?>
 					<li>
-						<label><?php echo $fila['Nombre']; ?></label>
-						<input class="eliminar" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="deleteElement(1,<?php echo "'$idElem'"; ?>)"/>
-						<input class="recuperar" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recoverElement(1,<?php echo "'$idElem'"; ?>)"/>
+						<label>Nombre:&nbsp;&nbsp;<p><?php echo $fila['Nombre']; ?></p></label>
+                        <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
+						<input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="deleteElement(1,<?php echo "'$idElem'"; ?>)"/>
+						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recoverElement(1,<?php echo "'$idElem'"; ?>)"/>
 					</li>
-					<?php } if ($i > 1){ ?>
-					<li>
-					   <input class="vaciar" type= "button" value='Vaciar papelera' onclick="emptyTrash(1)"/>
+					<?php } if ($i >= 1){ ?>
+					<li class="footer_papelera">
+					   <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(1)"/>
 					</li>
-					<?php }else if($i < 1) echo "Vacia";?>
+					<?php }else if($i < 1){?>
+                    <li class="footer_papelera">
+                        <label>La papelera se encuentra vacía</label>
+                    </li>
+                    <?php
+                    };?>
 				</ul>		
 				</form>
 			</div>	
