@@ -317,7 +317,7 @@ function cargarTablonesComp($correo){
 			$row3=mysql_fetch_assoc($result3,0);
 			$array[$i][0] = $row3["Nombre"];
 			$array[$i][1] = $row3["Descripcion"];
-			$array[$i][2] = $row2["ID"];
+			$array[$i][2] = $row3["ID"];
 			$i = $i + 1;
 		}
 	}
