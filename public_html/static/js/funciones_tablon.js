@@ -160,8 +160,9 @@ function addElement_note(){
     var tamano = "Pequeno";
     var tipo = "Texto";
     var contenido = note.value;
+    var url = "";
     //guardamos el elemento en la base de datos
-    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido, url);
 }
 
 function addElement_image(){
@@ -182,7 +183,6 @@ function addElement_image(){
     var inner = imagen.innerHTML.replace('imagen',id);
     //obtenemos el texto que hay en el input y lo remplazamos por el texto que hay en elem0
     //elem0 tiene un texto de mentira porque si no, no funcionaba el editar
-
     var nombre_imagen = document.getElementById("nombre_imagen");  
     inner = inner.replace('titulo', nombre_imagen.value);
     div.innerHTML = inner;
@@ -210,8 +210,9 @@ function addElement_image(){
     var tamano = "Pequeno";
     var tipo = "imagen";
     var contenido = inner;
+    var url = url_imagen;
     //guardamos el elemento en la base de datos
-    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido);
+    nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido, url);
 }
 
 function addElement_video(){
@@ -299,9 +300,9 @@ function editElement(divid){
 }
 
 //LLAMADAS AJAX
-function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido){
+function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido, url){
     var action = "INSERT";
-    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+action;
+    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&url"+url+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);

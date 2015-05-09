@@ -12,10 +12,10 @@ function addBoard(correo){
     ajaxCall(data,url,type);
     window.location ="/public_html/home";
 }
-function openBoard(correo, codigo){
+function openBoard(correo,idTablon,codigo){
     var action = "OPENBOARD";
-    document.cookie="idTablon="+codigo;
-    var data = "correo="+correo+"&idTablon="+codigo+"&action="+action;
+    document.cookie="idTablon="+idTablon;
+    var data = "correo="+correo+"&idTablon="+idTablon+"&action="+action;
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);

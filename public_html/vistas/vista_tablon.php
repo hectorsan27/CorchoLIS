@@ -250,15 +250,36 @@
 	                    while($row=mysql_fetch_assoc($result)) {
 	                        $elem = $row["ID_elementos"];
                             if ($row["Tipo"] == 'Texto'){
-                                $class = 'elemento_tablon_2';
+                                $class = 'elemento_tablon_nota';
+
+                                echo 
+                                '<div id="'.$elem. '"class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                <div class="elemento_tablon_nota" > <h5>'.$row["Contenido"].'</h5>
+                            </div>
+                            </div>';
                             }
-                            else {
-                                $class = 'elemento_tablon';
+                            elseif ($row["Tipo"] == 'imagen'){
+                                $class = 'elemento_tablon_imagen';
+
+                                echo 
+                                '<div id="'.$elem. '"class="container_imagen" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                            <div class="elemento_tablon_titulo">
+                                <h5>'.$row["Contenido"].'</h5>
+                            </div>
+                            <img class="elemento_tablon_imagen" src="'.$row["Url"].'">
+                        </div>';
+
                             }
-	                        echo 
-	                        '<div id="elem'. $elem . '" class = "' . $class . '" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                                <p>' . $row["Contenido"] . '</p>
-                            </div>';}
+                            elseif ($row["Tipo"] == 'video'){
+                                $class = 'elemento_tablon_imagen';
+                            
+                            }
+
+	                        // echo 
+	                        // '<div id="'. $elem . '" class = "' . $class . '" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                         //        <p>' . $row["Contenido"] . '</p>
+                         //    </div>';
+                        }
 	                        ?>
 	                   
 	                </div>
@@ -268,7 +289,7 @@
 	                
 	                    <table class="sorteable">
 	                        <?php
-	                        $usuarios = obtenerUsuariosTablon(1);
+	                        $usuarios = obtenerUsuariosTablon($curtablon);
 	                        while($fila=mysql_fetch_array($usuarios)){ ?>
 	                            <tr><td>
 	                                <?php echo $fila['Correo_usuario']; ?>

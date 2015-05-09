@@ -8,7 +8,7 @@
 			<?php
 				if (count($tablones) > 0){
 					for ($i=0;$i<count($tablones);$i++){?>
-			<div class="tablon hvr-grow" onclick="openBoard(<?php echo "'$correo'"; ?>, '<?php echo $tablones[$i][3]; ?>')">
+			<div class="tablon hvr-grow" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
 				<div class="descripcion" id="descripcion_1">
 					<p><?php echo $tablones[$i][1];?></p>
 					
