@@ -26,11 +26,6 @@ switch (count($url)) {
 		require_once("../vistas/footer.php");	
         break;
    	case 2:
-   		if($url[2] == 'tablon') {
-   			require_once("../modelos/modelo.php");
-			require_once("../vistas/header_corcho.php");
-			require("../vistas/vista_corcho.php"); 
-   		}
    		if($url[2] == 'home') {
 			require_once("../modelos/modelo.php");
 			$correo = $_SESSION['correo'];

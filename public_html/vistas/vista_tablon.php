@@ -221,27 +221,26 @@
 			<div id="board">
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
-                        <div id="elemento_1" class="elemento_tablon" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                            <a href="https://www.youtube.com/watch?v=S3PPXX9fa5U" target="_blank"><img class="elemento_tablon_imagen" src="http://img.youtube.com/vi/S3PPXX9fa5U/0.jpg"></img></a>
+                        <!-- Elemento del tipo video-->
+                        <div class="container_video" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_titulo">
-                                <h3>Star Wars: Battlefront - Reveal Trailer waf waf wf waf wa g</h3>
+                                <h5>The Witcher 3: Gameplay Trailer </h5>
                             </div>
-                            <div class="elemento_tablon_descripcion">
-                                <p>Check out the official reveal trailer for Star Wars: Battlefront, coming to PC, PS4, and Xbox One November 17, 2015.</p>
-                            </div>
+                            <iframe width="300" height="156" src="https://www.youtube.com/embed/nYwe_WHARdc?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
                         </div>
-
-                        <div id="elemento_2" class="elemento_tablon_2" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <!--Elemento del tipo nota-->
+                        <div class="container_nota" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_nota" >
-                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                    Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, 
-                                </p>
+                                <h5>Este es el título de una nota</h5>
                             </div>
                         </div>
-
+                        <!--Elemento del tipo imagen-->
+                        <div class="container_imagen" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                            <div class="elemento_tablon_titulo">
+                                <h5>Imagen valle</h5>
+                            </div>
+                            <img class="elemento_tablon_imagen" src="http://borkurart.com/media/images/df_mountains.jpg">
+                        </div>
 
 	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
 	                    </div>

@@ -37,7 +37,7 @@
 					<li><a id="perfil_usuario"><?php echo $_SESSION['correo'];?></a></li>
 					<li class="hvr-overline-from-center"><a href="cerrar_session" id="logout">CERRAR SESSIÓN</a></li>
 					<?php else: ?>
-					<li class="hvr-overline-from-center"><a href="tablon">TESTEO DE TABLA</a></li>
+					<!--<li class="hvr-overline-from-center"><a href="tablon">TESTEO DE TABLA</a></li>-->
 					<li class="hvr-overline-from-center"><a id="trigger_login">ACCEDER</a></li>
 	        		<li class="hvr-overline-from-center"><a id="trigger_registro">REGISTRARSE</a></li>
 	        		<?php endif;?>

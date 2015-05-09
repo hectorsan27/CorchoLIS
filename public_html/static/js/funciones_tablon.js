@@ -1,4 +1,4 @@
-/* Es conde y añade puntos suspensivos a textos que no caben dentro de un Div*/
+/* Esconde y añade puntos suspensivos a textos que no caben dentro de un Div*/
 $(document).ready(function(){
     $(".elemento_tablon_descripcion").dotdotdot({
         ellipsis    : '... '
@@ -28,11 +28,15 @@ var mydragg = function(){
 
             //Ponemos todos los elementos atras y el elemento seleccionado se pone adelante
             var i;
-            var elements = document.getElementsByClassName("elemento_tablon");
+            var elements = document.getElementsByClassName("container_video");
             for (i = 0; i < elements.length; i++){
                 elements[i].style.zIndex = "0";
             }
-            elements = document.getElementsByClassName("elemento_tablon_2");
+            elements = document.getElementsByClassName("container_imagen");
+            for (i = 0; i < elements.length; i++){
+                elements[i].style.zIndex = "0";
+            }
+            elements = document.getElementsByClassName("container_nota");
             for (i = 0; i < elements.length; i++){
                 elements[i].style.zIndex = "0";
             }

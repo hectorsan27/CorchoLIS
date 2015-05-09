@@ -50,37 +50,59 @@ div#content_tablon {
 }
 
 /*ELEMENTOS DEL TABLERO*/
-.elemento_tablon_2 {
+.container_nota {
   position: absolute;
   width: 170px;
-  height: 120px;
-  background-color: #C7A782;
-  border: 10px solid #fff;
+  height: 80px;
+  background-color: #676C89;
   margin: 0 0 0 0;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  border: solid white;
 }
-.elemento_tablon {
+.container_video {
   position: absolute;
-  width: 400px;
-  height: 330px;
-  background-color: #C7A782;
-  border: 10px solid #fff;
+  width: 300px;
+  height: 200px;
+     background: url("../img/fondo_inicio_14.jpg") no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   margin: 0 0 0 0;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  border: solid white;
+}
+.container_imagen {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+     background: url("../img/fondo_inicio_14.jpg") no-repeat center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  margin: 0 0 0 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  border: 3px solid white;
 }
 /*Videos e imagenes*/
 .elemento_tablon_imagen {
-  width: 400px;
-  height: 225px;
+  width: 300px;
+  height: 156px;
+  pointer-events: none;
 }
 .elemento_tablon_titulo {
-  margin: 10px 20px 10px 20px;
-  color: #32323e;
-  width: 360px;
-  height: 22px;
+  padding: 5px 0px 4px 0px;
+  color: white;
+  width: 300px;
+  height: 32px;
+  text-align: center;
+  border-bottom: 3px solid white;
 }
-.elemento_tablon_titulo h3 {
-  margin: 0px;
+.elemento_tablon_titulo h5 {
+  margin: 0px 0px 0px 0px;
+    font-weight: 400;
+  font-size: 14px;
 }
 .elemento_tablon_descripcion {
   margin: 10px 20px 10px 20px;
@@ -94,15 +116,17 @@ div#content_tablon {
 }
 /*Notas*/
 .elemento_tablon_nota{
-  margin: 10px 20px 10px 20px;
-  color: #32323e;
+  margin: 10px;
+  color: white;
   font-size: 16px;
   width: 150px;
-  height: 100px;
-  text-align: justify;
+  height: 60px;
+  text-align: center;
 }
-.elemento_tablon_nota p{
+.elemento_tablon_nota h5{
   margin: 0px;
+  font-weight: 400;
+  font-size: 14px;
 }
 /*Añadir elementos al tablon*/
 #anadir_elemento {

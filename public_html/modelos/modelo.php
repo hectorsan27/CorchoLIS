@@ -197,7 +197,7 @@ function editarContenidoElemento($idTablon,$element,$contenido){
 }
 function obtenerElementosTablon($idTablon, $papelera){
 	$connexion=conectarBasedeDatos();
-	$query = "Select ID_elementos,Posicionx,Posiciony,Tamano,Tipo,Contenido,Nombre From tablones_elementos where ID_tablones = '$idTablon' AND Papelera = '$papelera';";
+	$query = "Select ID_elementos,Posicionx,Posiciony,Tipo,Contenido,Nombre From tablones_elementos where ID_tablones = '$idTablon' AND Papelera = '$papelera';";
 	$result = mysql_query($query, $connexion);
 	if ($result == null){
 		$result = array();
