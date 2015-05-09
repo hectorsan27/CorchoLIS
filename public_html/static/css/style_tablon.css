@@ -34,14 +34,15 @@ div#content_tablon {
   height: 550px;
 }
 #marco_tablon {
-    position: relative;
-    background-image: url("../img/tablon.png");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    width: 1200px; 
-    height: 550px;
+  perspective: 1000px;
+  position: relative;
+  background-image: url("../img/tablon.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 1200px; 
+  height: 550px;
 }
 #container_tablon {
     position: relative;
@@ -58,6 +59,7 @@ div#content_tablon {
   margin: 0 0 0 0;
   box-shadow: 0 0 40px rgba(0, 0, 0, 1);
   border: solid white;
+  transform: rotateY(40deg);
 }
 .container_video {
   position: absolute;
@@ -71,6 +73,7 @@ div#content_tablon {
   margin: 0 0 0 0;
   box-shadow: 0 0 40px rgba(0, 0, 0, 1);
   border: solid white;
+  transform: rotateY(40deg);
 }
 .container_imagen {
   position: absolute;
@@ -84,6 +87,7 @@ div#content_tablon {
   margin: 0 0 0 0;
   box-shadow: 0 0 40px rgba(0, 0, 0, 1);
   border: 3px solid white;
+  transform: rotateY(40deg);
 }
 /*Videos e imagenes*/
 .elemento_tablon_imagen {

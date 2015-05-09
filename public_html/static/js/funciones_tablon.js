@@ -75,6 +75,9 @@ var mydragg = function(){
                     // La posicion ACTUAL de la esquina del div es aX y aY
                     aX = posX - diffX,
                     aY = posY - diffY;
+                     //Calculamos la rotacion que hay que aplicar al div
+                    var rotacion = mydragg.calculateRotation(aX); 
+                    $('#' + divid.id).css({"transform":"rotateY("+rotacion+"deg)"});
 
                     //Controlamos que no pase de los bordes
                     if (aX < 0) aX = 0;
@@ -102,6 +105,11 @@ var mydragg = function(){
             elem = elem.replace('elem','');
             editarPosicion(idTablon,elem,positionx,positiony);
             document.onmousemove = function(){}
+        },
+
+        calculateRotation : function(elemento_x){
+            var rotacion = (((-80) / 900)*elemento_x) + 40;
+            return rotacion;
         },
     }
 }();

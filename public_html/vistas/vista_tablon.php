@@ -222,20 +222,20 @@
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
                         <!-- Elemento del tipo video-->
-                        <div class="container_video" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <div id="testeo_rotacion_1" class="container_video" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_titulo">
                                 <h5>The Witcher 3: Gameplay Trailer </h5>
                             </div>
                             <iframe width="300" height="156" src="https://www.youtube.com/embed/nYwe_WHARdc?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <!--Elemento del tipo nota-->
-                        <div class="container_nota" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <div id="testeo_rotacion_2" class="container_nota" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_nota" >
                                 <h5>Este es el título de una nota</h5>
                             </div>
                         </div>
                         <!--Elemento del tipo imagen-->
-                        <div class="container_imagen" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                        <div id="testeo_rotacion_3" class="container_imagen" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_titulo">
                                 <h5>Imagen valle</h5>
                             </div>
