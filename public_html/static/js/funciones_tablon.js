@@ -302,7 +302,7 @@ function editElement(divid){
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido){
     var action = "INSERT";
     var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&action="+action;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -310,7 +310,7 @@ function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido
 function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     var action = "EDIT_POSITION";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&action="+action;;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -318,7 +318,7 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
 function deleteElement(idTablon, elem){
     var action = "DELETE";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -327,7 +327,7 @@ function addUser(idTablon, correo) {
     var action = "SHARE";
     var correo = document.getElementById("container_tablon");
     var data = "idTablon="+idTablon+"&correo="+correo+"&action="+action;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -335,7 +335,7 @@ function addUser(idTablon, correo) {
 function enviarPapelera(idTablon, elem){
     var action = "DISCARD";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -343,7 +343,7 @@ function enviarPapelera(idTablon, elem){
 function recoverElement(idTablon, elem){
     var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }
@@ -351,7 +351,7 @@ function recoverElement(idTablon, elem){
 function emptyTrash(idTablon){
     var action = "EMPTY";
     var data = "idTablon="+idTablon+"&action="+action;
-    var url = 'controladores/controlador_tablon.php';
+    var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
 }

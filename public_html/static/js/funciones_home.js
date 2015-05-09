@@ -10,15 +10,16 @@ function addBoard(correo){
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
+    window.location ="/public_html/home";
 }
-function openBoard(correo, idTablon){
+function openBoard(correo, codigo){
     var action = "OPENBOARD";
-    document.cookie="idTablon="+idTablon;
-    var data = "correo="+correo+"&idTablon="+idTablon+"&action="+action;
+    document.cookie="idTablon="+codigo;
+    var data = "correo="+correo+"&idTablon="+codigo+"&action="+action;
     var url = 'controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
-    window.location ="/public_html/tablon/"+idTablon;
+    window.location ="/public_html/tablon/"+codigo;
 }
 function ajaxCall(data,url,type){
     $.ajax({

@@ -295,6 +295,7 @@ function cargarTablones($correo){
 		$array[$i][0] = $row2["Nombre"];
 		$array[$i][1] = $row2["Descripcion"];
 		$array[$i][2] = $row2["ID"];
+		$array[$i][3] = $row2["Pass"];
 		$i = $i + 1;
 	}
 	desconectarDeBasedeDatos($connexion);
@@ -318,10 +319,18 @@ function cargarTablonesComp($correo){
 			$array[$i][0] = $row3["Nombre"];
 			$array[$i][1] = $row3["Descripcion"];
 			$array[$i][2] = $row3["ID"];
+			$array[$i][3] = $row3["Pass"];
 			$i = $i + 1;
 		}
 	}
 	desconectarDeBasedeDatos($connexion);
 	return $array;
 	}
+function iddelcodigo($pass){
+	$connexion=conectarBasedeDatos();
+	$query = "SELECT ID from tablones WHERE Pass = '$pass';";
+	$result = mysql_query($query, $connexion);
+	$iddelcodigo = mysql_result($result, 0);
+	return $iddelcodigo;
+}
 ?>

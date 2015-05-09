@@ -52,15 +52,21 @@ switch (count($url)) {
    	case 3:
    		if($url[2] == 'tablon')
    		 {
-   		 	$curtablon= $url[3];
+   		 	require_once("../modelos/modelo.php");
+   		 	if (iddelcodigo($url[3])!=null) {
+   		 	$curtablon= iddelcodigo($url[3]);
    		 	$curtablontest = $curtablon;
-   			require_once("../modelos/modelo.php");
+   			
    			$correo = $_SESSION['correo'];
-
    			//TODO implementar if (si correo de session y id coinciden en la base de datos usuarios tablones )
 			require_once("../vistas/header_tablon.php");
 			require("../vistas/vista_tablon.php"); 
 			require_once("../vistas/footer.php");
+   		 	}
+   		 	else{
+   		 		header("location: /public_html");
+   		 	}
+   		 	
    		}
    		break;
 }
