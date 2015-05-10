@@ -76,7 +76,7 @@ var mydragg = function(){
                     aX = posX - diffX,
                     aY = posY - diffY;
                      //Calculamos la rotacion que hay que aplicar al div
-                    var rotacion = mydragg.calculateRotation(aX); 
+                    var rotacion = mydragg.calculateRotation(divid, aX); 
                     $('#' + divid.id).css({"transform":"rotateY("+rotacion+"deg)"});
 
                     //Controlamos que no pase de los bordes
@@ -107,9 +107,14 @@ var mydragg = function(){
             document.onmousemove = function(){}
         },
 
-        calculateRotation : function(elemento_x){
-            var rotacion = (((-80) / 900)*elemento_x) + 40;
-            return rotacion;
+        calculateRotation : function(elemento, aX){
+            var total_rotation = -80;
+            var board_width = $('#container_tablon').outerWidth(true);
+            var element_width = $('#' + elemento.id).outerWidth(true);
+            var board_logical_width = board_width - element_width;
+            var element_x = aX;
+            var rotation = (((total_rotation) / board_logical_width)*element_x) + 40;
+            return rotation;
         },
     }
 }();
