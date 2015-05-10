@@ -108,12 +108,11 @@ var mydragg = function(){
         },
 
         calculateRotation : function(elemento, aX){
-            var total_rotation = -80;
+            var total_rotation = -30;
             var board_width = $('#container_tablon').outerWidth(true);
             var element_width = $('#' + elemento.id).outerWidth(true);
-            var board_logical_width = board_width - element_width;
-            var element_x = aX;
-            var rotation = (((total_rotation) / board_logical_width)*element_x) + 40;
+            var element_x = aX+(element_width/2);
+            var rotation = (((total_rotation) / board_width)*element_x) + 15;
             return rotation;
         },
     }

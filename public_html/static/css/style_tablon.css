@@ -45,14 +45,16 @@ div#content_tablon {
   height: 550px;
 }
 #container_tablon {
-    position: relative;
-    width: 1200px; 
-    height: 550px;
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    transform-style: preserve-3d;
 }
 
 /*ELEMENTOS DEL TABLERO*/
 .container_nota {
   position: absolute;
+  display: block;
   width: 170px;
   height: 80px;
   background-color: #676C89;
