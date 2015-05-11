@@ -239,11 +239,19 @@ function editElement(divid){
 }
 
 //LLAMADAS AJAX
+/*
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, contenido, url){
     var action = "INSERT";
     var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&nombre="+nombre"&contenido="+contenido+"&url="+url+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
+    ajaxCall(data,url,type);
+}*/
+function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido, url){
+    var action = "INSERT";
+    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&url"+url+"&action="+action;
+    var url = '../controladores/controlador_tablon.php';
+    var type= 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -307,6 +315,16 @@ function getCookie(cname) {
     return "";
 }
 
+function configPerm(idTablon, correo, privilegio){
+	alert(idTablon);
+	alert(correo);
+	alert(privilegio);
+    var action = "ADMIN";
+    var data = "idTablon="+idTablon+"&correo="+correo+"&privilegio="+privilegio+"&action="+action;
+    var url = '../controladores/controlador_tablon.php';
+    var type= 'POST';
+    ajaxCall(data,url,type);
+}
 function ajaxCall(data,url,type){
     $.ajax({
         data:  data,

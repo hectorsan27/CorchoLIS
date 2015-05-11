@@ -326,6 +326,7 @@ function cargarTablonesComp($correo){
 	desconectarDeBasedeDatos($connexion);
 	return $array;
 	}
+
 function iddelcodigo($pass){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT ID from tablones WHERE Pass = '$pass';";

@@ -216,6 +216,75 @@
 				</ul>		
 				</form>
 			</div>	
+			<div id="permisos">
+				<div id="papelera_header" class="form-style-1-heading">
+                    <img src="../static/img/papelera.png"></img>
+                </div>
+					<form id="formulario_permisos" method= "post" action="controladores/controlador_tablon.php">
+						<div class="form-style-1-heading">
+							<p>Usuarios</p>
+						</div>
+						<ul class="form-style-1">
+	                        <?php
+	                        $usuarios = obtenerUsuariosTablon($curtablon);
+							$i = 0;
+	                        while($fila=mysql_fetch_array($usuarios)){ ?>
+								<li>
+									<label>Usuario: <?php echo $fila['Correo_usuario']; ?></label>
+
+
+	                            
+								<?php if ($privilegio > 2) {?>
+								
+
+									<label>Privilegio: </label>
+									<select class="select_permisos field-select" name="perm_privilegio[<?php echo $i; ?>]" id="perm_privilegio">
+										<option selected="selectd" value='<?php echo $fila['Privilegio']; ?>'>
+											<?php 
+											if ($fila['Privilegio'] == 0){
+												echo "Viewer";
+											}else if ($fila['Privilegio'] == 1){
+												echo "Publisher";
+											}else if ($fila['Privilegio'] == 3){
+												echo "Admin";
+											}else if ($fila['Privilegio'] == 4){
+												echo "Owner";
+											} ?></option>
+										<?php 
+											if ($fila['Privilegio'] != 0){ ?>
+										<option value='0'>Viewer</option> <?php } ?>
+										<?php 
+											if ($fila['Privilegio'] != 1){ ?>
+										<option value='1'>Publisher</option> <?php } ?>
+										<?php 
+											if ($fila['Privilegio'] != 3){ ?>
+										<option value='3'>Admin</option> <?php } ?>
+										<?php 
+											if ($fila['Privilegio'] != 4){ ?>
+										<option value='4'>Owner</option> <?php } ?>
+									</select>
+	                                <input name="correo[<?php echo $i; ?>]" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
+								</li>
+								
+								<?php } ?></tr>
+	                        <?php   
+	                        $i = $i + 1;
+							} ?>
+								<li>
+									<input name="confirmar" id="confirmar" type="button" value="Confirmar" onclick="
+									<?php 
+										$j = 0;
+										while ($j<$i) { ?>
+											configPerm(<?php echo $curtablon; ?>, correo[<?php echo $j; ?>].value, perm_privilegio[<?php echo $j; ?>].value);
+											
+											<?php 
+											$j = $j + 1;
+											} ?>
+										"/>	
+								</li>
+							</ul>
+							</form>
+	            </div>
 
 
 			<div id="board">
@@ -274,27 +343,6 @@
                         ?>
 	                   
 	                </div>
-	            </div>
-	            
-	            <div id="administrar">
-	                <table class="sorteable">
-                        <?php
-	                        $usuarios = obtenerUsuariosTablon($curtablon);
-	                        while($fila=mysql_fetch_array($usuarios)){ ?>
-	                            <tr>
-                                    <td><?php echo $fila['Correo_usuario']; ?></td>
-                                    <td><?php echo $fila['Privilegio']; ?></td>
-                                    <td>
-                                        <form  method= "post" action="controladores/controlador_tablon.php" class="vertical"><?php if($fila['Privilegio']<4){ ?>
-                                            <input name="priv" id="priv" type="number"/> <?php } ?>
-                                            <input name="action" id="action" type="hidden" value="ADMIN"/>
-                                            <input name="correo" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
-                                            <input name="id_tablon" id="id_tablon" type="hidden" value="1"/>
-                                        </form>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </table>
 	            </div>
 	        </div><!--Cierra board -->
 		</div>

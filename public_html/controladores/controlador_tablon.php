@@ -79,9 +79,10 @@
 		exit();
 	}
 	if ($action == 'ADMIN'){
+		
 		$correo = $_POST["correo"];
-		$idTablon = $_POST["id_tablon"];
-		$privilegio = $_POST["priv"];
+		$idTablon = $_POST["idTablon"];
+		$privilegio = $_POST["privilegio"];
 		modificarPrivilegios($idTablon, $correo, $privilegio);
 		header('Location: /public_html/tablon');
 	}

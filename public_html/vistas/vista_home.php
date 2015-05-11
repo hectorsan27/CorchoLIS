@@ -28,6 +28,7 @@
 			<img src="static/img/categoria_compartidos.png">
 		</div>
 		<div class="tablones">
+
 			<div class="tablon anadir_tablon hvr-grow"></div> 
 			<?php
 				if (count($tablonesComp) > 0){

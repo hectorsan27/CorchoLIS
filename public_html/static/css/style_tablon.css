@@ -218,6 +218,44 @@ div#content_tablon {
 .footer_papelera {
   text-align: center;
 }
+/*CONFIGURACION PERMISOS*/
+#permisos{
+    background-color: white;
+    border: 2px solid #ddd;
+    position: absolute;
+    width: 400px;
+    top:0px;
+    right: 0px;
+    z-index: 3000;
+}
+#permisos_header {
+  background-color: #C7A973;
+}
+#formulario_permisos div {
+  border: 0;
+}
+#formulario_permisos ul {
+  padding: 0px 0px 0px 0px;
+}
+#formulario_permisos li {
+  border-top: 2px solid #ddd;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+#formulario_permisos li:last-child {
+  padding-top: 10px;
+}
+#formulario_permisos li label p{
+  display: inline;
+  font-weight:normal;
+}
+.footer_permisos {
+  text-align: center;
+}
+.select_permisos{
+	width: 100px !important;
+}
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
 .lista_horizontal_tablon{
     color: grey;

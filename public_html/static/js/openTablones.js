@@ -38,13 +38,20 @@ $(document).ready(function(){
 		}
 	});
 });
-/*Formulario administrar usuarios (SIN ACABAR)*/
+/*Formulario administrar usuarios*/
 $(document).ready(function(){
-	$("#administrar_usuarios").hide();
-	$("#div_administrar").click(function () {
-		$("#administrar_usuarios").show("drop",{direction: "vertical" });
+	$("#permisos").hide();
+	$("#div_permisos").click(function () {
+		if ($("#permisos").is(':visible')) {
+			$("#permisos").hide("drop",{direction: "vertical" });
+		} else {
+			$("#formulario_permisos").show();
+			$("#permisos").show("drop",{direction: "vertical" });
+			
+		}
 	});
 });
+
 /*Cerrar formulario al clicar fuera de él*/
 $(document).ready(function(){
 	$(document).mouseup(function(e) {
@@ -54,6 +61,10 @@ $(document).ready(function(){
 		$("#formulario_video").hide();
 		$("#formulario_nota").hide();
 
+	  }
+	   if(e.target.id != 'permisos' && !$('#permisos').find(e.target).length) {
+	    $("#permisos").hide("drop",{direction: "vertical" });
+	    $("#formulario_permisos").hide();
 	  }
 	  if(e.target.id != 'compartir_tablon' && !$('#compartir_tablon').find(e.target).length) {
 	    $("#compartir_tablon").hide("drop",{direction: "vertical" });
