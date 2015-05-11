@@ -3,7 +3,7 @@
 	<!-- Barra inicial de la WEB que nos permite Registrarnos, Logearnos o Cerrar Session-->
 		<div id="header">
 			<div id="container_logo">
-				<a href="">
+				<a href="/public_html/">
 					<img src="../static/img/logo_provisional.png" alt="Logo">
 				</a>
 	    	</div>
@@ -217,8 +217,8 @@
 				</form>
 			</div>	
 			<div id="permisos">
-				<div id="papelera_header" class="form-style-1-heading">
-                    <img src="../static/img/papelera.png"></img>
+				<div id="permisos_header" class="form-style-1-heading">
+                    <img src="../static/img/permisos.png"></img>
                 </div>
 					<form id="formulario_permisos" method= "post" action="controladores/controlador_tablon.php">
 						<div class="form-style-1-heading">
@@ -230,7 +230,8 @@
 							$i = 0;
 	                        while($fila=mysql_fetch_array($usuarios)){ ?>
 							<li>
-								<label>Usuario: <?php echo $fila['Correo_usuario']; ?></label>
+								<label>Usuario:</label>
+                                <p><?php echo $fila['Correo_usuario']; ?></p>
 								<?php if ($privilegio > 2) {?>
 									<label>Privilegio: </label>
 									<select class="select_permisos field-select" name="perm_privilegio[<?php echo $i; ?>]" id="perm_privilegio">
@@ -282,28 +283,6 @@
 			<div id="board">
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
-                        <!-- Elemento del tipo video--
-                        <div id="testeo_rotacion_1" class="container_video" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                            <div class="elemento_tablon_titulo">
-                                <h5>The Witcher 3: Gameplay Trailer </h5>
-                            </div>
-                            <iframe width="300" height="156" src="https://www.youtube.com/embed/nYwe_WHARdc?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <!--Elemento del tipo nota--
-                        <div id="testeo_rotacion_2" class="container_nota" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                            <div class="elemento_tablon_nota" >
-                                <h5>Este es el título de una nota</h5>
-                            </div>
-                        </div>
-                        <!--Elemento del tipo imagen--
-                        <div id="testeo_rotacion_3" class="container_imagen" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
-                            <div class="elemento_tablon_titulo">
-                                <h5>Imagen valle</h5>
-                            </div>
-                            <img class="elemento_tablon_imagen" src="http://borkurart.com/media/images/df_mountains.jpg">
-                        </div>
-                        -->
-
 	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
 	                    </div>
 
@@ -326,7 +305,7 @@
                             }
                             else{
                                 echo
-                                '<div id="elem' . $row["ID_elementos"] . '" class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                '<div id="elem' . $row["ID_elementos"] . '" class="container_video" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
                                 </div>';

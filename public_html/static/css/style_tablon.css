@@ -229,7 +229,7 @@ div#content_tablon {
     z-index: 3000;
 }
 #permisos_header {
-  background-color: #C7A973;
+  background-color: #FCF5AC;
 }
 #formulario_permisos div {
   border: 0;
@@ -250,12 +250,14 @@ div#content_tablon {
   display: inline;
   font-weight:normal;
 }
+#formulario_permisos li p{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 .footer_permisos {
   text-align: center;
 }
-.select_permisos{
-	width: 100px !important;
-}
+
 /*PERMITE CREAR UNA LISTA HORIZONTAL*/
 .lista_horizontal_tablon{
     color: grey;

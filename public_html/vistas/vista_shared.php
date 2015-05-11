@@ -22,7 +22,7 @@
 	}
 
 	else{?>
-	<p>"Para acceder a un tablon compartio contigo debes loguearte primero, si no tienes cuenta registrate"</p>
+	<p>Para acceder a un tablon compartio contigo debes loguearte primero, si no tienes cuenta registrate</p>
 
 	<?php
 		}

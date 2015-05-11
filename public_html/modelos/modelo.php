@@ -242,7 +242,7 @@ function generar_password($longitud){
   return $password;
 }
 
-function agregarTablon($correo){
+function agregarTablon($correo, $nombre, $descripcion){
 	$connexion=conectarBasedeDatos();
 	$codigovalido = 0;
 	while($codigovalido != 1){
@@ -260,7 +260,7 @@ function agregarTablon($correo){
 	}
 
 
-	$query = "INSERT INTO `tablones`(`ID`, `Nombre`, `Descripcion`, `Pass`) VALUES ('0','Tablon','Descripcion','$pass')";
+	$query = "INSERT INTO `tablones`(`ID`, `Nombre`, `Descripcion`, `Pass`) VALUES ('0','$nombre','$descripcion','$pass')";
 	$result = mysql_query($query, $connexion);
 	
 	$id =  mysql_insert_id();

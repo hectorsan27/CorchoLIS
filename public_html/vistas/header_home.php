@@ -13,8 +13,8 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 <script src="static/js/kickstart.js"></script> <!-- KICKSTART -->
-<script type="text/javascript" src="static/js/formularios_inicio.js"></script>
-<script type="text/javascript" src="static/js/validacion_registro.js"></script>
+<script type="text/javascript" src="static/js/formularios_home.js"></script>
+<script type="text/javascript" src="static/js/funciones_home.js"></script>
 <script type="text/javascript" src="static/js/jquery.dotdotdot.js"></script> <!--Usado en home-->
 <script type="text/javascript" src="static/js/funciones_inicio.js"></script>
 </head> 
