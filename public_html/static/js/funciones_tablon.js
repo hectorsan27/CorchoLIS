@@ -89,7 +89,6 @@ var mydragg = function(){
                     //Se comprueba que este dentro d ela altura del container
                     if (aY + height > tamano_container_y) aY = tamano_container_y -height;
                     // movemos el objeto a la posicion correcta
-
                 mydragg.move(divid,aX,aY);
             }
         },
@@ -119,7 +118,6 @@ var mydragg = function(){
 }();
 
 function cambiar_fondo(divid, color) {
-
     //cogemos el id del contenedor
     var idElem = divid.parentNode.parentNode.id;
     var elem = document.getElementById(idElem);
@@ -128,7 +126,6 @@ function cambiar_fondo(divid, color) {
     if (color == 1){
         elem.style.backgroundColor = 'red';
     }
-
     else{
         if (color == 2){
             elem.style.backgroundColor = 'green';
@@ -139,12 +136,21 @@ function cambiar_fondo(divid, color) {
     }
 }
 
+function urlToEmbed(url){
+    if (url.indexOf('youtu.be/') != -1){
+        return 'https://www.youtube.com/embed/' + url.substring(url.indexOf('youtu.be/') + 9);
+    }
+    if (url.indexOf('/watch?v=') != -1){
+        return 'https://www.youtube.com/embed/' + url.substring(url.indexOf('/watch?v=') + 9);
+    }
+}
+
 function obtainNewId(){
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
     var elements = document.getElementsByClassName("container_nota");
     var elements2 = document.getElementsByClassName("container_imagen");
     var elements3 = document.getElementsByClassName("container_video");
-    var length = elements.length + elements2.length + elements3.length - 3;
+    var length = elements.length + elements2.length + elements3.length;
     var id = 'elem';
     return id+length;
 }
@@ -199,6 +205,7 @@ function addElement_video(){
     var titulo = document.getElementById("nombre_video");
     var url = document.getElementById("url_video");
     var descripcion = document.getElementById("descripcion_video");
+    url.value = urlToEmbed(url.value);
 
     div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + url.value + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>'
 
@@ -239,19 +246,11 @@ function editElement(divid){
 }
 
 //LLAMADAS AJAX
-/*
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, contenido, url){
     var action = "INSERT";
-    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&nombre="+nombre"&contenido="+contenido+"&url="+url+"&action="+action;
+    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&nombre="+nombre+"&contenido="+contenido+"&url="+url+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
-    ajaxCall(data,url,type);
-}*/
-function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, contenido, url){
-    var action = "INSERT";
-    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&contenido="+contenido+"&url"+url+"&action="+action;
-    var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -289,7 +288,6 @@ function enviarPapelera(idTablon, elem){
 }
 
 function recoverElement(idTablon, elem){
-
     var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
@@ -323,6 +321,7 @@ function configPerm(idTablon, correo, privilegio){
     var type= 'POST';
     ajaxCall(data,url,type);
 }
+
 function ajaxCall(data,url,type){
     $.ajax({
         data:  data,

@@ -14,7 +14,7 @@
 		$tipo = $_POST["tipo"];
 		$contenido = $_POST["contenido"];
 		$nombre = $_POST["nombre"];
-		$nombre = $_POST["url"];
+		$url = $_POST["url"];
 
 		anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,$contenido,$url);
 

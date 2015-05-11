@@ -229,14 +229,9 @@
 	                        $usuarios = obtenerUsuariosTablon($curtablon);
 							$i = 0;
 	                        while($fila=mysql_fetch_array($usuarios)){ ?>
-								<li>
-									<label>Usuario: <?php echo $fila['Correo_usuario']; ?></label>
-
-
-	                            
+							<li>
+								<label>Usuario: <?php echo $fila['Correo_usuario']; ?></label>
 								<?php if ($privilegio > 2) {?>
-								
-
 									<label>Privilegio: </label>
 									<select class="select_permisos field-select" name="perm_privilegio[<?php echo $i; ?>]" id="perm_privilegio">
 										<option selected="selectd" value='<?php echo $fila['Privilegio']; ?>'>
@@ -265,83 +260,79 @@
 									</select>
 	                                <input name="correo[<?php echo $i; ?>]" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
 								</li>
-								
 								<?php } ?></tr>
 	                        <?php   
 	                        $i = $i + 1;
 							} ?>
-								<li>
-									<input name="confirmar" id="confirmar" type="button" value="Confirmar" onclick="
-									<?php 
-										$j = 0;
-										while ($j<$i) { ?>
-											configPerm(<?php echo $curtablon; ?>, correo[<?php echo $j; ?>].value, perm_privilegio[<?php echo $j; ?>].value);
-											
-											<?php 
-											$j = $j + 1;
-											} ?>
-										"/>	
-								</li>
-							</ul>
-							</form>
+							<li>
+								<input name="confirmar" id="confirmar" type="button" value="Confirmar" onclick="
+								<?php 
+									$j = 0;
+									while ($j<$i) { ?>
+										configPerm(<?php echo $curtablon; ?>, correo[<?php echo $j; ?>].value, perm_privilegio[<?php echo $j; ?>].value);
+										<?php 
+										$j = $j + 1;
+									} ?>
+								"/>	
+							</li>
+						</ul>
+					</form>
 	            </div>
-
 
 			<div id="board">
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
-                        <!-- Elemento del tipo video-->
+                        <!-- Elemento del tipo video--
                         <div id="testeo_rotacion_1" class="container_video" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_titulo">
                                 <h5>The Witcher 3: Gameplay Trailer </h5>
                             </div>
                             <iframe width="300" height="156" src="https://www.youtube.com/embed/nYwe_WHARdc?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
                         </div>
-                        <!--Elemento del tipo nota-->
+                        <!--Elemento del tipo nota--
                         <div id="testeo_rotacion_2" class="container_nota" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_nota" >
                                 <h5>Este es el título de una nota</h5>
                             </div>
                         </div>
-                        <!--Elemento del tipo imagen-->
+                        <!--Elemento del tipo imagen--
                         <div id="testeo_rotacion_3" class="container_imagen" onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <div class="elemento_tablon_titulo">
                                 <h5>Imagen valle</h5>
                             </div>
                             <img class="elemento_tablon_imagen" src="http://borkurart.com/media/images/df_mountains.jpg">
                         </div>
-
+                        -->
+                        
 	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
 	                    </div>
 
 	                    <?php
 	                    $result = obtenerElementosTablon($curtablon,0);
 	                    while($row=mysql_fetch_assoc($result)) {
-	                        $elem = $row["ID_elementos"];
                             if ($row["Tipo"] == 'Texto'){
                                 echo 
-                                '<div id="elemento_tablon_nota"class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                '<div id="elem' . $row["ID_elementos"] . '" class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_nota" > <h5>' . $row["Contenido"] . '</h5></div>
                                 </div>';
                             }
-                            elseif ($row["Tipo"] == 'imagen'){
+                            elseif ($row["Tipo"] == 'Imagen'){
                                 echo 
-                                '<div id="elemento_tablon_imagen"class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                '<div id="elem' . $row["ID_elementos"] . '" class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <img class="elemento_tablon_imagen" src="' . $row["Url"] . '">
                                 </div>';
 
                             }
-                            elseif ($row["Tipo"] == 'video'){
-                                '<div id="elemento_tablon_video"class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                            else{
+                                echo
+                                '<div id="elem' . $row["ID_elementos"] . '" class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <iframe width="300" height="156" src="' . $row["Url"] . '" frameborder="0" allowfullscreen></iframe>
                                 </div>';
-                            
                             }
                         }
                         ?>
-	                   
 	                </div>
 	            </div>
 	        </div><!--Cierra board -->
