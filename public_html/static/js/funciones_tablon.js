@@ -188,7 +188,7 @@ function addElement_image(){
 
     div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url.value + ' ">';
 
-    appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion_imagen.value, url.value);
+    appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url.value);
 }
 
 function addElement_video(){
@@ -203,10 +203,6 @@ function addElement_video(){
     div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + url.value + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>'
 
     appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, url.value);
-    document.getElementById("container_tablon").appendChild(div);
-
-    //añadimos el onMouseDown/UP
-    div.onmousedown= document.getElementById("sample").onmousedown;
 }
 
 function deleteElement(divid){
@@ -245,9 +241,9 @@ function editElement(divid){
 //LLAMADAS AJAX
 function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, contenido, url){
     var action = "INSERT";
-    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&nombre="+nombre"&contenido="+contenido+"&url"+url+"&action="+action;
+    var data = "idTablon="+idTablon+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&tamano="+tamano+"&tipo="+tipo+"&nombre="+nombre"&contenido="+contenido+"&url="+url+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -255,7 +251,7 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     var action = "EDIT_POSITION";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&action="+action;;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -263,7 +259,7 @@ function deleteElement(idTablon, elem){
     var action = "DELETE";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -272,7 +268,7 @@ function addUser(idTablon, correo) {
     var correo = document.getElementById("container_tablon");
     var data = "idTablon="+idTablon+"&correo="+correo+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -280,7 +276,7 @@ function enviarPapelera(idTablon, elem){
     var action = "DISCARD";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -288,7 +284,7 @@ function recoverElement(idTablon, elem){
     var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
 
@@ -296,9 +292,10 @@ function emptyTrash(idTablon){
     var action = "EMPTY";
     var data = "idTablon="+idTablon+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
-    var type= 'POST';
+    var type = 'POST';
     ajaxCall(data,url,type);
 }
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
