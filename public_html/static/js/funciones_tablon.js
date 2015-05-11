@@ -289,6 +289,7 @@ function enviarPapelera(idTablon, elem){
 }
 
 function recoverElement(idTablon, elem){
+
     var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
@@ -316,9 +317,6 @@ function getCookie(cname) {
 }
 
 function configPerm(idTablon, correo, privilegio){
-	alert(idTablon);
-	alert(correo);
-	alert(privilegio);
     var action = "ADMIN";
     var data = "idTablon="+idTablon+"&correo="+correo+"&privilegio="+privilegio+"&action="+action;
     var url = '../controladores/controlador_tablon.php';

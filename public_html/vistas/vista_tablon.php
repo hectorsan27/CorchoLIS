@@ -192,7 +192,7 @@
                     </div>
 				<ul class="form-style-1">
 					<?php 
-					$elementos = obtenerElementosTablon($curtablon,0);
+					$elementos = obtenerElementosTablon($curtablon,1);
 					$i = 0;
 					while($fila=mysql_fetch_array($elementos)){
 						$idElem = $fila['ID_elementos'];
@@ -200,12 +200,12 @@
 					<li>
 						<label>Nombre:&nbsp;&nbsp;<p><?php echo $fila['Nombre']; ?></p></label>
                         <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
-						<input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="deleteElement(1,<?php echo "'$idElem'"; ?>)"/>
-						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recoverElement(1,<?php echo "'$idElem'"; ?>)"/>
+						<input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="deleteElement(<?php echo "'$curtablon'"; ?>,<?php echo "'$idElem'"; ?>)"/>
+						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recoverElement(<?php echo "'$curtablon'"; ?>,<?php echo "'$idElem'"; ?>)"/>
 					</li>
 					<?php } if ($i >= 1){ ?>
 					<li class="footer_papelera">
-					   <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(1)"/>
+					   <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(<?php echo "'$curtablon'"; ?>)"/>
 					</li>
 					<?php }else if($i < 1){?>
                     <li class="footer_papelera">
