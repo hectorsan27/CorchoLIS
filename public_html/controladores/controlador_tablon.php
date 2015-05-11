@@ -14,9 +14,9 @@
 		$tipo = $_POST["tipo"];
 		$contenido = $_POST["contenido"];
 		$nombre = $_POST["nombre"];
-		$papelera = 0;
+		$nombre = $_POST["url"];
 
-		anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano, $tipo,$contenido);
+		anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,$contenido,$url);
 
 	}
 	if ($action == 'EDIT_POSITION'){

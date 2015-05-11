@@ -126,14 +126,14 @@ function validarFormularioLogin($fr_correo, $fr_password) {
     }
     return true;
 }
-function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano, $tipo,$contenido,$nombre,$url,$papelera){
+function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,$contenido,$url){
 		$connexion=conectarBasedeDatos();
 	// Saber elementos hay
 			$query = "SELECT COUNT(DISTINCT ID_elementos) FROM tablones_elementos WHERE ID_tablones = '$idTablon';";
 			$numElement =  mysql_query($query, $connexion);
 			$numElement =  mysql_result($numElement, 0);
 			//insertar nuevo elemento con el numero de elemento correspondiente
-			$query = "INSERT INTO tablones_elementos (ID_tablones, ID_elementos, Posicionx, Posiciony, Tamano, Tipo, Contenido, Nombre, Url, Papelera) VALUES ('$idTablon','$numElement', '$posicion_x', '$posicion_y', '$tamano', '$tipo','$contenido','$nombre','$url','$papelera');";
+			$query = "INSERT INTO tablones_elementos (ID_tablones, ID_elementos, Posicionx, Posiciony, Tamano, Tipo, Contenido, Nombre, Url, Papelera) VALUES ('$idTablon','$numElement', '$posicion_x', '$posicion_y', '$tamano', '$tipo','$contenido','$nombre','$url','0');";
 			mysql_query($query, $connexion);
 		desconectarDeBasedeDatos($connexion);
 

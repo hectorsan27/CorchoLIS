@@ -152,7 +152,7 @@
                             <input id="descripcion_video" type="text" class="field-long"/>
                         </li>
                         <li>
-                            <label>URL Imagen</label>
+                            <label>URL Vídeo</label>
                             <input id="url_video" type="text" class="field-long"/>
                         </li>
                         <li>
@@ -250,62 +250,51 @@
 	                    while($row=mysql_fetch_assoc($result)) {
 	                        $elem = $row["ID_elementos"];
                             if ($row["Tipo"] == 'Texto'){
-                                $class = 'elemento_tablon_nota';
-
                                 echo 
-                                '<div id="'.$elem. '"class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                                <div class="elemento_tablon_nota" > <h5>'.$row["Contenido"].'</h5>
-                            </div>
-                            </div>';
+                                '<div id="elemento_tablon_nota"class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                    <div class="elemento_tablon_nota" > <h5>' . $row["Contenido"] . '</h5></div>
+                                </div>';
                             }
                             elseif ($row["Tipo"] == 'imagen'){
-                                $class = 'elemento_tablon_imagen';
-
                                 echo 
-                                '<div id="'.$elem. '"class="container_imagen" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                            <div class="elemento_tablon_titulo">
-                                <h5>'.$row["Contenido"].'</h5>
-                            </div>
-                            <img class="elemento_tablon_imagen" src="'.$row["Url"].'">
-                        </div>';
+                                '<div id="elemento_tablon_imagen"class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                    <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
+                                    <img class="elemento_tablon_imagen" src="' . $row["Url"] . '">
+                                </div>';
 
                             }
                             elseif ($row["Tipo"] == 'video'){
-                                $class = 'elemento_tablon_imagen';
+                                '<div id="elemento_tablon_video"class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
+                                    <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
+                                    <iframe width="300" height="156" src="' . $row["Url"] . '" frameborder="0" allowfullscreen></iframe>
+                                </div>';
                             
                             }
-
-	                        // echo 
-	                        // '<div id="'. $elem . '" class = "' . $class . '" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] .'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                         //        <p>' . $row["Contenido"] . '</p>
-                         //    </div>';
                         }
-	                        ?>
+                        ?>
 	                   
 	                </div>
 	            </div>
 	            
 	            <div id="administrar">
-	                
-	                    <table class="sorteable">
-	                        <?php
+	                <table class="sorteable">
+                        <?php
 	                        $usuarios = obtenerUsuariosTablon($curtablon);
 	                        while($fila=mysql_fetch_array($usuarios)){ ?>
-	                            <tr><td>
-	                                <?php echo $fila['Correo_usuario']; ?>
-	                            </td><td>
-	                                <?php echo $fila['Privilegio']; ?> 
-	                            </td><td>
-	                            <form  method= "post" action="controladores/controlador_tablon.php" class="vertical"><?php if($fila['Privilegio']<4){ ?>
-	                                <input name="priv" id="priv" type="number"/> <?php } ?>
-	                                <input name="action" id="action" type="hidden" value="ADMIN"/>
-	                                <input name="correo" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
-	                                <input name="id_tablon" id="id_tablon" type="hidden" value="1"/>
-	                            </form></td></tr>
-	                        <?php   
-	                        }
-	                        ?>
-	                    </table>
+	                            <tr>
+                                    <td><?php echo $fila['Correo_usuario']; ?></td>
+                                    <td><?php echo $fila['Privilegio']; ?></td>
+                                    <td>
+                                        <form  method= "post" action="controladores/controlador_tablon.php" class="vertical"><?php if($fila['Privilegio']<4){ ?>
+                                            <input name="priv" id="priv" type="number"/> <?php } ?>
+                                            <input name="action" id="action" type="hidden" value="ADMIN"/>
+                                            <input name="correo" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
+                                            <input name="id_tablon" id="id_tablon" type="hidden" value="1"/>
+                                        </form>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
 	            </div>
 	        </div><!--Cierra board -->
 		</div>
