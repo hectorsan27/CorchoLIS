@@ -17,8 +17,8 @@
 		$url = $_POST["url"];
 
 		anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,$contenido,$url);
-
 	}
+
 	if ($action == 'EDIT_POSITION'){
 		$idTablon = $_POST["idTablon"];
 		$element = $_POST["idElem"];
@@ -27,6 +27,7 @@
 
 		editarPosicionElemento($idTablon,$element,$posicion_x,$posicion_y);
 	}
+
 	if ($action == 'EDIT_CONTENT'){
 		$idTablon = $_POST["idTablon"];
 		$element = $_POST["idElem"];
@@ -34,20 +35,24 @@
 
 		editarContenidoElemento($idTablon,$element,$contenido);
 	}
+
 	if ($action == 'DISCARD'){
 		$idTablon = $_POST["idTablon"];
 		$element = $_POST["idElem"];
 		enviarPapelera($idTablon,$element);	
 	}
+
 	if ($action == 'RECOVER'){
 		$idTablon = $_POST["idTablon"];
 		$element = $_POST["idElem"];
 		recuperarElemento($idTablon,$element);	
 	}
+
 	if ($action == 'EMPTY'){
 		$idTablon = $_POST["idTablon"];
 		vaciarPapelera($idTablon);	
 	}
+
 	if ($action == 'DELETE'){
 		$idTablon = $_POST["idTablon"];
 		$element = $_POST["idElem"];
@@ -55,6 +60,7 @@
 		eliminarElemento($idTablon,$element);
 		
 	}
+
 	if ($action == 'SHARE'){
 		$idTablon = $_POST["idTablon"];
 		$correo = $_POST["correo"];
@@ -62,12 +68,14 @@
 		compartirTablon($idTablon,$correo);
 		
 	}
+
 	if ($action == 'ADDBOARD'){
 		$correo = $_POST["correo"];
 
 		agregarTablon($correo);
 		
 	}
+
 	if ($action == 'OPENBOARD'){
 		$correo = $_POST["correo"];
 		$idTablon = $_POST["idTablon"];
@@ -78,6 +86,7 @@
 		header('Location: /public_html/tablon/'.$idTablon);
 		exit();
 	}
+
 	if ($action == 'ADMIN'){
 		
 		$correo = $_POST["correo"];
@@ -85,5 +94,6 @@
 		$privilegio = $_POST["privilegio"];
 		modificarPrivilegios($idTablon, $correo, $privilegio);
 		header('Location: /public_html/tablon');
+		exit();
 	}
 ?>

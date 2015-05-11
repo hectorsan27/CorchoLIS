@@ -303,7 +303,7 @@
                             <img class="elemento_tablon_imagen" src="http://borkurart.com/media/images/df_mountains.jpg">
                         </div>
                         -->
-                        
+
 	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
 	                    </div>
 
@@ -328,7 +328,7 @@
                                 echo
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
-                                    <iframe width="300" height="156" src="' . $row["Url"] . '" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
                                 </div>';
                             }
                         }
