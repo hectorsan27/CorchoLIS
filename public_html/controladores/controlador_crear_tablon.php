@@ -10,7 +10,7 @@
 	require_once("../modelos/modelo.php");
 	agregarTablon($correo,$nombre, $descripcion);
 	$tablones = cargarTablones($_SESSION['correo']);
-	$codigo = $tablones[0][3]; /*Carga primer tablón Hard Coded. Hay que crear una funcion CargarTablón*/
-	 /*Codigo del tablón*/
+	$ultimo_tablon = count($tablones)-1;
+	$codigo = $tablones[ultimo_tablon][3];
 	header("location: /public_html/tablon/".$codigo);
 ?>
