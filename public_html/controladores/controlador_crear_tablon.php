@@ -5,9 +5,10 @@
 	$correo = $_SESSION['correo'];
 	$nombre =  $_POST['nombre'];
 	$descripcion =  $_POST['descripcion'];
-
+	$url =  $_POST['url'];
+	
 	require_once("../modelos/modelo.php");
-	agregarTablon($correo,$nombre,$descripcion);
+	agregarTablon($correo,$nombre,$descripcion, $url);
 	$tablones = cargarTablones($_SESSION['correo']);
 	$ultimo_tablon = count($tablones)-1;
 	if ($ultimo_tablon == -1){
