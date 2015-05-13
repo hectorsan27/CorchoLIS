@@ -214,21 +214,12 @@ function addElement_video(){
 
 function deleteElement(divid){
     //obtiene el div del elemento y lo elimina del div del fondo
-    var idElem = divid.parentNode.parentNode.id;
+    var idElem = divid.parentNode.id;
     var idTablon = getCookie("idTablon");
     var elem = document.getElementById(idElem);
     document.getElementById("container_tablon").removeChild(elem);
     idElem = idElem.replace('elem','');
     idElem = parseInt(idElem);
-
-    var elements = document.querySelectorAll('.elemento_tablon, .elemento_tablon_2');
-    var i;
-    var item;
-    var id;
-    for (i = idElem; i < elements.length - 2; i++){
-        id = elements[i+2].id.substring(0,4) + i;
-        elements[i+2].id = id;
-    }
     enviarPapelera(idTablon ,idElem);
 }
 
@@ -262,9 +253,22 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     ajaxCall(data,url,type);
 }
 
-function deleteElement(idTablon, elem){
+function eliminarElemento(idTablon, divid){
+    var elem = document.getElementById(divid.parentNode.id);
+    document.getElementById("ulPapelera").removeChild(elem);
+    idElem = divid.parentNode.id;
+    idElem = idElem.replace('li','');
+    idElem = parseInt(idElem);
+    var elements = document.getElementsByClassName('liPapelera');
+    var i;
+    var id;
+    for (i = idElem; i < elements.length; i++){
+        id = elements[i].id.substring(0,2) + i;
+        elements[i].id = id;
+    }
+
     var action = "DELETE";
-    var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
+    var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
     ajaxCall(data,url,type);
@@ -287,9 +291,13 @@ function enviarPapelera(idTablon, elem){
     ajaxCall(data,url,type);
 }
 
-function recoverElement(idTablon, elem){
+function recuperaElemento(idTablon, divid){
+    var elem = document.getElementById(divid.parentNode.id);
+    document.getElementById("ulPapelera").removeChild(elem);
+    idElem = divid.parentNode.id;
+    idElem = idElem.replace('li','');
     var action = "RECOVER";
-    var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
+    var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
     ajaxCall(data,url,type);

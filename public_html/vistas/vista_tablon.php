@@ -190,19 +190,21 @@
                     <div class="form-style-1-heading">
                             <p>Papelera</p>
                     </div>
-				<ul class="form-style-1">
-					<?php 
-					$elementos = obtenerElementosTablon($curtablon,1);
-					$i = 0;
-					while($fila=mysql_fetch_array($elementos)){
-						$idElem = $fila['ID_elementos'];
+				    <ul id = 'ulPapelera' class="form-style-1">
+                        <?php 
+                        $elementos = obtenerElementosTablon($curtablon,1);
+                        $i = 0;
+                        while($fila=mysql_fetch_array($elementos)){
+                        $idElem = $fila['ID_elementos'];
 						$i = $i+1;?>
-					<li>
-						<label>Nombre:&nbsp;&nbsp;<p><?php echo $fila['Nombre']; ?></p></label>
-                        <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
-						<input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="deleteElement(<?php echo "'$curtablon'"; ?>,<?php echo "'$idElem'"; ?>)"/>
-						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recoverElement(<?php echo "'$curtablon'"; ?>,<?php echo "'$idElem'"; ?>)"/>
-					</li>
+    					
+                        <li id = 'li<?php echo $idElem ?>' class = 'liPapelera'>
+    						<label>Nombre:&nbsp;&nbsp;<p><?php echo $fila['Nombre']; ?></p></label>
+                            <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
+    						<input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(<?php echo "'$curtablon'"; ?>, this)"/>
+    						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recuperaElemento(<?php echo "'$curtablon'"; ?>, this)"/>
+    					</li>
+
 					<?php } if ($i >= 1){ ?>
 					<li class="footer_papelera">
 					   <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(<?php echo "'$curtablon'"; ?>)"/>
@@ -293,6 +295,7 @@
                                 echo 
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_nota" > <h5>' . $row["Contenido"] . '</h5></div>
+                                    <button onclick = "deleteElement(this);" >Eliminar</button>
                                 </div>';
                             }
                             elseif ($row["Tipo"] == 'Imagen'){
@@ -300,6 +303,7 @@
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <img class="elemento_tablon_imagen" src="' . $row["Url"] . '">
+                                    <button onclick = "deleteElement(this);" >Eliminar</button>
                                 </div>';
 
                             }
@@ -308,6 +312,7 @@
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_video" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
+                                    <button onclick = "deleteElement(this);" >Eliminar</button>
                                 </div>';
                             }
                         }
@@ -316,4 +321,4 @@
 	            </div>
 	        </div><!--Cierra board -->
 		</div>
-</body>
+</body  
