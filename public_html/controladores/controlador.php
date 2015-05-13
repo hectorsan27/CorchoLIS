@@ -36,10 +36,10 @@ switch (count($url)) {
 			require_once("../vistas/footer.php");
    		}
    		if($url[2] == 'shared') {
-			require_once("../modelos/modelo.php");
-			require_once("../vistas/header_inicio.php");
-			require("../vistas/vista_shared.php");
-			require_once("../vistas/footer.php");
+				require_once("../modelos/modelo.php");
+				require_once("../vistas/header_inicio.php");
+				require("../vistas/vista_shared.php");
+				require_once("../vistas/footer.php");
    		}
    		if($url[2] == 'cerrar_session') {
 	   		if(isset($_SESSION['correo'])){

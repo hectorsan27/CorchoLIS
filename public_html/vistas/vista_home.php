@@ -27,15 +27,19 @@
 			<div class="categoria">
 				<img src="static/img/categoria_privados.png">
 			</div>
-			<div class="tablones">
+			<div class="tablones"> 
 				<div id="anadir_tablon_privado" class="tablon anadir_tablon hvr-grow"></div> 
 				<?php
 					if (count($tablones) > 0){
 						for ($i=0;$i<count($tablones);$i++){?>
-				<div class="tablon hvr-grow" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
+						
+				<div style="background-image:url('<?php if(!empty($tablones[$i][4])){
+						echo $tablones[$i][4];
+						}else{ ?>static/img/placeholder_tablon.png<?php }
+						?>') " class="tablon hvr-grow imagen_centrada" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
+	
 					<div class="descripcion" id="descripcion_1">
 						<p><?php echo $tablones[$i][1];?></p>
-						
 					</div>
 					<div class="titulo">
 						<p><?php echo $tablones[$i][0]?></p>
@@ -57,7 +61,10 @@
 				<?php
 					if (count($tablonesComp) > 0){
 						for ($i=0;$i<count($tablonesComp);$i++){?>
-				<div class="tablon hvr-grow">
+				<div style="background-image:url('<?php if(!empty($tablonesComp[$i][4])){
+						echo $tablonesComp[$i][4];
+						}else{ ?>static/img/placeholder_tablon.png<?php }
+						?>') " class="tablon hvr-grow imagen_centrada" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablonesComp[$i][2]; ?>, '<?php echo $tablonesComp[$i][3]; ?>')">
 					<div class="descripcion" id="descripcion_1">
 						<p><?php echo $tablonesComp[$i][1];?></p>
 						
@@ -83,6 +90,10 @@
 				    <li>
 				        <label>Descripción</label>
 				        <input type="text" name="descripcion" class="field-long" />
+					</li>
+					<li>
+						<label>Imagen</label>
+				        <input type="text" name="url" placeholder="url" class="field-long" />
 				    </li>
 				    <li>
 				        <input type="submit" value="Submit" />

@@ -37,7 +37,6 @@
   width: 400px;
   height: 250px;
   margin: 10px;
-  background-image: url("../img/placeholder_tablon.png");
   cursor: pointer;
 }
 .titulo {
@@ -76,6 +75,12 @@
 
 .anadir_tablon {
 	background-image: url("../img/placeholder_anadir_tablon.png");
+}
+.imagen_centrada {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 #div_anadir_tablon {
   background-color: white;
