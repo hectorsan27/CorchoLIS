@@ -178,7 +178,7 @@ function addElement_note(){
     var titulo = document.getElementById("nombre_nota");
     var nota = document.getElementById("contenido_nota");
 
-    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + nota.value + '</h5> </div>';
+    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <button onclick = "deleteElement(this);" >Eliminar</button>';
 
     appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
 }

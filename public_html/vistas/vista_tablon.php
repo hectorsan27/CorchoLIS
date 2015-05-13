@@ -74,21 +74,10 @@
                             </div>
                         </a>
                     </li>
-
-                    <?php
-                        if ($privilegio > 3){
-                    ?>
-                    <li id = 'div_configurar' class="hvr-rotate" title="Configuración">
-                        <a>
-	                        <div class="elemento_menu">
-	                            <img src="../static/img/icono_configuracion.png">
-	                        </div>
-                        </a>
-                    </li>
-                    <?php
-                    }
-                    ?>
 	    		</ul>
+				<?php 
+                        echo $infoTablon[0];
+                    ?>
 	    	</div>
 		</div>
 		<div id="content_tablon">
@@ -322,7 +311,7 @@
                             if ($row["Tipo"] == 'Texto'){
                                 echo 
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
-                                    <div class="elemento_tablon_nota" > <h5>' . $row["Contenido"] . '</h5></div>
+                                    <div class="elemento_tablon_nota" > <h5>' . $row["Nombre"] . '</h5></div>
                                     <button onclick = "deleteElement(this);" >Eliminar</button>
                                 </div>';
                             }

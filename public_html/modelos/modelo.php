@@ -350,4 +350,17 @@ function getInfoUsuario($correo){
 	desconectarDeBasedeDatos($connexion);
 	return $array;
 }
+function getInfoTablon($idTablon){
+	$connexion=conectarBasedeDatos();
+	$query = "SELECT * from tablones WHERE ID = '$idTablon';";
+	$result = mysql_query($query, $connexion);
+	$array = array();
+	$row = mysql_fetch_assoc($result, 0);
+	$array[0] = $row["Nombre"];
+	$array[1] = $row["Descripcion"];
+	$array[2] = $row["Pass"];
+	$array[2] = $row["Url"];
+	desconectarDeBasedeDatos($connexion);
+	return $array;
+}
 ?>
