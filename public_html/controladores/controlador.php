@@ -56,8 +56,8 @@ switch (count($url)) {
    		 	if (iddelcodigo($url[3])!=null) {
    		 	$curtablon= iddelcodigo($url[3]);
    		 	$curtablontest = $curtablon;
-   			
    			$correo = $_SESSION['correo'];
+			$infoUsuario = getInfoUsuario($correo);
    			//TODO implementar if (si correo de session y id coinciden en la base de datos usuarios tablones )
 			require_once("../vistas/header_tablon.php");
 			require("../vistas/vista_tablon.php"); 

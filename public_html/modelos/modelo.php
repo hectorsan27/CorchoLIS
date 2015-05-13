@@ -335,7 +335,19 @@ function iddelcodigo($pass){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT ID from tablones WHERE Pass = '$pass';";
 	$result = mysql_query($query, $connexion);
-	$iddelcodigo = mysql_result($result, 0);
+	$iddelcodigo = mysql_result($result,0);
 	return $iddelcodigo;
+}
+function getInfoUsuario($correo){
+	$connexion=conectarBasedeDatos();
+	$query = "SELECT * from usuarios WHERE Correo = '$correo';";
+	$result = mysql_query($query, $connexion);
+	$array = array();
+	$row = mysql_fetch_assoc($result, 0);
+	$array[0] = $row["Nombre"];
+	$array[1] = $row["Nacimiento"];
+	$array[2] = $row["Provincia"];
+	desconectarDeBasedeDatos($connexion);
+	return $array;
 }
 ?>

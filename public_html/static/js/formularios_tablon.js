@@ -69,7 +69,7 @@ $(document).ready(function(){
 		}
 	});
 });
-/*Formulario papelere*/
+/*Formulario papelera*/
 $(document).ready(function(){
 	$("#papelera").hide();
 	$("#div_papelera").click(function () {
@@ -78,6 +78,19 @@ $(document).ready(function(){
 		} else {
 			$("#formulario_papelera").show();
 			$("#papelera").show("drop",{direction: "vertical" });
+			
+		}
+	});
+});
+/*Formulario usuario*/
+$(document).ready(function(){
+	$("#username").hide();
+	$("#div_username").click(function () {
+		if ($("#username").is(':visible')) {
+			$("#username").hide("drop",{direction: "vertical" });
+		} else {
+			$("#formulario_username").show();
+			$("#username").show("drop",{direction: "vertical" });
 			
 		}
 	});
@@ -130,6 +143,10 @@ $(document).ready(function(){
 	  if(e.target.id != 'papelera' && !$('#papelera').find(e.target).length) {
 	    $("#papelera").hide("drop",{direction: "vertical" });
 	    $("#formulario_papelera").hide();
+	  }
+	  if(e.target.id != 'username' && !$('#username').find(e.target).length) {
+	    $("#username").hide("drop",{direction: "vertical" });
+	    $("#formulario_username").hide();
 	  }
 	});
 	

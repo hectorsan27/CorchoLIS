@@ -182,6 +182,19 @@ div#content_tablon {
 #compartir_tablon_header {
     background-color: #D6E8FF;
 }
+/*Perfil de usuario*/
+#username{
+    background-color: white;
+    border: 2px solid #ddd;
+    position: absolute;
+    width: 400px;
+    top:0px;
+    right: 0px;
+    z-index: 3000;
+}
+#username_header {
+    background-color: #D6E8FF;
+}
 
 /*Papelera*/
 #papelera{

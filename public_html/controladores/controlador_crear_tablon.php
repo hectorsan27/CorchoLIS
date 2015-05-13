@@ -11,6 +11,6 @@
 	agregarTablon($correo,$nombre, $descripcion);
 	$tablones = cargarTablones($_SESSION['correo']);
 	$ultimo_tablon = count($tablones)-1;
-	$codigo = $tablones[ultimo_tablon][3];
+	$codigo = $tablones[$ultimo_tablon][3];
 	header("location: /public_html/tablon/".$codigo);
 ?>

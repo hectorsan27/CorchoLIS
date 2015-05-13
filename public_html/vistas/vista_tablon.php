@@ -16,7 +16,7 @@
                             </div>
                         </a>
                     </li>
-                    <li id = 'username' class="hvr-rotate" title="Perfil de usuario">
+                    <li id = 'div_username' class="hvr-rotate" title="Perfil de usuario">
                         <a>
 	                        <div class="elemento_menu">
 	                            <img src="../static/img/icono_usuario.png" >
@@ -218,6 +218,30 @@
 				</ul>		
 				</form>
 			</div>	
+			<div id="username">
+           		<div id="username_tablon_header" class="form-style-1-heading">
+           			<img src="../static/img/compartir_tablon.png"></img>
+           		</div>
+                <form id="formulario_username">
+                    <div class="form-style-1-heading">
+                            <p>Perfil de usuario</p>
+                    </div>
+                    <ul class="form-style-1">
+                    	<li>
+                        	<label>Nombre:&nbsp;&nbsp;</label><p><?php echo $infoUsuario[0]; ?></p>
+                    	</li>
+						<li>
+                        	<label>Correo:&nbsp;&nbsp;</label><p><?php echo $correo; ?></p>
+                    	</li>
+                    	<li>
+                        	<label>Nacimiento:&nbsp;&nbsp;</label><p><?php echo $infoUsuario[1]; ?></p>
+                    	</li>
+						<li>
+                        	<label>Província:&nbsp;&nbsp;</label><p><?php echo $infoUsuario[2];?></p>
+                    	</li>
+                    </ul>
+                </form>
+	        </div>
 			<div id="permisos">
 				<div id="permisos_header" class="form-style-1-heading">
                     <img src="../static/img/permisos.png"></img>
@@ -261,13 +285,16 @@
 											if ($fila['Privilegio'] != 4){ ?>
 										<option value='4'>Owner</option> <?php } ?>
 									</select>
+									
 	                                <input name="correo[<?php echo $i; ?>]" id="correo" type="hidden" value="<?php echo $fila['Correo_usuario']; ?>"/>
+									
 								</li>
 								<?php } ?></tr>
 	                        <?php   
 	                        $i = $i + 1;
 							} ?>
 							<li>
+								<?php if ($privilegio > 2) {?>
 								<input name="confirmar" id="confirmar" type="button" value="Confirmar" onclick="
 								<?php 
 									$j = 0;
@@ -275,8 +302,9 @@
 										configPerm(<?php echo $curtablon; ?>, correo[<?php echo $j; ?>].value, perm_privilegio[<?php echo $j; ?>].value);
 										<?php 
 										$j = $j + 1;
-									} ?>
+										} ?>
 								"/>	
+								<?php } ?>
 							</li>
 						</ul>
 					</form>
