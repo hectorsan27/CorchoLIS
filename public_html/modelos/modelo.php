@@ -88,6 +88,7 @@ function loginUsuario($fl_correo,$fl_password) {
 	desconectarDeBasedeDatos($connexion);
 	return $loginCorrecto;
 }
+
 /*
 Valida los datos del formulario mediante expressiones regulares
 Parametros:
@@ -97,7 +98,6 @@ Parametros:
  	fr_provincia : provincia de España del usuario
 	fr_password : password del usuario sin codificar
 */
-
 function validarFormularioRegistro($fr_correo, $fr_nombre, $fr_nacimiento, $fr_provincia, $fr_password) {
 
 	if (!preg_match("/^[a-zA-Zà-ú]{1,32}$/",$fr_nombre)) {
@@ -111,6 +111,7 @@ function validarFormularioRegistro($fr_correo, $fr_nombre, $fr_nacimiento, $fr_p
     }
     return true;
 }
+
 /*
 Valida los datos del login mediante expressiones regulares
 Parametros:
@@ -126,6 +127,7 @@ function validarFormularioLogin($fr_correo, $fr_password) {
     }
     return true;
 }
+
 function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,$contenido,$url){
 	$connexion=conectarBasedeDatos();
 	// Saber elementos hay
@@ -138,6 +140,7 @@ function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,
 	desconectarDeBasedeDatos($connexion);
 
 }
+
 function eliminarElemento($idTablon,$element){
 	$connexion=conectarBasedeDatos();
 	$query = "DELETE FROM tablones_elementos WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
@@ -196,8 +199,8 @@ function editarContenidoElemento($idTablon,$element,$contenido){
 	";
 	mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
-
 }
+
 function obtenerElementosTablon($idTablon, $papelera){
 	$connexion=conectarBasedeDatos();
 	$query = "Select ID_elementos,Posicionx,Posiciony,Tipo,Contenido,Nombre,Url From tablones_elementos where ID_tablones = '$idTablon' AND Papelera = '$papelera';";
@@ -209,7 +212,6 @@ function obtenerElementosTablon($idTablon, $papelera){
 	return $result;
 }
 
-
 function obtenerPrivilegiosTablon($idTablon, $correo){
 	$connexion=conectarBasedeDatos();
 	$query = "Select Privilegio From usuarios_tablones where ID_tablon = '$idTablon' AND Correo_usuario = '$correo';";
@@ -218,6 +220,7 @@ function obtenerPrivilegiosTablon($idTablon, $correo){
 	desconectarDeBasedeDatos($connexion);
 	return $privilegio;
 }
+
 //Invitar a un usuario al tablon, por defecto privilegio 0
 function compartirTablon($idTablon, $correo, $privilegio){
 	$connexion=conectarBasedeDatos();
@@ -242,9 +245,10 @@ function generar_password($longitud){
   return $password;
 }
 
-function agregarTablon($correo, $nombre, $descripcion, $url){
+function agregarTablon($correo, $nombre, $descripcion){
 	$connexion=conectarBasedeDatos();
 	$codigovalido = 0;
+
 	while($codigovalido != 1){
 		$pass = generar_password(8);
 		$query = "SELECT 1 From tablones Where pass = '$pass';";
@@ -259,8 +263,7 @@ function agregarTablon($correo, $nombre, $descripcion, $url){
 		}
 	}
 
-
-	$query = "INSERT INTO `tablones`(`ID`, `Nombre`, `Descripcion`, `Pass`, `Url`) VALUES ('0','$nombre','$descripcion','$pass','$url')";
+	$query = "INSERT INTO `tablones`(`ID`, `Nombre`, `Descripcion`, `Pass`) VALUES ('0','$nombre','$descripcion','$pass')";
 	$result = mysql_query($query, $connexion);
 	
 	$id =  mysql_insert_id();
@@ -277,12 +280,14 @@ function obtenerUsuariosTablon($idTablon){
 	desconectarDeBasedeDatos($connexion);
 	return $usuarios;
 }
+
 function modificarPrivilegios($idTablon, $correo, $privilegio){
 	$connexion=conectarBasedeDatos();
 	$query = "REPLACE INTO usuarios_tablones (Correo_usuario, ID_tablon, Privilegio) VALUES ('$correo', '$idTablon', '$privilegio');";
 	$result = mysql_query($query, $connexion);
 	desconectarDeBasedeDatos($connexion);
-	}
+}
+
 function cargarTablones($correo){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT * from usuarios_tablones group by ID_tablon having count(ID_tablon) = 1 and Correo_usuario = '$correo';";
@@ -298,12 +303,12 @@ function cargarTablones($correo){
 		$array[$i][1] = $row2["Descripcion"];
 		$array[$i][2] = $row2["ID"];
 		$array[$i][3] = $row2["Pass"];
-		$array[$i][4] = $row2["Url"];
 		$i = $i + 1;
 	}
 	desconectarDeBasedeDatos($connexion);
 	return $array;
-	}
+}
+
 function cargarTablonesComp($correo){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT * from usuarios_tablones WHERE Correo_usuario = '$correo';";
@@ -329,15 +334,16 @@ function cargarTablonesComp($correo){
 	}
 	desconectarDeBasedeDatos($connexion);
 	return $array;
-	}
+}
 
-function iddelcodigo($pass){
+function getID($pass){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT ID from tablones WHERE Pass = '$pass';";
 	$result = mysql_query($query, $connexion);
-	$iddelcodigo = mysql_result($result,0);
-	return $iddelcodigo;
+	$result = mysql_result($result,0);
+	return $result;
 }
+
 function getInfoUsuario($correo){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT * from usuarios WHERE Correo = '$correo';";
@@ -359,7 +365,6 @@ function getInfoTablon($idTablon){
 	$array[0] = $row["Nombre"];
 	$array[1] = $row["Descripcion"];
 	$array[2] = $row["Pass"];
-	$array[2] = $row["Url"];
 	desconectarDeBasedeDatos($connexion);
 	return $array;
 }
