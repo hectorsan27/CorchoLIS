@@ -15,6 +15,14 @@ var mydragg = function(){
     //Tamaño del container que contendra los elementos
     var tamano_container_x = 1200;
     var tamano_container_y = 550;
+    var rotacion;
+    var posicion_elemento_x;
+    var posicion_elemento_y;
+    var posicion_puntero_x;
+    var posicion_puntero_y;
+    var elemento;
+    var diffY, diffX;
+
     return {
 
         move : function(divid,xpos,ypos){
@@ -25,6 +33,7 @@ var mydragg = function(){
         },
 
         startMoving : function(divid,evt){
+            elemento = divid;
 
             //Ponemos todos los elementos atras y el elemento seleccionado se pone adelante
             var i;
@@ -45,55 +54,59 @@ var mydragg = function(){
             //Cogemos los datos de la posicion del raton
 
             evt = evt || window.event;
-            var posX = evt.clientX;
-            var posY = evt.clientY;
+            posicion_puntero_x = evt.clientX;
+            posicion_puntero_y = evt.clientY;
 
             //Cogemos los datos del elemento que ha tocado
-            var divTop = divid.style.top;
-            var divLeft = divid.style.left;
-            var width = divid.offsetWidth;
-            var height = divid.offsetHeight;
+            posicion_elemento_y = elemento.offsetTop;
+            posicion_elemento_x = elemento.offsetLeft;
 
+            rotacion = mydragg.calculateRotation(elemento, posicion_elemento_x); 
+            $('#' + elemento.id).css({"transform":"translateZ(5px) rotateY("+rotacion+"deg)"});
 
-            //Cogemos los datos del div del fondo (el corcho)
-            divTop = divTop.replace('px','');
-            divLeft = divLeft.replace('px','');
+            var width = elemento.offsetWidth;
+            var height = elemento.offsetHeight;
 
             //Estilo del raton pasa a movimiento (el "+")
             document.getElementById('container_tablon').style.cursor='move';
+
             //Calculamos la diferencia de donde hemos clicado a la esquina superior izq. del elemento clicado
-            var diffX = posX - divLeft,
-                diffY = posY - divTop;
+            diffX = posicion_puntero_x - posicion_elemento_x,
+            diffY = posicion_puntero_y - posicion_elemento_y;
 
             //Cuando muevan el raton:
             document.onmousemove = function(evt){
                 evt = evt || window.event;
 
-                //Se volverá a coger la posicion del raton
-                var posX = evt.clientX,
-                    posY = evt.clientY,
-                    // La posicion ACTUAL de la esquina del div es aX y aY
-                    aX = posX - diffX,
-                    aY = posY - diffY;
+                //Posición del puntero
+                posicion_puntero_x = evt.clientX,
+                posicion_puntero_y = evt.clientY,
+
+                //Posicion del elemento
+                    posicion_elemento_x = posicion_puntero_x - diffX,
+                    posicion_elemento_y = posicion_puntero_y - diffY;
+
                      //Calculamos la rotacion que hay que aplicar al div
-                    var rotacion = mydragg.calculateRotation(divid, aX); 
-                    $('#' + divid.id).css({"transform":"rotateY("+rotacion+"deg)"});
+                    rotacion = mydragg.calculateRotation(elemento, posicion_elemento_x); 
+                    $('#' + elemento.id).css({"transform":"translateZ(5px) rotateY("+rotacion+"deg)"});
 
                     //Controlamos que no pase de los bordes
-                    if (aX < 0) aX = 0;
-                    if (aY < 0) aY = 0;
+                    if (posicion_elemento_x < 0) posicion_elemento_x = 0;
+                    if (posicion_elemento_y < 0) posicion_elemento_y = 0;
                     // Se comprueba que este dentre de la anchura del container
-                    if (aX + width > tamano_container_x){
-                      aX = tamano_container_x - width;
+                    if (posicion_elemento_x + width > tamano_container_x){
+                      posicion_elemento_x = tamano_container_x - width;
                     }
                     //Se comprueba que este dentro d ela altura del container
-                    if (aY + height > tamano_container_y) aY = tamano_container_y -height;
+                    if (posicion_elemento_y + height > tamano_container_y) posicion_elemento_y = tamano_container_y -height;
                     // movemos el objeto a la posicion correcta
-                mydragg.move(divid,aX,aY);
+                mydragg.move(elemento,posicion_elemento_x,posicion_elemento_y);
             }
         },
 
         stopMoving : function(divid){
+            rotacion = mydragg.calculateRotation(elemento, posicion_elemento_x); 
+            $('#' + elemento.id).css({"transform":"translateZ(0px) rotateY("+rotacion+"deg)"});
             document.getElementById('container_tablon').style.cursor='default';
             var idTablon = getCookie("idTablon");
             var positionx = divid.style.left;
@@ -107,11 +120,11 @@ var mydragg = function(){
         },
 
         calculateRotation : function(elemento, aX){
-            var total_rotation = -30;
+            var total_rotation = 20;
             var board_width = $('#container_tablon').outerWidth(true);
             var element_width = $('#' + elemento.id).outerWidth(true);
             var element_x = aX+(element_width/2);
-            var rotation = (((total_rotation) / board_width)*element_x) + 15;
+            var rotation = (((-total_rotation) / board_width)*element_x) + (total_rotation/2);
             return rotation;
         },
     }

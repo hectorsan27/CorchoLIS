@@ -61,7 +61,7 @@ div#content_tablon {
   margin: 0 0 0 0;
   box-shadow: 0 0 40px rgba(0, 0, 0, 1);
   border: solid white;
-  transform: rotateY(40deg);
+  transform:  translateZ(0px) rotateY(40deg);
 }
 .container_video {
   position: absolute;
@@ -75,7 +75,7 @@ div#content_tablon {
   margin: 0 0 0 0;
   box-shadow: 0 0 40px rgba(0, 0, 0, 1);
   border: solid white;
-  transform: rotateY(40deg);
+  transform: translateZ(0px) rotateY(40deg);
 }
 .container_imagen {
   position: absolute;
@@ -89,7 +89,7 @@ div#content_tablon {
   margin: 0 0 0 0;
   box-shadow: 0 0 40px rgba(0, 0, 0, 1);
   border: 3px solid white;
-  transform: rotateY(40deg);
+  transform:  translateZ(0px) rotateY(40deg);
 }
 /*Videos e imagenes*/
 .elemento_tablon_imagen {
