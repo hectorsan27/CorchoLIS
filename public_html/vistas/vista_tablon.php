@@ -309,6 +309,9 @@
                                 <input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(<?php echo "'$curtablon'"; ?>, this)"/>
                                 <input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recuperaElemento(<?php echo "'$curtablon'"; ?>, this)"/>
                             </li>
+                            <li id = 'sampleInput'>
+                                <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(<?php echo "'$curtablon'"; ?>)"/>
+                            </li>
 	                    </div>
 
 	                    <?php

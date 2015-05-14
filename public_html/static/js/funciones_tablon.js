@@ -247,7 +247,7 @@ function addElement_note(){
     var titulo = document.getElementById("nombre_nota");
     var nota = document.getElementById("contenido_nota");
 
-    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <button onclick = "deleteElement(this);" >Eliminar</button>';
+    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>';
 
     if (isValidNote(titulo)){
         appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
@@ -265,7 +265,7 @@ function addElement_image(){
 
     if (isValidImage(titulo,url)){
         url = checkImageURL(url.value);
-        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <button onclick = "deleteElement(this);" >Eliminar</button>';
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>';
         appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url);
     }
 }
@@ -281,7 +281,7 @@ function addElement_video(){
     
     if (isValidVideo(titulo,url)){
         var urlEmbeded = urlToEmbed(url.value);
-        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <button onclick = "deleteElement(this);" >Eliminar</button>';
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>';
         appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, urlEmbeded);
     }
 }
@@ -306,8 +306,10 @@ function deleteElement(divid){
 
     enviarPapelera(idTablon ,idElem);
 
-    var li = document.getElementsByClassName('footer_papelera')[0];
-    li.innerHTML = document.getElementById('sampleInput').innerHTML;
+    if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 2){
+        var li = document.getElementsByClassName('footer_papelera')[0];
+        li.innerHTML = document.getElementById('sampleInput').innerHTML;
+    }
 }
 
 function editElement(divid){
@@ -353,7 +355,10 @@ function eliminarElemento(idTablon, divid){
         id = elements[i].id.substring(0,2) + i;
         elements[i].id = id;
     }
-
+    if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 1){
+        var li = document.getElementsByClassName('footer_papelera')[0];
+        li.innerHTML = '<label>La papelera se encuentra vacía</label>';
+    }
     var action = "DELETE";
     var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
