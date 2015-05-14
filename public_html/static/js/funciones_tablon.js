@@ -231,6 +231,13 @@ function isValidVideo(titulo, url){
     }
 }
 
+function checkImageURL(url){
+    if(url.match(/\.(jpg|gif|png|jpeg|JPG|GIF|PNG|JPEG)$/) != null){
+        return url;
+    }
+    return 'http://campinaprofessioneel.nl/wp-content/uploads/2015/01/img-not-found.jpg';
+}
+
 function addElement_note(){
     var div = document.createElement("div");
     div.id = obtainNewId();
@@ -256,10 +263,10 @@ function addElement_image(){
     var url = document.getElementById("url_imagen");
     var descripcion = document.getElementById("descripcion_imagen");
 
-    div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url.value + ' ">';
-    
     if (isValidImage(titulo,url)){
-        appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url.value);
+        url = checkImageURL(url.value);
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <button onclick = "deleteElement(this);" >Eliminar</button>';
+        appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url);
     }
 }
 
@@ -272,10 +279,9 @@ function addElement_video(){
     var url = document.getElementById("url_video");
     var descripcion = document.getElementById("descripcion_video");
     
-    var urlEmbeded = urlToEmbed(url.value);
-    div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>'
-
     if (isValidVideo(titulo,url)){
+        var urlEmbeded = urlToEmbed(url.value);
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <button onclick = "deleteElement(this);" >Eliminar</button>';
         appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, urlEmbeded);
     }
 }
