@@ -296,6 +296,21 @@ function deleteElement(divid){
     li.className = 'liPapelera';
     li.innerHTML = document.getElementById('sampleLi').innerHTML;
     li.getElementsByTagName('p')[0].innerHTML = titulo;
+    var elemClass;
+    if (divid.parentNode.className == 'container_nota'){
+        elemClass = 'note';
+    }
+    else{
+        if (divid.parentNode.className == 'container_imagen'){
+            elemClass = 'img';
+            li.getElementsByTagName('div')[0].innerHTML = elem.getElementsByTagName('img')[0].src;
+        }
+        else{
+            elemClass = 'video';
+            li.getElementsByTagName('div')[0].innerHTML = elem.getElementsByTagName('iframe')[0].src;
+        }
+    }
+    li.getElementsByTagName('div')[0].className = elemClass;
 
     document.getElementById("container_tablon").removeChild(elem);
     idElem = idElem.replace('elem','');
@@ -384,10 +399,42 @@ function enviarPapelera(idTablon, elem){
 }
 
 function recuperaElemento(idTablon, divid){
-    var elem = document.getElementById(divid.parentNode.id);
-    document.getElementById("ulPapelera").removeChild(elem);
-    idElem = divid.parentNode.id;
+    var idElem = divid.parentNode.id;
+    var elem = document.getElementById(idElem);
     idElem = idElem.replace('li','');
+
+    var titulo = elem.getElementsByTagName('p')[0];
+    var elemClass = elem.getElementsByTagName('div')[0].className;
+    document.getElementById("ulPapelera").removeChild(elem);
+    if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 1){
+        var li = document.getElementsByClassName('footer_papelera')[0];
+        li.innerHTML = '<label>La papelera se encuentra vacía</label>';
+    }
+    var div = document.createElement('div');
+    div.id = 'elem'+ idElem;
+    if (elemClass == 'note'){
+        div.className = 'container_nota';
+        div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.innerHTML + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>';
+    }
+    else{
+        if (elemClass == 'img'){
+            div.className = 'container_imagen';
+            var url = elem.getElementsByTagName('div')[0].innerHTML;
+            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.innerHTML + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>';
+        }
+        else{
+            div.className = 'container_video';
+            var url = elem.getElementsByTagName('div')[0].innerHTML;
+            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.innerHTML + '</h5> </div> <iframe width="300" height="156" src="' + url + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>';
+        }
+    }
+    
+    document.getElementById("container_tablon").appendChild(div);
+    div.onmousedown= document.getElementById("sample").onmousedown;
+    div.onmouseup = document.getElementById("sample").onmouseup;
+    
+
+    
     var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';

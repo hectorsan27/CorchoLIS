@@ -192,6 +192,19 @@
                             <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
     						<input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(<?php echo "'$curtablon'"; ?>, this)"/>
     						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recuperaElemento(<?php echo "'$curtablon'"; ?>, this)"/>
+                            <?php
+                                if ($fila['Tipo'] == 'Texto'){
+                                    echo "<div style = 'display: none;' class = 'note'></div>";
+                                }
+                                else{
+                                    if ($fila['Tipo'] == 'Imagen'){
+                                        echo "<div style = 'display: none;' class = 'img'>" . $fila['Url'] . "</div>";
+                                    }
+                                    else{
+                                        echo "<div style = 'display: none;' class = 'video'>" . $fila['Url'] . "</div>";
+                                    }
+                                }    
+                            ?>
     					</li>
 
     					<?php } if ($i >= 1){ ?>
@@ -308,6 +321,7 @@
                                 <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
                                 <input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(<?php echo "'$curtablon'"; ?>, this)"/>
                                 <input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recuperaElemento(<?php echo "'$curtablon'"; ?>, this)"/>
+                                <div style = 'display: none;'></div>
                             </li>
                             <li id = 'sampleInput'>
                                 <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(<?php echo "'$curtablon'"; ?>)"/>
