@@ -432,8 +432,7 @@ function recuperaElemento(idTablon, divid){
     document.getElementById("container_tablon").appendChild(div);
     div.onmousedown= document.getElementById("sample").onmousedown;
     div.onmouseup = document.getElementById("sample").onmouseup;
-    
-
+    editarPosicion(getCookie("idTablon"),idElem,0,0);
     
     var action = "RECOVER";
     var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
