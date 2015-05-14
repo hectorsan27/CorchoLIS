@@ -51,6 +51,24 @@ div#content_tablon {
     transform-style: preserve-3d;
 }
 
+.eliminar_elemento {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  right: -2px;
+  top: -2px;
+  background-image: url("../img/eliminar_nota.png");
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 0 0 0;
+  border: 2px solid white;
+  cursor: pointer;
+
+}
+
 /*ELEMENTOS DEL TABLERO*/
 .container_nota {
   position: absolute;

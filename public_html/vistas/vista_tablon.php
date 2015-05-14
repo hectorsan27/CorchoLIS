@@ -318,7 +318,7 @@
                                 echo 
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_nota" > <h5>' . $row["Nombre"] . '</h5></div>
-                                    <button onclick = "deleteElement(this);" >Eliminar</button>
+                                    <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
                                 </div>';
                             }
                             elseif ($row["Tipo"] == 'Imagen'){
@@ -326,7 +326,7 @@
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_imagen" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <img class="elemento_tablon_imagen" src="' . $row["Url"] . '">
-                                    <button onclick = "deleteElement(this);" >Eliminar</button>
+                                    <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
                                 </div>';
 
                             }
@@ -335,7 +335,7 @@
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_video" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
-                                    <button onclick = "deleteElement(this);" >Eliminar</button>
+                                    <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
                                 </div>';
                             }
                         }
