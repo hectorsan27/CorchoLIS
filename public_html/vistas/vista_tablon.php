@@ -194,19 +194,19 @@
     						<input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recuperaElemento(<?php echo "'$curtablon'"; ?>, this)"/>
     					</li>
 
-					<?php } if ($i >= 1){ ?>
-					<li class="footer_papelera">
-					   <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(<?php echo "'$curtablon'"; ?>)"/>
-					</li>
-					<?php }else if($i < 1){?>
-                    <li class="footer_papelera">
-                        <label>La papelera se encuentra vacía</label>
-                    </li>
-                    <?php
-                    };?>
-				</ul>		
+    					<?php } if ($i >= 1){ ?>
+    					<li class="footer_papelera">
+    					   <input class="pointer" type= "button" value='Vaciar papelera' onclick="emptyTrash(<?php echo "'$curtablon'"; ?>)"/>
+    					</li>
+    					<?php }else if($i < 1){?>
+                        <li class="footer_papelera">
+                            <label>La papelera se encuentra vacía</label>
+                        </li>
+                        <?php
+                        };?>
+				    </ul>		
 				</form>
-			</div>	
+			</div>
 			<div id="username">
            		<div id="username_tablon_header" class="form-style-1-heading">
            			<img src="../static/img/compartir_tablon.png"></img>
@@ -303,6 +303,12 @@
 	            <div id="marco_tablon">
 	                <div id='container_tablon'>
 	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
+                            <li id= 'sampleLi'>
+                                <label>Nombre:&nbsp;&nbsp;<p> </p></label>
+                                <label>Fecha de eliminación:&nbsp;&nbsp;<p> 8 May, 2015</p></label>
+                                <input class="pointer" type="button" value="Eliminar" name="eliminar" id="eliminar" onclick="eliminarElemento(<?php echo "'$curtablon'"; ?>, this)"/>
+                                <input class="pointer" type="button" value="Recuperar" name="recuperar" id="recuperar" onclick="recuperaElemento(<?php echo "'$curtablon'"; ?>, this)"/>
+                            </li>
 	                    </div>
 
 	                    <?php
@@ -338,4 +344,5 @@
 	            </div>
 	        </div><!--Cierra board -->
 		</div>
+    </div>
 </body  

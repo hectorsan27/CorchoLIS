@@ -156,14 +156,17 @@ function urlToEmbed(url){
     if (url.indexOf('/watch?v=') != -1){
         return 'https://www.youtube.com/embed/' + url.substring(url.indexOf('/watch?v=') + 9);
     }
+    return 'https://www.youtube.com/embed/dQw4w9WgXcQ';
 }
+
 
 function obtainNewId(){
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
     var elements = document.getElementsByClassName("container_nota");
     var elements2 = document.getElementsByClassName("container_imagen");
     var elements3 = document.getElementsByClassName("container_video");
-    var length = elements.length + elements2.length + elements3.length;
+    var elements4 = document.getElementsByClassName('liPapelera');
+    var length = elements.length + elements2.length + elements3.length + elements4.length;
     var id = 'elem';
     return id+length;
 }
@@ -182,6 +185,52 @@ function appendChild(div, tamano, tipo, nombre, contenido, url){
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, contenido, url);
 }
 
+function isValidNote(titulo){
+    if (titulo.value == ''){
+        alert('Nombre obligatorio');
+        return false;
+    }
+    return true;
+}
+
+function isValidImage(titulo, url){
+    if (titulo.value == '' && url.value == ''){
+        alert('Nombre y URL obligatorios');
+        return false;
+    }
+    else{
+        if (titulo.value == ''){
+            alert('Nombre obligatorio');
+        }
+        else{
+            if (url.value == ''){
+                alert('URL obligatorio');
+                return false;
+            }
+            return true;
+        }
+    }
+}
+
+function isValidVideo(titulo, url){
+    if (titulo.value == '' && url.value == ''){
+        alert('Nombre y URL obligatorios');
+        return false;
+    }
+    else{
+        if (titulo.value == ''){
+            alert('Nombre obligatorio');
+        }
+        else{
+            if (url.value == ''){
+                alert('URL obligatorio');
+                return false;
+            }
+            return true;
+        }
+    }
+}
+
 function addElement_note(){
     var div = document.createElement("div");
     div.id = obtainNewId();
@@ -193,7 +242,9 @@ function addElement_note(){
 
     div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <button onclick = "deleteElement(this);" >Eliminar</button>';
 
-    appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
+    if (isValidNote(titulo)){
+        appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
+    }
 }
 
 function addElement_image(){
@@ -206,8 +257,10 @@ function addElement_image(){
     var descripcion = document.getElementById("descripcion_imagen");
 
     div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url.value + ' ">';
-
-    appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url.value);
+    
+    if (isValidImage(titulo,url)){
+        appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url.value);
+    }
 }
 
 function addElement_video(){
@@ -218,11 +271,13 @@ function addElement_video(){
     var titulo = document.getElementById("nombre_video");
     var url = document.getElementById("url_video");
     var descripcion = document.getElementById("descripcion_video");
-    url.value = urlToEmbed(url.value);
+    
+    var urlEmbeded = urlToEmbed(url.value);
+    div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>'
 
-    div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + url.value + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>'
-
-    appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, url.value);
+    if (isValidVideo(titulo,url)){
+        appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, urlEmbeded);
+    }
 }
 
 function deleteElement(divid){
@@ -230,10 +285,23 @@ function deleteElement(divid){
     var idElem = divid.parentNode.id;
     var idTablon = getCookie("idTablon");
     var elem = document.getElementById(idElem);
+    var titulo = elem.getElementsByTagName('h5')[0].innerHTML;
+    var li = document.createElement('li');
+    li.className = 'liPapelera';
+    li.innerHTML = document.getElementById('sampleLi').innerHTML;
+    li.getElementsByTagName('p')[0].innerHTML = titulo;
+
     document.getElementById("container_tablon").removeChild(elem);
     idElem = idElem.replace('elem','');
     idElem = parseInt(idElem);
+    li.id = 'li'+idElem;
+    var ul = document.getElementById('ulPapelera');
+    ul.insertBefore(li,document.getElementsByClassName('footer_papelera')[0]);
+
     enviarPapelera(idTablon ,idElem);
+
+    var li = document.getElementsByClassName('footer_papelera')[0];
+    li.innerHTML = document.getElementById('sampleInput').innerHTML;
 }
 
 function editElement(divid){
@@ -317,6 +385,12 @@ function recuperaElemento(idTablon, divid){
 }
 
 function emptyTrash(idTablon){
+    var ul = document.getElementById('ulPapelera');
+    var li = document.getElementsByClassName('footer_papelera')[0];
+    while (ul.firstChild !=li){
+        ul.removeChild(ul.firstChild);
+    }
+    li.innerHTML = '<label>La papelera se encuentra vacía</label>';
     var action = "EMPTY";
     var data = "idTablon="+idTablon+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
