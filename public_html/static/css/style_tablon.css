@@ -21,7 +21,7 @@ div#content_tablon {
     padding-top: 50px;
     padding-bottom: 50px;
     z-index: 1;
-    min-width: 1000px;
+    min-width: 1200px; /* Este tamaño es igual al del tablón*/
     position: relative;
 
     width: 100%;

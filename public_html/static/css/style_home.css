@@ -11,9 +11,7 @@
   font-family: 'Didact Gothic', sans-serif;
 }
 .container_tablones {
-	padding: 10px 20px 10px 20px;
-  margin-left:60px;
-  margin-right:60px; 
+	padding: 10px 0px 10px 0px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
