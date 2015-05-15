@@ -4,12 +4,19 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family:'Lato',sans-serif;
+    font-family: 'Didact Gothic', sans-serif;
 }
 .pointer {
   cursor: pointer;
 }
 /*TABLERO*/
+#banner_tablon {
+  position: absolute;
+  top:-32px;
+  right: 0px;
+  font-size: 26px;
+  color: white;
+}
 div#content_tablon {
     padding-top: 50px;
     padding-bottom: 50px;

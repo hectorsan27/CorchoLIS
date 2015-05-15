@@ -80,7 +80,7 @@
 	</div>
 	<div class="fondo_oscurecido">
 		<div id="div_anadir_tablon">
-			<div class="form-style-1-heading">CREAR TABLÓN</div>
+			<div class="form-style-1-heading-2 ">CREAR TABLÓN</div>
 			<form action="controladores/controlador_crear_tablon.php" method="post">
 				<ul class="form-style-1">
 				    <li>

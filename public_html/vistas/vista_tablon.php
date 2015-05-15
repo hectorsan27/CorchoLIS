@@ -75,12 +75,10 @@
                         </a>
                     </li>
 	    		</ul>
-				<?php 
-                        echo $infoTablon[0];
-                    ?>
 	    	</div>
 		</div>
 		<div id="content_tablon">
+            <!--Formularios menus-->
 			<div id="anadir_elemento">
                 <div id="anadir_elemento_seleccion" class="form-style-1-heading">
                     <div id="elemento_seleccion_texto" class="elemento_seleccion"><img src="../static/img/anadir_nota.png"></div>
@@ -311,9 +309,10 @@
 						</ul>
 					</form>
 	            </div>
-
+            <!--Tablon-->
 			<div id="board">
 	            <div id="marco_tablon">
+                    <div id="banner_tablon"><?php echo $infoTablon[0];?></div>
 	                <div id='container_tablon'>
 	                    <div id="sample" style = 'display: none;' onmousedown='mydragg.startMoving(this);' onmouseup='mydragg.stopMoving(this);'>
                             <li id= 'sampleLi'>

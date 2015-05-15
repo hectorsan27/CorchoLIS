@@ -4,7 +4,7 @@ html,body {
   margin:0;
   padding:0;
   height:100%; /* needed for container min-height */
-  font-family:'Lato',sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
 }
 div#container {
   position:relative; /* needed for footer positioning*/
@@ -111,11 +111,11 @@ div#content {
 }
 /*SEPARADOR*/
 #separador{
-  height: 68px; /*Tiene que ser igual que el footer. hace que el footer se choque con el y no se meta en el content*/
+  height: 72px; /*Tiene que ser igual que el footer. hace que el footer se choque con el y no se meta en el content*/
 }
 /*FOOTER*/
 div#footer {
-  height: 68px;
+  height: 72px;
   min-width: 1000px;
   position:absolute;
   width:100%;
@@ -155,7 +155,7 @@ div#footer {
     text-align: center;
 }
 .copyright {
-  height: 18px;
+
   display: block;
 }
 .copyright p{
@@ -343,12 +343,12 @@ fieldset p {
     margin:10px auto;
     max-width: 400px;
     padding: 10px 12px 10px 20px;
-    font: 14px 'Lato', sans-serif;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 14px;
 }
 .form-style-1-heading {
     text-align: center;
     font-weight: bold;
-    font-style: italic;
     border-bottom: 2px solid #ddd;
     font-size: 15px;
     padding-bottom: 10px;
@@ -356,6 +356,18 @@ fieldset p {
     padding-right: 10px;
     padding-left: 10px;*/
     padding-top: 10px;
+}
+.form-style-1-heading-2 {
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    font-size: 16px;
+    padding-bottom: 10px;
+    /*
+    padding-right: 10px;
+    padding-left: 10px;*/
+    padding-top: 10px;
+    color: white;
+    background-color: #4B99AD;
 }
 .form-style-1-heading p {
   margin: 5px 0px 5px 0px;
