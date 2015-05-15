@@ -162,7 +162,7 @@ function urlToEmbed(url){
 
 function obtainNewId(){
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
-    var elements = document.getElementsByClassName("container_nota");
+    var elements = document.getElementsByClassName("container_nota ");
     var elements2 = document.getElementsByClassName("container_imagen");
     var elements3 = document.getElementsByClassName("container_video");
     var elements4 = document.getElementsByClassName('liPapelera');
@@ -357,19 +357,41 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     ajaxCall(data,url,type);
 }
 
+function restarID(idElem, elements){
+    var id;
+    var i;
+    for (i = 0; i < elements.length; i++){
+        if (parseInt(elements[i].id.substring(4)) > idElem){
+            id = parseInt(elements[i].id.substring(4))-1;
+            elements[i].id = elements[i].id.substring(0,4) + id;
+        }
+    }
+}
+
+function restarID_Li(index,idElem, elements){
+    var id;
+    var i;
+    for (i = index; i < elements.length; i++){
+        if (parseInt(elements[i].id.substring(2)) > idElem){
+            id = parseInt(elements[i].id.substring(2))-1;
+            elements[i].id = elements[i].id.substring(0,2) + id;
+        }
+    }
+}
+
 function eliminarElemento(idTablon, divid){
     var elem = document.getElementById(divid.parentNode.id);
+    var index = Array.prototype.indexOf.call(elem.parentNode.children, elem);
     document.getElementById("ulPapelera").removeChild(elem);
     idElem = divid.parentNode.id;
     idElem = idElem.replace('li','');
     idElem = parseInt(idElem);
-    var elements = document.getElementsByClassName('liPapelera');
-    var i;
-    var id;
-    for (i = idElem; i < elements.length; i++){
-        id = elements[i].id.substring(0,2) + i;
-        elements[i].id = id;
-    }
+    restarID_Li(index,idElem, document.getElementsByClassName('liPapelera'));
+    restarID(idElem, document.getElementsByClassName('container_nota'));
+    restarID(idElem, document.getElementsByClassName('container_imagen'));
+    restarID(idElem, document.getElementsByClassName('container_video'));
+
+    var elements = document.getElementsByClassName('elem');
     if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 1){
         var li = document.getElementsByClassName('footer_papelera')[0];
         li.innerHTML = '<label>La papelera se encuentra vacía</label>';
@@ -444,8 +466,15 @@ function recuperaElemento(idTablon, divid){
 function emptyTrash(idTablon){
     var ul = document.getElementById('ulPapelera');
     var li = document.getElementsByClassName('footer_papelera')[0];
-    while (ul.firstChild !=li){
-        ul.removeChild(ul.firstChild);
+    var idElem;
+    var count = 0;
+    while (ul.children.length > 1){
+        idElem = ul.children[0].id.substring(2);
+        restarID_Li(0,idElem, document.getElementsByClassName('liPapelera'));
+        restarID(idElem, document.getElementsByClassName('container_nota'));
+        restarID(idElem, document.getElementsByClassName('container_imagen'));
+        restarID(idElem, document.getElementsByClassName('container_video'));
+        ul.removeChild(ul.children[0]);
     }
     li.innerHTML = '<label>La papelera se encuentra vacía</label>';
     var action = "EMPTY";
