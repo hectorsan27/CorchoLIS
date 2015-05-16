@@ -168,15 +168,6 @@ function vaciarPapelera($idTablon){
 	$connexion=conectarBasedeDatos();
 	$query = "DELETE FROM tablones_elementos WHERE ID_tablones = '$idTablon' AND Papelera = '1';";
 	mysql_query($query, $connexion);
-	$query = "SELECT ID_elementos FROM tablones_elementos WHERE ID_tablones = '$idTablon' ORDER BY ID_elementos";
-	$result = mysql_query($query, $connexion);
-	$index = 0;
-	while ($row=mysql_fetch_assoc($result)) {
-		$id = $row["ID_elementos"];
-		$query = "UPDATE tablones_elementos SET ID_elementos ='$index' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$id';";
-		$result2 = mysql_query($query, $connexion);
-		$index = $index + 1;
-	}
 	desconectarDeBasedeDatos($connexion);
 	header("Location: /public_html/tablon");
 }

@@ -63,8 +63,8 @@ div#content_tablon {
   display: block;
   width: 20px;
   height: 20px;
-  right: -2px;
-  top: -2px;
+  right: -30px;
+  top: -3px;
   background-image: url("../img/eliminar_nota.png");
     -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -73,10 +73,27 @@ div#content_tablon {
   margin: 0 0 0 0;
   border: 2px solid white;
   cursor: pointer;
+}
 
+.mostrar_contenido {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  right: -30px;
+  top: 24px;
+  background-image: url("../img/mostrar_contenido_6.png");
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 0 0 0;
+  border: 2px solid white;
+  cursor: pointer;
 }
 
 /*ELEMENTOS DEL TABLERO*/
+
 .container_nota {
   position: absolute;
   display: block;
@@ -84,10 +101,45 @@ div#content_tablon {
   height: 80px;
   background-color: #676C89;
   margin: 0 0 0 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   border: solid white;
-  transform:  translateZ(0px) rotateY(40deg);
+  transform:  translateZ(0px) rotateY(0.2deg);
 }
+
+.container_nota_expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  margin: 0 0 0 0;
+  border: solid white;
+  color: white;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0px);
+  background: url("../img/fondo_nota_expanded.jpg") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: 9999;
+}
+.nota_titulo_expanded {
+  padding: 0px 20px 0px 20px;
+  text-align: center;
+  height: 40px;
+  border-bottom: 3px solid white;
+}
+.nota_titulo_expanded h5{
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 400;
+  padding: 8px 0px 8px 0px;
+}
+.nota_descripcion_expanded {
+  padding: 10px 20px 10px 20px;
+  text-align: justify;
+}
+
 .container_video {
   position: absolute;
   width: 300px;
@@ -98,9 +150,9 @@ div#content_tablon {
     -o-background-size: cover;
     background-size: cover;
   margin: 0 0 0 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   border: solid white;
-  transform: translateZ(0px) rotateY(40deg);
+  transform: translateZ(0px) rotateY(0deg);
 }
 .container_imagen {
   position: absolute;
@@ -112,9 +164,9 @@ div#content_tablon {
     -o-background-size: cover;
     background-size: cover;
   margin: 0 0 0 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   border: 3px solid white;
-  transform:  translateZ(0px) rotateY(40deg);
+  transform:  translateZ(0px) rotateY(0deg);
 }
 /*Videos e imagenes*/
 .elemento_tablon_imagen {

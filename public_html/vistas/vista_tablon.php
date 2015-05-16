@@ -335,6 +335,13 @@
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_nota" style="left: ' . $row["Posicionx"] .'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_nota" > <h5>' . $row["Nombre"] . '</h5></div>
                                     <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
+                                    <div id="mostrar_contenido_'. $row["ID_elementos"] .'" class="mostrar_contenido"></div>
+                                </div>';
+                                echo 
+
+                                '<div  style="display: none"  id="elem_expanded_' . $row["ID_elementos"] .'" class="container_nota_expanded">
+                                    <div class="nota_titulo_expanded"><h5>' . $row["Nombre"] . '</h5></div>
+                                    <div class="nota_descripcion_expanded"><p>' . $row["Contenido"] . '</p></div>
                                 </div>';
                             }
                             elseif ($row["Tipo"] == 'Imagen'){
@@ -343,6 +350,7 @@
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <img class="elemento_tablon_imagen" src="' . $row["Url"] . '">
                                     <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
+                                    <div class="mostrar_contenido"></div>
                                 </div>';
 
                             }
@@ -352,6 +360,7 @@
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
                                     <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
+                                    <div class="mostrar_contenido"></div>
                                 </div>';
                             }
                         }
