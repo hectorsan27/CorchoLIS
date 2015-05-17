@@ -11,27 +11,37 @@ $(document).ready(function(){
     });
 });
 
-/*Muestra el contenido de las notas*/
+/*Esconde el fondo oscurecido*/
+$(document).ready(function(){
+    $(".fondo_oscurecido").hide();
+});
+
+
+/*Muestra el contenido del elemento clicado*/
 $(document).ready(function(){
     $('[id^="mostrar_contenido_"]').each(function() {
         $(this).click(function(){
             var id = $(this).attr('id');
             var id_num = id.split('_');
             var expanded_elem = "elem_expanded_" + id_num[2];
-            $('[id^="elem_expanded_"]').each(function() {
-                $(this).hide("drop",{direction: "down" });
+
+            $('[id^="elem_expanded_"]').not(":hidden").each(function() {
+                $(".fondo_oscurecido").fadeOut();
+                $(this).fadeOut();
             });
-            $('#'+expanded_elem).show("drop",{direction: "up" });
+            $(".fondo_oscurecido").fadeIn();
+            $('#'+expanded_elem).fadeIn();
         });
      });
 });
 
-/*Cierra el contenido de las notas al hacer click fuera*/
+/*Cierra el contenido del elemento actual cuando se clica fuera*/
 $(document).ready(function(){
     $(document).mousedown(function(e) {
-        $('[id^="elem_expanded_"]').each(function() {
+        $('[id^="elem_expanded_"]').not(":hidden").each(function() {
              if(e.target.id != $(this) && !$(this).find(e.target).length) {
-                $(this).hide("drop",{direction: "down" });
+                $(".fondo_oscurecido").fadeOut();
+                $(this).fadeOut();
             }
         });
     });

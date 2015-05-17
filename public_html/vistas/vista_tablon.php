@@ -1,3 +1,4 @@
+
 <body>
 	<div id="container">
 	<!-- Barra inicial de la WEB que nos permite Registrarnos, Logearnos o Cerrar Session-->
@@ -337,12 +338,6 @@
                                     <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
                                     <div id="mostrar_contenido_'. $row["ID_elementos"] .'" class="mostrar_contenido"></div>
                                 </div>';
-                                echo 
-
-                                '<div  style="display: none"  id="elem_expanded_' . $row["ID_elementos"] .'" class="container_nota_expanded">
-                                    <div class="nota_titulo_expanded"><h5>' . $row["Nombre"] . '</h5></div>
-                                    <div class="nota_descripcion_expanded"><p>' . $row["Contenido"] . '</p></div>
-                                </div>';
                             }
                             elseif ($row["Tipo"] == 'Imagen'){
                                 echo 
@@ -350,17 +345,16 @@
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
                                     <img class="elemento_tablon_imagen" src="' . $row["Url"] . '">
                                     <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
-                                    <div class="mostrar_contenido"></div>
+                                    <div id="mostrar_contenido_'. $row["ID_elementos"] .'" class="mostrar_contenido"></div>
                                 </div>';
-
                             }
                             else{
                                 echo
                                 '<div id="elem' . $row["ID_elementos"] . '" class="container_video" style="left: ' . $row["Posicionx"] . 'px; top: ' . $row["Posiciony"] . 'px;" onmousedown="mydragg.startMoving(this);" onmouseup="mydragg.stopMoving(this);">
                                     <div class="elemento_tablon_titulo"><h5>' . $row["Nombre"] . '</h5></div>
-                                    <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="300" height="156" src="' . $row["Url"] . '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen="true"></iframe>
                                     <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>
-                                    <div class="mostrar_contenido"></div>
+                                    <div id="mostrar_contenido_'. $row["ID_elementos"] .'" class="mostrar_contenido"></div>
                                 </div>';
                             }
                         }
@@ -368,6 +362,35 @@
 	                </div>
 	            </div>
 	        </div><!--Cierra board -->
-		</div>
-    </div>
-</body  
+		</div><!--Cierra content_tablon-->
+
+        <!--DO NOT MOVE FROM HERE-->
+        <div class="fondo_oscurecido">
+            <?php
+                $result = obtenerElementosTablon($curtablon,0);
+                while($row=mysql_fetch_assoc($result)) {
+                    if ($row["Tipo"] == 'Texto'){
+                        echo 
+                        '<div  style="display: none"  id="elem_expanded_' . $row["ID_elementos"] .'" class="container_nota_expanded">
+                            <div class="nota_titulo_expanded"><h5>' . $row["Nombre"] . '</h5></div>
+                            <div class="nota_descripcion_expanded"><p>' . $row["Contenido"] . '</p></div>
+                        </div>';
+                    }
+                    elseif ($row["Tipo"] == 'Imagen'){
+                        echo '<div style="display: none" id="elem_expanded_' . $row["ID_elementos"] .'" class="container_imagen_expanded">
+                            <img class="imagen_expanded" src="' . $row["Url"] . '">
+                            <div class="imagen_titulo_expanded"><h5>' . $row["Nombre"] . '</h5></div>
+                            <div class="imagen_descripcion_expanded"><p>' . $row["Contenido"] . '</p></div>
+                        </div>';
+                    }
+                    else{
+                        echo 
+                        '<div style="display: none" id="elem_expanded_' . $row["ID_elementos"] .'" class="container_video_expanded">
+                            <iframe width="854" height="510" src="' . $row["Url"] . '?autoplay=0&showinfo=1&controls=2&autohide=1" frameborder="0" allowfullscreen="true""></iframe>
+                            <div class="video_titulo_expanded"><h5>' . $row["Nombre"] . '</h5></div>
+                            <div class="video_descripcion_expanded"><p>' . $row["Contenido"] . '</p></div>
+                        </div>';
+                    }
+                }
+            ?>
+        </div>
