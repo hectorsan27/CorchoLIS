@@ -3,6 +3,7 @@ $(document).ready(function(){
 		ellipsis	: '... '
 	});
 });
+
 /*
 function addBoard(correo){
     var action = "ADDBOARD";
@@ -12,6 +13,7 @@ function addBoard(correo){
     ajaxCall(data,url,type);
     window.location ="/public_html/home";
 }*/
+
 function openBoard(correo,idTablon,codigo){
     var action = "OPENBOARD";
     document.cookie="idTablon="+idTablon;
@@ -21,6 +23,7 @@ function openBoard(correo,idTablon,codigo){
     ajaxCall(data,url,type);
     window.location ="/public_html/tablon/"+codigo;
 }
+
 function ajaxCall(data,url,type){
     $.ajax({
         data:  data,

@@ -15,5 +15,5 @@
 		$ultimo_tablon = 0;
 	}
 	$codigo = $tablones[$ultimo_tablon][3];
-	header("location: /public_html/tablon/".$codigo);
+	header("location: /public_html/tablon/" . $codigo);
 ?>

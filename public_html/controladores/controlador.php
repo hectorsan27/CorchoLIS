@@ -73,6 +73,7 @@ switch (count($url)) {
 				require_once("../vistas/header_tablon.php");
 				require("../vistas/vista_tablon.php"); 
 				require_once("../vistas/footer.php");
+            echo '<script>document.cookie = "idTablon=' . $curtablon . ' "</script>';
    		 	}
    		 	else{
    		 		header("location: /public_html");
