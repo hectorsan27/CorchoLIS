@@ -18,4 +18,5 @@
 <script src="../static/js/kickstart.js"></script> <!-- KICKSTART -->
 <script type="text/javascript" src="../static/js/openLogin.js"></script>
 <script type="text/javascript" src="../static/js/validacion_registro.js"></script>
+<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
 </head>

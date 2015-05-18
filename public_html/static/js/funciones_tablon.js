@@ -206,7 +206,7 @@ function obtainNewId(){
     var elements4 = document.getElementsByClassName('liPapelera');
     var length = elements.length + elements2.length + elements3.length + elements4.length;
     var id = 'elem';
-    return id+length;
+    return length;
 }
 
 function appendChild(div, tamano, tipo, nombre, contenido, url){
@@ -278,7 +278,7 @@ function checkImageURL(url){
 
 function addElement_note(){
     var div = document.createElement("div");
-    div.id = obtainNewId();
+    div.id = 'elem' + obtainNewId();
     div.className = 'container_nota';
 
     //nota tiene un texto de mentira porque si no, no funcionaba el editar
@@ -294,7 +294,7 @@ function addElement_note(){
 
 function addElement_image(){
     var div = document.createElement("div");
-    div.id = obtainNewId();
+    div.id = 'elem' + obtainNewId();
     div.className = 'container_imagen';
 
     var titulo = document.getElementById("nombre_imagen");
@@ -310,7 +310,7 @@ function addElement_image(){
 
 function addElement_video(){
     var div = document.createElement("div");
-    div.id = obtainNewId();
+    div.id = 'elem' + obtainNewId();
     div.className = 'container_video';
 
     var titulo = document.getElementById("nombre_video");
@@ -539,6 +539,68 @@ function configPerm(idTablon, correo, privilegio){
     var url = '../controladores/controlador_tablon.php';
     var type= 'POST';
     ajaxCall(data,url,type);
+}
+
+function addfile(){
+	var div = document.createElement("div");
+    //div.id = obtainNewId();
+    //div.className = 'container_nota';
+	var titulo = document.getElementById("nombre_nota");
+    var descripcion = document.getElementById("contenido_nota");
+	var url =  "";
+	var container = document.getElementById("container_tablon");
+	alert("Hola");
+	filepicker.setKey("A2bjrTOyRhL7KMmFeZJ6gz");
+	filepicker.pick(
+	  {
+		mimetypes: ['image/*', 'video/*', 'text/plain'],
+		container: 'window',
+		services:['COMPUTER', 'FACEBOOK', 'GMAIL','DROPBOX','IMAGE_SEARCH','FLICKR','FTP','GITHUB','GOOGLE_DRIVE','SKYDRIVE','PICASA','URL','WEBCAM','INSTAGRAM','ALFRESCO','CUSTOMSOURCE','CLOUDDRIVE','VIDEO'],
+	  },
+	  function(Blob){
+		alert("2");
+		console.log(JSON.stringify(Blob));
+		alert("3");
+		url.value = Blob.url;
+		alert("4");
+		var tipo = Blob.mimetype;
+		alert("5");
+		alert(" el tipo es " +tipo);
+		var idElemento = obtainNewId();
+		div.innerHTML = "<div id=\"elem"+idElemento+"\" class=\"container_nota\" style=\"left: 0px; top: 0px;\" onmousedown=\"mydragg.startMoving(this);\" onmouseup=\"mydragg.stopMoving(this);\">"+
+							"<div class=\"elemento_tablon_nota\" > <h5>"+titulo.value+"</h5></div>"+
+							"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+							"<div id=\"mostrar_contenido_"+idElemento+"\" class=\"mostrar_contenido\"></div>"+
+						"</div>"
+		alert(div.innerHTML);
+		div.id = "elem"+idElemento;
+		//if (tipo == "text/plain")){
+			appendChild(div,'Pequeno', 'TEXTO', titulo.value, descripcion.value, url.value);
+		//}
+		
+	  },
+	  function(FPError){
+		console.log(FPError.toString());
+	  }
+	);
+	
+	/*Blob from a previous pick, etc.*/
+	var blob = {
+	url: 'https://www.filepicker.io/api/file/gkssQj1GQTa2AkTP0qNQ',
+	filename: 'prueba.txt',
+	mimetype: 'text/plain',
+	isWriteable: true,
+	size: 30
+	};
+
+	console.log("Loading "+blob.filename);
+	filepicker.read(blob,function(data){
+		console.log(data);
+	});
+
+    //url.value = urlToEmbed(url.value);
+	
+
 }
 
 function ajaxCall(data,url,type){

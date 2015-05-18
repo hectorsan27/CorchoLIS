@@ -17,4 +17,5 @@
 <script type="text/javascript" src="static/js/funciones_home.js"></script>
 <script type="text/javascript" src="static/js/jquery.dotdotdot.js"></script> <!--Usado en home-->
 <script type="text/javascript" src="static/js/funciones_inicio.js"></script>
+<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
 </head> 

@@ -101,6 +101,7 @@
                         </li>
                         <li>
                             <input class="aceptar pointer" type="button" value='Añadir' onclick="addElement_note()">
+							<input class="aceptar pointer" type="button" value='File' onclick="addfile()">
                         </li>
                     </ul>
                 </form>
