@@ -146,6 +146,7 @@ div#content_tablon {
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 854px;
   margin: 0 0 0 0;
   border: solid white;
   color: white;
