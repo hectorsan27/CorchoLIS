@@ -78,12 +78,15 @@
 
 	if ($action == 'OPENBOARD'){
 		$correo = $_POST["correo"];
-		$idTablon = $_POST["idTablon"];
-		abrirTablon($id,$correo);
-		
+		$idTablon = $_POST["idTablon"];		
 		$_SESSION['tablonid']= $idTablon;
 		
 		header('Location: /public_html/tablon/'.$idTablon);
+		exit();
+	}
+	if ($action == 'DELETEBOARD'){
+		$idTablon = $_POST["idTablon"];
+		deleteboard($idTablon);
 		exit();
 	}
 

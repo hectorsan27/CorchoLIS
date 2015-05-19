@@ -245,6 +245,10 @@ function generar_password($longitud){
   return $password;
 }
 
+function deleteboard($idTablon) {
+
+}
+
 function agregarTablon($correo, $nombre, $descripcion, $url){
 	$connexion=conectarBasedeDatos();
 	$codigovalido = 0;

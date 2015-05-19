@@ -37,12 +37,14 @@
 						echo $tablones[$i][4];
 						}else{ ?>static/img/placeholder_tablon.png<?php }
 						?>') " class="tablon hvr-grow imagen_centrada" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
-	
 					<div class="descripcion" id="descripcion_1">
 						<p><?php echo $tablones[$i][1];?></p>
 					</div>
 					<div class="titulo">
 						<p><?php echo $tablones[$i][0]?></p>
+					</div>
+					<div class="esquina_tablon">
+						<div class="eliminar_tablon" onclick="deleteBoard(<?php echo $tablones[$i][2]; ?>)"></div>
 					</div>
 				</div>
 				<?php } 
