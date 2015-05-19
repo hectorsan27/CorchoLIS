@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 
 
-/*Muestra el contenido del elemento clicado*/
+/*
 $(document).ready(function(){
     $('[id^="mostrar_contenido_"]').each(function() {
         $(this).click(function(){
@@ -34,6 +34,21 @@ $(document).ready(function(){
         });
      });
 });
+*/
+
+/*Muestra el contenido del elemento clicado*/
+function mostrarContenido(div){
+    var id = $(div).attr('id');
+    var id_num = id.split('_');
+    var expanded_elem = "elem_expanded_" + id_num[2];
+
+    $('[id^="elem_expanded_"]').not(":hidden").each(function() {
+        $(".fondo_oscurecido").fadeOut();
+        $(div).fadeOut();
+    });
+    $(".fondo_oscurecido").fadeIn();
+    $('#'+expanded_elem).fadeIn();
+}
 
 /*Cierra el contenido del elemento actual cuando se clica fuera*/
 $(document).ready(function(){
@@ -42,11 +57,19 @@ $(document).ready(function(){
              if(e.target.id != $(this) && !$(this).find(e.target).length) {
                 $(".fondo_oscurecido").fadeOut();
                 $(this).fadeOut();
+                stopVideo('hide');
             }
         });
     });
 });
 
+function stopVideo(state){
+    var div = document.getElementById("elem_expanded_0");
+    var iframe = div.getElementsByTagName("iframe")[0].contentWindow;
+    div.style.display = state == 'hide' ? 'none' : '';
+    func = state == 'hide' ? 'pauseVideo' : 'playVideo';
+    iframe.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
+}
 
 
 var mydragg = function(){
@@ -221,6 +244,17 @@ function appendChild(div, tamano, tipo, nombre, contenido, url){
     var posicion_y = 0;
 
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, contenido, url);
+    if (tipo == 'Texto'){
+        addDarkBackground_note(obtainNewId()-1,nombre,contenido);
+    }
+    else{
+        if (tipo == 'Imagen'){
+            addDarkBackground_image(obtainNewId()-1,nombre,contenido,url);
+        }
+        else{
+            addDarkBackground_video(obtainNewId()-1,nombre,contenido,url);
+        }
+    }
 }
 
 function isValidNote(titulo){
@@ -276,6 +310,33 @@ function checkImageURL(url){
     return 'http://campinaprofessioneel.nl/wp-content/uploads/2015/01/img-not-found.jpg';
 }
 
+function addDarkBackground_note(id,nombre,contenido){
+    var div = document.createElement('div');
+    div.style.display = "none";
+    div.id = 'elem_expanded_' + id;
+    div.className = 'container_nota_expanded';
+    div.innerHTML= '<div class="nota_titulo_expanded"><h5>' + nombre + '</h5></div><div class="nota_descripcion_expanded"><p>' + contenido + '</p></div>';
+    document.getElementsByClassName('fondo_oscurecido')[0].appendChild(div);
+}
+
+function addDarkBackground_image(id,nombre,contenido,url){
+    var div = document.createElement('div');
+    div.style.display = "none";
+    div.id = 'elem_expanded_' + id;
+    div.className = 'container_imagen_expanded';
+    div.innerHTML = '<img class="imagen_expanded" src="' + url + '"><div class="imagen_titulo_expanded"><h5>' + nombre + '</h5></div> <div class="imagen_descripcion_expanded"><p>' + contenido + '</p></div>';
+    document.getElementsByClassName('fondo_oscurecido')[0].appendChild(div);
+}
+
+function addDarkBackground_video(id,nombre,contenido,url){
+    var div = document.createElement('div');
+    div.style.display = "none";
+    div.id = 'elem_expanded_' + id;
+    div.className = 'container_video_expanded';
+    div.innerHTML = '<iframe width="854" height="510" src="' + url +'?enablejsapi=1" frameborder="0" allowfullscreen="true""></iframe><div class="video_titulo_expanded"><h5>' + nombre + '</h5></div><div class="video_descripcion_expanded"><p>' + contenido + '</p></div>';
+     document.getElementsByClassName('fondo_oscurecido')[0].appendChild(div);
+}
+
 function addElement_note(){
     var div = document.createElement("div");
     div.id = 'elem' + obtainNewId();
@@ -285,7 +346,7 @@ function addElement_note(){
     var titulo = document.getElementById("nombre_nota");
     var nota = document.getElementById("contenido_nota");
 
-    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido"  class="mostrar_contenido"></div>';
+    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido_'+ obtainNewId() + '"  class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
 
     if (isValidNote(titulo)){
         appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
@@ -303,7 +364,7 @@ function addElement_image(){
 
     if (isValidImage(titulo,url)){
         url = checkImageURL(url.value);
-        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido"  class="mostrar_contenido"></div>  ';
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido_'+ obtainNewId() + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>  ';
         appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url);
     }
 }
@@ -319,7 +380,7 @@ function addElement_video(){
     
     if (isValidVideo(titulo,url)){
         var urlEmbeded = urlToEmbed(url.value);
-        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido"  class="mostrar_contenido"></div>';
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?enablejsapi=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido_'+ obtainNewId() + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
         appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, urlEmbeded);
     }
 }
@@ -474,18 +535,18 @@ function recuperaElemento(idTablon, divid){
     div.id = 'elem'+ idElem;
     if (elemClass == 'note'){
         div.className = 'container_nota';
-        div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.innerHTML + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div class="mostrar_contenido"></div>';
+        div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.innerHTML + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div id="mostrar_contenido_' + idElem + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
     }
     else{
         if (elemClass == 'img'){
             div.className = 'container_imagen';
             var url = elem.getElementsByTagName('div')[0].innerHTML;
-            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.innerHTML + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div class="mostrar_contenido"></div>';
+            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.innerHTML + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div id="mostrar_contenido_' + idElem + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
         }
         else{
             div.className = 'container_video';
             var url = elem.getElementsByTagName('div')[0].innerHTML;
-            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.innerHTML + '</h5> </div> <iframe width="300" height="156" src="' + url + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div class="mostrar_contenido"></div>';
+            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.innerHTML + '</h5> </div> <iframe width="300" height="156" src="' + url + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div id="mostrar_contenido_' + idElem + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
         }
     }
     
@@ -542,64 +603,64 @@ function configPerm(idTablon, correo, privilegio){
 }
 
 function addfile(){
-	var div = document.createElement("div");
+    var div = document.createElement("div");
     //div.id = obtainNewId();
     //div.className = 'container_nota';
-	var titulo = document.getElementById("nombre_nota");
+    var titulo = document.getElementById("nombre_nota");
     var descripcion = document.getElementById("contenido_nota");
-	var url =  "";
-	var container = document.getElementById("container_tablon");
-	alert("Hola");
-	filepicker.setKey("A2bjrTOyRhL7KMmFeZJ6gz");
-	filepicker.pick(
-	  {
-		mimetypes: ['image/*', 'video/*', 'text/plain'],
-		container: 'window',
-		services:['COMPUTER', 'FACEBOOK', 'GMAIL','DROPBOX','IMAGE_SEARCH','FLICKR','FTP','GITHUB','GOOGLE_DRIVE','SKYDRIVE','PICASA','URL','WEBCAM','INSTAGRAM','ALFRESCO','CUSTOMSOURCE','CLOUDDRIVE','VIDEO'],
-	  },
-	  function(Blob){
-		alert("2");
-		console.log(JSON.stringify(Blob));
-		alert("3");
-		url.value = Blob.url;
-		alert("4");
-		var tipo = Blob.mimetype;
-		alert("5");
-		alert(" el tipo es " +tipo);
-		var idElemento = obtainNewId();
-		div.innerHTML = "<div id=\"elem"+idElemento+"\" class=\"container_nota\" style=\"left: 0px; top: 0px;\" onmousedown=\"mydragg.startMoving(this);\" onmouseup=\"mydragg.stopMoving(this);\">"+
-							"<div class=\"elemento_tablon_nota\" > <h5>"+titulo.value+"</h5></div>"+
-							"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
-							"<div id=\"mostrar_contenido_"+idElemento+"\" class=\"mostrar_contenido\"></div>"+
-						"</div>"
-		alert(div.innerHTML);
-		div.id = "elem"+idElemento;
-		//if (tipo == "text/plain")){
-			appendChild(div,'Pequeno', 'TEXTO', titulo.value, descripcion.value, url.value);
-		//}
-		
-	  },
-	  function(FPError){
-		console.log(FPError.toString());
-	  }
-	);
-	
-	/*Blob from a previous pick, etc.*/
-	var blob = {
-	url: 'https://www.filepicker.io/api/file/gkssQj1GQTa2AkTP0qNQ',
-	filename: 'prueba.txt',
-	mimetype: 'text/plain',
-	isWriteable: true,
-	size: 30
-	};
+    var url =  "";
+    var container = document.getElementById("container_tablon");
+    alert("Hola");
+    filepicker.setKey("A2bjrTOyRhL7KMmFeZJ6gz");
+    filepicker.pick(
+      {
+        mimetypes: ['image/*', 'video/*', 'text/plain'],
+        container: 'window',
+        services:['COMPUTER', 'FACEBOOK', 'GMAIL','DROPBOX','IMAGE_SEARCH','FLICKR','FTP','GITHUB','GOOGLE_DRIVE','SKYDRIVE','PICASA','URL','WEBCAM','INSTAGRAM','ALFRESCO','CUSTOMSOURCE','CLOUDDRIVE','VIDEO'],
+      },
+      function(Blob){
+        alert("2");
+        console.log(JSON.stringify(Blob));
+        alert("3");
+        url.value = Blob.url;
+        alert("4");
+        var tipo = Blob.mimetype;
+        alert("5");
+        alert(" el tipo es " +tipo);
+        var idElemento = obtainNewId();
+        div.innerHTML = "<div id=\"elem"+idElemento+"\" class=\"container_nota\" style=\"left: 0px; top: 0px;\" onmousedown=\"mydragg.startMoving(this);\" onmouseup=\"mydragg.stopMoving(this);\">"+
+                            "<div class=\"elemento_tablon_nota\" > <h5>"+titulo.value+"</h5></div>"+
+                            "<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+                            "<div id=\"mostrar_contenido_"+idElemento+"\" class=\"mostrar_contenido\"></div>"+
+                        "</div>"
+        alert(div.innerHTML);
+        div.id = "elem"+idElemento;
+        //if (tipo == "text/plain")){
+            appendChild(div,'Pequeno', 'TEXTO', titulo.value, descripcion.value, url.value);
+        //}
+        
+      },
+      function(FPError){
+        console.log(FPError.toString());
+      }
+    );
+    
+    /*Blob from a previous pick, etc.*/
+    var blob = {
+    url: 'https://www.filepicker.io/api/file/gkssQj1GQTa2AkTP0qNQ',
+    filename: 'prueba.txt',
+    mimetype: 'text/plain',
+    isWriteable: true,
+    size: 30
+    };
 
-	console.log("Loading "+blob.filename);
-	filepicker.read(blob,function(data){
-		console.log(data);
-	});
+    console.log("Loading "+blob.filename);
+    filepicker.read(blob,function(data){
+        console.log(data);
+    });
 
     //url.value = urlToEmbed(url.value);
-	
+    
 
 }
 
