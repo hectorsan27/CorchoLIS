@@ -7,13 +7,21 @@
 	$descripcion =  $_POST['descripcion'];
 	$url =  $_POST['url'];
 	
-	require_once("../modelos/modelo.php");
-	agregarTablon($correo,$nombre,$descripcion, $url);
-	$tablones = cargarTablones($_SESSION['correo']);
-	$ultimo_tablon = count($tablones)-1;
-	if ($ultimo_tablon == -1){
-		$ultimo_tablon = 0;
+	if ($nombre != ''){
+		require_once("../modelos/modelo.php");
+		agregarTablon($correo,$nombre,$descripcion, $url);
+		$tablones = cargarTablones($_SESSION['correo']);
+		$ultimo_tablon = count($tablones)-1;
+		if ($ultimo_tablon == -1){
+			$ultimo_tablon = 0;
+		}
+		$codigo = $tablones[$ultimo_tablon][3];
+		header("location: /public_html/tablon/" . $codigo);
 	}
-	$codigo = $tablones[$ultimo_tablon][3];
-	header("location: /public_html/tablon/" . $codigo);
+	else{
+		echo "<script type='text/javascript'>";
+		echo 	"window.location.assign('http://localhost/public_html/home');";
+		echo 	"alert('Nombre obligatorio');";
+		echo "</script>";
+	}
 ?>
