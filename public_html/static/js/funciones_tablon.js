@@ -598,15 +598,12 @@ function configPerm(idTablon, correo, privilegio){
     ajaxCall(data,url,type);
 }
 
+//funcion para usar el filepicker
 function addfile(){
     var div = document.createElement("div");
     //div.id = obtainNewId();
-    //div.className = 'container_nota';
-    var titulo = document.getElementById("nombre_nota");
-    var descripcion = document.getElementById("contenido_nota");
     var url =  "";
     var container = document.getElementById("container_tablon");
-    alert("Hola");
     filepicker.setKey("A2bjrTOyRhL7KMmFeZJ6gz");
     filepicker.pick(
       {
@@ -615,25 +612,54 @@ function addfile(){
         services:['COMPUTER', 'FACEBOOK', 'GMAIL','DROPBOX','IMAGE_SEARCH','FLICKR','FTP','GITHUB','GOOGLE_DRIVE','SKYDRIVE','PICASA','URL','WEBCAM','INSTAGRAM','ALFRESCO','CUSTOMSOURCE','CLOUDDRIVE','VIDEO'],
       },
       function(Blob){
-        alert("2");
         console.log(JSON.stringify(Blob));
-        alert("3");
-        url.value = Blob.url;
-        alert("4");
-        var tipo = Blob.mimetype;
-        alert("5");
-        alert(" el tipo es " +tipo);
+        url = Blob.url;
+        var tipo = Blob.mimetype;	
         var idElemento = obtainNewId();
-        div.innerHTML = "<div id=\"elem"+idElemento+"\" class=\"container_nota\" style=\"left: 0px; top: 0px;\" onmousedown=\"mydragg.startMoving(this);\" onmouseup=\"mydragg.stopMoving(this);\">"+
-                            "<div class=\"elemento_tablon_nota\" > <h5>"+titulo.value+"</h5></div>"+
-                            "<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
-                            "<div id=\"mostrar_contenido_"+idElemento+"\" class=\"mostrar_contenido\"></div>"+
-                        "</div>"
-        alert(div.innerHTML);
-        div.id = "elem"+idElemento;
-        //if (tipo == "text/plain")){
-            appendChild(div,'Pequeno', 'TEXTO', titulo.value, descripcion.value, url.value);
-        //}
+		if (tipo == "text/plain"){
+		 var titulo = document.getElementById("nombre_nota");
+		 var descripcion = document.getElementById("contenido_nota");
+			div.innerHTML =     "<div class=\"elemento_tablon_nota\" > <h5>"+titulo.value+"</h5></div>"+
+								"<iframe width=\"300\" height=\"156\" src=\"" + url + "\"></iframe>"+
+								"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+								"<div id=\"mostrar_contenido_"+ idElemento +"\" class=\"mostrar_contenido\" onclick=\"mostrarContenido(this);\"></div>";
+			var iframe = "<iframe width=\"300\" height=\"156\" src=\"" + url + "\"></iframe>";
+			div.id = "elem"+idElemento;
+			div.className = 'container_nota';
+			div.onmousedown = "mydragg.startMoving(this);";
+			div.onmouseup = "mydragg.stopMoving(this);";
+			div.style = "left: 0px; top: 0px;"
+            appendChild(div,'Pequeno', 'Texto', titulo.value, iframe, url);
+        }else if (tipo == "image/jpeg" || tipo == "image/jpg" || tipo == "image/png" || tipo == "image/gif"){
+			var titulo = document.getElementById("nombre_nota");
+			var descripcion = document.getElementById("contenido_nota");
+			div.innerHTML =     "<div class=\"elemento_tablon_titulo\" > <h5>"+titulo.value+"</h5></div>"+
+								"<img class=\"elemento_tablon_imagen\" src=\""+ url +"\">"+
+								"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+								"<div id=\"mostrar_contenido_"+ idElemento +"\" class=\"mostrar_contenido\" onclick=\"mostrarContenido(this);\"></div>";
+							
+			div.id = "elem"+idElemento;
+			div.className = 'container_imagen';
+			div.onmousedown = "mydragg.startMoving(this);";
+			div.onmouseup = "mydragg.stopMoving(this);";
+			div.style = "left: 0px; top: 0px;"
+            appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url);
+		}if (tipo == "video/mp4" || tipo == "video/avi" || tipo == "video/flv" || tipo == "video/wmv" || tipo == "video/mpeg" || tipo == "video/mov" || tipo == "video/rm"){
+			var titulo = document.getElementById("nombre_nota");
+			var descripcion = document.getElementById("contenido_nota");
+			div.innerHTML =     "<div class=\"elemento_tablon_titulo\" > <h5>"+titulo.value+"</h5></div>"+
+								"<iframe width=\"300\" height=\"156\" src=\""+url+"?enablejsapi=1\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"+
+								"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+								"<div id=\"mostrar_contenido_"+ idElemento +"\" class=\"mostrar_contenido\" onclick=\"mostrarContenido(this);\"></div>";
+							
+			div.id = "elem"+idElemento;
+			div.className = 'container_video';
+			div.onmousedown = "mydragg.startMoving(this);";
+			div.onmouseup = "mydragg.stopMoving(this);";
+			div.style = "left: 0px; top: 0px;"
+            appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, url);
+		}
+		
         
       },
       function(FPError){
