@@ -24,7 +24,7 @@ $(document).ready(function(){
         $(this).click(function(){
             var id = $(this).attr('id');
             var id_num = id.split('-');
-            var idTablon = id_num[2];
+            var idTablon = id_num[1];
             $(this).parent().parent().remove();
             var action = "DELETEBOARD";
             var data = "idTablon="+idTablon+"&action="+action;

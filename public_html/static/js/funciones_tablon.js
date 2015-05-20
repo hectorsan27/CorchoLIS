@@ -51,20 +51,18 @@ function mostrarContenido(div){
 }
 
 /*Cierra el contenido del elemento actual cuando se clica fuera*/
-$(document).ready(function(){
-    $(document).mousedown(function(e) {
+$(document).mousedown(function(e) {
         $('[id^="elem_expanded_"]').not(":hidden").each(function() {
              if(e.target.id != $(this) && !$(this).find(e.target).length) {
                 $(".fondo_oscurecido").fadeOut();
                 $(this).fadeOut();
-                stopVideo('hide');
+                stopVideo('hide', $(this)[0]);
             }
         });
     });
-});
 
-function stopVideo(state){
-    var div = document.getElementById("elem_expanded_0");
+
+function stopVideo(state, div){
     var iframe = div.getElementsByTagName("iframe")[0].contentWindow;
     div.style.display = state == 'hide' ? 'none' : '';
     func = state == 'hide' ? 'pauseVideo' : 'playVideo';
