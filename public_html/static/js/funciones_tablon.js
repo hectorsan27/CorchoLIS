@@ -456,24 +456,13 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     ajaxCall(data,url,type);
 }
 
-function restarID(idElem, elements){
-    var id;
-    var i;
-    for (i = 0; i < elements.length; i++){
-        if (parseInt(elements[i].id.substring(4)) > idElem){
-            id = parseInt(elements[i].id.substring(4))-1;
-            elements[i].id = elements[i].id.substring(0,4) + id;
-        }
-    }
-}
-
-function restarID_Li(index,idElem, elements){
+function restarID(index, indexOfID,idElem, elements){
     var id;
     var i;
     for (i = index; i < elements.length; i++){
-        if (parseInt(elements[i].id.substring(2)) > idElem){
-            id = parseInt(elements[i].id.substring(2))-1;
-            elements[i].id = elements[i].id.substring(0,2) + id;
+        if (parseInt(elements[i].id.substring(indexOfID)) > idElem){
+            id = parseInt(elements[i].id.substring(indexOfID))-1;
+            elements[i].id = elements[i].id.substring(0,indexOfID) + id;
         }
     }
 }
@@ -485,16 +474,21 @@ function eliminarElemento(idTablon, divid){
     idElem = divid.parentNode.id;
     idElem = idElem.replace('li','');
     idElem = parseInt(idElem);
-    restarID_Li(index,idElem, document.getElementsByClassName('liPapelera'));
-    restarID(idElem, document.getElementsByClassName('container_nota'));
-    restarID(idElem, document.getElementsByClassName('container_imagen'));
-    restarID(idElem, document.getElementsByClassName('container_video'));
+    restarID(index, 2, idElem, document.getElementsByClassName('liPapelera'));
+    restarID(0, 4, idElem, document.getElementsByClassName('container_nota'));
+    restarID(0, 4, idElem, document.getElementsByClassName('container_imagen'));
+    restarID(0, 4, idElem, document.getElementsByClassName('container_video'));
+    restarID(0, 14, idElem, document.getElementsByClassName('container_nota_expanded'));
+    restarID(0, 14, idElem, document.getElementsByClassName('container_imagen_expanded'));
+    restarID(0, 14, idElem, document.getElementsByClassName('container_video_expanded'));
+    var div_fondo = document.getElementsByClassName('fondo_oscurecido')[0];
+    div_fondo.removeChild(div_fondo.children[idElem]);
 
-    var elements = document.getElementsByClassName('elem');
     if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 1){
         var li = document.getElementsByClassName('footer_papelera')[0];
         li.innerHTML = '<label>La papelera se encuentra vacía</label>';
     }
+
     var action = "DELETE";
     var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
@@ -564,16 +558,21 @@ function recuperaElemento(idTablon, divid){
 
 function emptyTrash(idTablon){
     var ul = document.getElementById('ulPapelera');
+    var div_fondo = document.getElementsByClassName('fondo_oscurecido')[0];
     var li = document.getElementsByClassName('footer_papelera')[0];
     var idElem;
     var count = 0;
     while (ul.children.length > 1){
         idElem = ul.children[0].id.substring(2);
-        restarID_Li(0,idElem, document.getElementsByClassName('liPapelera'));
-        restarID(idElem, document.getElementsByClassName('container_nota'));
-        restarID(idElem, document.getElementsByClassName('container_imagen'));
-        restarID(idElem, document.getElementsByClassName('container_video'));
+        restarID(0, 2, idElem, document.getElementsByClassName('liPapelera'));
+        restarID(0, 4, idElem, document.getElementsByClassName('container_nota'));
+        restarID(0, 4, idElem, document.getElementsByClassName('container_imagen'));
+        restarID(0, 4, idElem, document.getElementsByClassName('container_video'));
+        restarID(0, 14, idElem, document.getElementsByClassName('container_nota_expanded'));
+        restarID(0, 14, idElem, document.getElementsByClassName('container_imagen_expanded'));
+        restarID(0, 14, idElem, document.getElementsByClassName('container_video_expanded'));
         ul.removeChild(ul.children[0]);
+        div_fondo.removeChild(div_fondo.children[idElem]);
     }
     li.innerHTML = '<label>La papelera se encuentra vacía</label>';
     var action = "EMPTY";

@@ -3,7 +3,6 @@
 	$action =  $_POST["action"];
 	require_once("../modelos/modelo.php");
 	
-
 	//crear nuevos elementos
 	if ($action == 'INSERT'){
 		//coger variables recibidas
@@ -91,7 +90,6 @@
 	}
 
 	if ($action == 'ADMIN'){
-		
 		$correo = $_POST["correo"];
 		$idTablon = $_POST["idTablon"];
 		$privilegio = $_POST["privilegio"];

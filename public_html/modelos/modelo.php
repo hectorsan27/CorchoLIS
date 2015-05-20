@@ -255,7 +255,14 @@ function generar_password($longitud){
 }
 
 function deleteboard($idTablon) {
-
+	$connexion=conectarBasedeDatos();
+	$query = "DELETE FROM tablones_elementos WHERE ID_tablones ='$idTablon';";
+	mysql_query($query, $connexion);
+	$query = "DELETE FROM usuarios_tablones WHERE ID_tablon ='$idTablon';";
+	mysql_query($query, $connexion);
+	$query = "DELETE FROM tablones WHERE ID ='$idTablon';";
+	mysql_query($query, $connexion);
+	desconectarDeBasedeDatos($connexion);
 }
 
 function agregarTablon($correo, $nombre, $descripcion, $url){
