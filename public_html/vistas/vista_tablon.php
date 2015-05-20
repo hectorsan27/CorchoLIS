@@ -166,7 +166,7 @@
                             <input id='correo' type="text" class="field-long" placeholder="example@domain.com"/>
                         </li>
                         <li>
-                            <input class="aceptar pointer" type="button" value='Invitar' onclick="addUser(1,correo.value)"/>
+                            <input class="aceptar pointer" type="button" value='Invitar' onclick="addUser(<?php echo $curtablon; ?>,correo.value)"/>
                         </li>
                     </ul>
                 </form>
@@ -297,7 +297,7 @@
                             } ?>
                             <li>
                                 <?php if ($privilegio > 2) {?>
-                                <input name="confirmar" id="confirmar" type="button" value="Confirmar" onclick="
+                                <input class = "aceptar pointer"name="confirmar" id="confirmar" type="button" value="Confirmar" onclick="
                                 <?php 
                                     $j = 0;
                                     while ($j<$i) { ?>

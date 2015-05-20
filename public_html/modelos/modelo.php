@@ -233,10 +233,10 @@ function obtenerPrivilegiosTablon($idTablon, $correo){
 //Invitar a un usuario al tablon, por defecto privilegio 0
 function compartirTablon($idTablon, $correo){
 	$connexion=conectarBasedeDatos();
+	/*
 	$query = "SELECT pass From Tablones where ID_tablon = '$idTablon';";
 	$result = mysql_query($query, $connexion);
 	$codigo = mysql_result($result, 0);
-	/*
 			$subject = "Corcholis";
     		$message = "Hola, ha compartido un tablon contigo, para acceder a el utiliza este link: http://localhost/public_html/shared.php <br>\n Introduce el codigo=".$codigo."";
     		$headers = "From:" . "projectlis15@gmail.com";

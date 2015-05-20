@@ -496,7 +496,6 @@ function eliminarElemento(idTablon, divid){
 
 function addUser(idTablon, correo) {
     var action = "SHARE";
-    var correo = document.getElementById("container_tablon");
     var data = "idTablon="+idTablon+"&correo="+correo+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';

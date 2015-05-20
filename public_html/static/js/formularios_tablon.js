@@ -98,8 +98,8 @@ $(document).ready(function(){
 	
 	$(".aceptar").click(function(){
 		$("#anadir_elemento").hide("drop",{direction: "vertical" });
-		$("#invitar").hide("drop",{direction: "vertical" });
-		$("#administrar").hide("drop",{direction: "vertical" });
+		$("#compartir_tablon").hide("drop",{direction: "vertical" });
+		$("#permisos").hide("drop",{direction: "vertical" });
 	});
 });
 

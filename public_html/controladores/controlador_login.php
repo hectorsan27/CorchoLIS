@@ -19,7 +19,6 @@
 				$_SESSION['correo']= $fl_correo;
 				echo "<script type='text/javascript'>";
 				echo 	"window.location.assign('http://localhost/public_html/home');";
-				echo 	"alert('Logeo exitoso');";
 				echo "</script>";
 				exit();
 
