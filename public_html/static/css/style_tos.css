@@ -1,4 +1,4 @@
-.container_tos {
+#container_tos {
     position:relative; /* needed for footer positioning*/
 
   margin:0 auto; /* center, not in IE5 */

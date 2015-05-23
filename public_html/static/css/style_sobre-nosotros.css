@@ -1,4 +1,4 @@
-.container_sobre-nosotros {
+#container_sobre-nosotros {
     position:relative; /* needed for footer positioning*/
 
   margin:0 auto; /* center, not in IE5 */
@@ -7,7 +7,7 @@
   min-height:100%; /* real browsers */
   min-width: 1140px;
 
-    background: url("../img/fondo_inicio_6.jpg") no-repeat center center; 
+    background: url("../img/fondo_inicio_15.jpg") no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
