@@ -31,6 +31,21 @@ switch (count($url)) {
    		}
         break;
    	case 2:
+         if($url[2] == 'contacto') {
+            require_once("../vistas/header_home.php");
+            require_once("../vistas/vista_contacto.php");
+            require_once("../vistas/footer.php");
+         }
+         if($url[2] == 'tos') {
+            require_once("../vistas/header_home.php");
+            require_once("../vistas/vista_tos.php");
+            require_once("../vistas/footer.php");
+         }
+         if($url[2] == 'sobre_nosotros') {
+            require_once("../vistas/header_home.php");
+            require_once("../vistas/vista_sobre-nosotros.php");
+            require_once("../vistas/footer.php");
+         }
    		if($url[2] == 'home') {
    			if (isset($_SESSION['correo'])){
    				require_once("../modelos/modelo.php");

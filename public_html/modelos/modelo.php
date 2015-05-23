@@ -128,6 +128,18 @@ function validarFormularioLogin($fr_correo, $fr_password) {
     return true;
 }
 
+/*
+Anadir un nuevo elemento a el tablon actual
+Parametros:
+	idTablon : identificador del tablon donde se anadira
+	posicion_x : posicion sobre el eje x, donde se añadira
+	posicion_y : posicion sobre el eje y, donde se añadira
+	tamano : tamano predefinido del elemento
+	tipo : tipo de elemento que se anadira
+	nombre : nombre que se le asignara al elemento
+	contenido : varaiable que almacenara lo que hay en el elemento
+	url : contendra la uniform resource locator, ya sea una imagen o un video
+ */
 function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,$contenido,$url){
 	$connexion=conectarBasedeDatos();
 	// Saber elementos hay
@@ -141,6 +153,12 @@ function anadirElemento($idTablon,$posicion_x,$posicion_y,$tamano,$tipo,$nombre,
 
 }
 
+/*
+Eliminar un elemento del tablon actual
+Parametros:
+	idTablon : identificador del tablon donde se eliminara
+	element : identificador del elemento a eliminar del tablon
+ */
 function eliminarElemento($idTablon,$element){
 	$connexion=conectarBasedeDatos();
 	$query = "DELETE FROM tablones_elementos WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
@@ -157,6 +175,14 @@ function eliminarElemento($idTablon,$element){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Permite recuperar un elemento de la papelera, a partir de su id 
+Parametros:
+	idTablon : identificador del tablon de donde se ha borrado el elemento
+	element : identificador del elemento que se recuperara de la papelera
+Precondicion:
+	element : tiene que haber sido previamente eliminado
+ */
 function recuperarElemento($idTablon,$element){
 	$connexion=conectarBasedeDatos();
 	$query = "UPDATE tablones_elementos SET Papelera ='0' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
@@ -164,6 +190,11 @@ function recuperarElemento($idTablon,$element){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Borra todos los elementos eliminados que estan en la papelera
+Parametros:
+	idTablon : identificador del tablon 
+ */
 function vaciarPapelera($idTablon){
 	$connexion=conectarBasedeDatos();
 	$query = "DELETE FROM tablones_elementos WHERE ID_tablones = '$idTablon' AND Papelera = '1';";
@@ -181,6 +212,12 @@ function vaciarPapelera($idTablon){
 	header("Location: /public_html/tablon");
 }
 
+/*
+La funcion permite que un elemento eliminado vaya a la papelera
+Prametros:
+	idTablon : identificador del tablon
+	element : identificador del elemento que sera trasladado a la papelera
+ */
 function enviarPapelera($idTablon,$element){
 	$connexion=conectarBasedeDatos();
 	$query = "UPDATE tablones_elementos SET Papelera ='1' WHERE ID_tablones = '$idTablon' AND ID_elementos ='$element';";
@@ -188,6 +225,14 @@ function enviarPapelera($idTablon,$element){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Permite que al mover un elemento se actualize la posicion donde esta
+Prametros:
+	idTablon : identificador del tablon
+	element : identificador del elemento que se movera
+	posicion_x : posicion sobre el eje x, donde esta el elemento
+	posicion_y : posicion sobre el eje y, donde esta el elemento
+ */
 function editarPosicionElemento($idTablon,$element,$posicion_x,$posicion_y){
 	$connexion=conectarBasedeDatos();
 	$query = "
@@ -210,6 +255,7 @@ function editarContenidoElemento($idTablon,$element,$contenido){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*Funcion no implementada en el proyecto, pero si declarada. Permitiria poder modificar elementos ya creados. */
 function obtenerElementosTablon($idTablon, $papelera){
 	$connexion=conectarBasedeDatos();
 	$query = "Select ID_elementos,Posicionx,Posiciony,Tipo,Contenido,Nombre,Url From tablones_elementos where ID_tablones = '$idTablon' AND Papelera = '$papelera';";
@@ -221,6 +267,11 @@ function obtenerElementosTablon($idTablon, $papelera){
 	return $result;
 }
 
+/*
+Permite cargar los elementos de un tablón desde la base de datos.
+	idTablon : identificador del tablon
+	papelera: Obtendra los elementos que estan en la papelera del tablon
+ */
 function obtenerPrivilegiosTablon($idTablon, $correo){
 	$connexion=conectarBasedeDatos();
 	$query = "Select Privilegio From usuarios_tablones where ID_tablon = '$idTablon' AND Correo_usuario = '$correo';";
@@ -230,7 +281,12 @@ function obtenerPrivilegiosTablon($idTablon, $correo){
 	return $privilegio;
 }
 
-//Invitar a un usuario al tablon, por defecto privilegio 0
+/*
+Invitar a un usuario al tablon, por defecto se le da privilegio 0.
+	idTablon : identificador del tablon
+	correo: correo que identifica a un usuario al que invitar
+	privilegio: por defect sera 0, aunque se puede modificar.
+*/
 function compartirTablon($idTablon, $correo){
 	$connexion=conectarBasedeDatos();
 	/*
@@ -247,6 +303,10 @@ function compartirTablon($idTablon, $correo){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Genera una contrasena encriptada, a partir de la puesta por el usuario.
+	longitud : longitud que tiene que tener la contraseña
+ */
 function generar_password($longitud){
   $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
   $password = '';
@@ -267,6 +327,13 @@ function deleteboard($idTablon) {
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Permite agregar un nuevo tablon, se nos pedira datos como el nombre o la descripcion.
+	nombre : nombre del tablon
+	descripcion: breve texto sobre el tablon
+	url: direccion url que tendra el tablon
+	correo: correo que identifica al propietario del tablon
+ */
 function agregarTablon($correo, $nombre, $descripcion, $url){
 	$connexion=conectarBasedeDatos();
 	$codigovalido = 0;
@@ -296,6 +363,10 @@ function agregarTablon($correo, $nombre, $descripcion, $url){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Permite cargar los usuarios que comparten un tablon.
+	idTablon : identificador del tablon
+ */
 function obtenerUsuariosTablon($idTablon){
 	$connexion=conectarBasedeDatos();
 	$query = "Select Correo_usuario, Privilegio From usuarios_tablones where ID_tablon = '$idTablon';";
@@ -304,6 +375,12 @@ function obtenerUsuariosTablon($idTablon){
 	return $usuarios;
 }
 
+/*
+Funcion que da la posibilidad al propietario o administrador d eun tablon dar privilegios a los otros usuarios
+	idTablon : identificador del tablon
+	correo: correo que identifica a los usuarios
+	privilegio: numero que define uno de los privilegios posibles
+ */
 function modificarPrivilegios($idTablon, $correo, $privilegio){
 	$connexion=conectarBasedeDatos();
 	$query = "REPLACE INTO usuarios_tablones (Correo_usuario, ID_tablon, Privilegio) VALUES ('$correo', '$idTablon', '$privilegio');";
@@ -311,6 +388,10 @@ function modificarPrivilegios($idTablon, $correo, $privilegio){
 	desconectarDeBasedeDatos($connexion);
 }
 
+/*
+Carga en la pantalla home los diferentes tablones que tiene un propietario.
+	correo: correo que identifica al usuario
+ */
 function cargarTablones($correo){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT * from usuarios_tablones group by ID_tablon having count(ID_tablon) = 1 and Correo_usuario = '$correo';";
@@ -333,6 +414,10 @@ function cargarTablones($correo){
 	return $array;
 }
 
+/*
+Carga en la pantalla home los diferentes tablones que tiene un usuarios que sean compartidos
+	correo: correo que identifica al usuario
+ */
 function cargarTablonesComp($correo){
 	$connexion=conectarBasedeDatos();
 	$query = "SELECT * from usuarios_tablones WHERE Correo_usuario = '$correo';";
