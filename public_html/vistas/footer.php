@@ -12,7 +12,7 @@
 					<div class="iconos_footer">
 						<ul class="lista_horizontal_footer">
 						 	<img class="icono" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" />
-						 	<img class="icono" src="static/img/logo_lis.png" alt="Logo Proyecto LIS">
+						 	<img class="icono" src="http://localhost/public_html/static/img/logo_lis.png" alt="Logo Proyecto LIS">
 						</ul>				
 					</div>
 				</div>
