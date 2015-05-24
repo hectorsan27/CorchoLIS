@@ -1,0 +1,40 @@
+#container_contacto {
+    position:relative; /* needed for footer positioning*/
+
+  margin:0 auto; /* center, not in IE5 */
+  height:auto !important; /* real browsers */
+  height:100%; /* IE6: treaded as min-height*/
+  min-height:100%; /* real browsers */
+  min-width: 1140px;
+
+    background: url("../img/fondo_inicio_4.jpg") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.info{
+  padding: 50px 50px 50px 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  text-align: justify;
+  width: 100%;
+  box-sizing: border-box;
+}
+.info h4{
+  color: #3b3b3b;
+  font-size: 20px;
+  line-height: 1.25;
+
+}
+.info h5 {
+  color: #3b3b3b;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: normal;
+}
+.info ul {
+  list-style-type: none;
+}

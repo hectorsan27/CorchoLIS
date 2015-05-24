@@ -1,57 +1,3 @@
-/*
-	FORMULARIOS VISTA_INICIO
-*/
-$(document).ready(function(){
-	$(".fondo_oscurecido").hide();
-});
-
-$(document).ready(function(){
-	$("#div_registro").hide();
-	$("#trigger_registro").click(function () {
-		$(".fondo_oscurecido").fadeIn();
-	    $("#div_registro").show("scale");
-	});
-});
-
-$(document).ready(function(){
-	$("#div_login").hide();
-	$("#trigger_login").click(function () {
-		$(".fondo_oscurecido").fadeIn();
-	    $("#div_login").show("scale");
-	});
-});
-
-$(document).ready(function(){
-	$(document).mouseup(function(e) {
-	  if( (e.target.id != 'div_login' && !$('#div_login').find(e.target).length) && (e.target.id != 'div_registro' && !$('#div_registro').find(e.target).length)) {
-	    $("#div_login").hide("scale");
-	    $("#div_registro").hide("scale");
-	    $(".fondo_oscurecido").fadeOut();
-	  }
-	});
-});
-
-/*
-	FORMULARIOS VISTA_HOME
-*/
-
-/*Formulario añadir tablón*/
-$(document).ready(function(){
-	$("#div_anadir_tablon").hide();
-	$("#anadir_tablon_privado").click(function () {
-		$(".fondo_oscurecido").fadeIn();
-	    $("#div_anadir_tablon").show("scale");
-	});
-});
-
-$(document).ready(function(){
-	$(document).mouseup(function(e) {
-	if(e.target.id != 'div_anadir_tablon' && !$('#div_anadir_tablon').find(e.target).length) {
-	    $("#div_anadir_tablon").hide("scale");
-	    $(".fondo_oscurecido").fadeOut();
-	  }
-	});
-});
 
 /*
 	FORMULARIOS VISTA_TABLON
@@ -69,7 +15,7 @@ $(document).ready(function(){
 		}
 	});
 });
-/*Formulario papelere*/
+/*Formulario papelera*/
 $(document).ready(function(){
 	$("#papelera").hide();
 	$("#div_papelera").click(function () {
@@ -78,6 +24,19 @@ $(document).ready(function(){
 		} else {
 			$("#formulario_papelera").show();
 			$("#papelera").show("drop",{direction: "vertical" });
+			
+		}
+	});
+});
+/*Formulario usuario*/
+$(document).ready(function(){
+	$("#username").hide();
+	$("#div_username").click(function () {
+		if ($("#username").is(':visible')) {
+			$("#username").hide("drop",{direction: "vertical" });
+		} else {
+			$("#formulario_username").show();
+			$("#username").show("drop",{direction: "vertical" });
 			
 		}
 	});
@@ -131,12 +90,16 @@ $(document).ready(function(){
 	    $("#papelera").hide("drop",{direction: "vertical" });
 	    $("#formulario_papelera").hide();
 	  }
+	  if(e.target.id != 'username' && !$('#username').find(e.target).length) {
+	    $("#username").hide("drop",{direction: "vertical" });
+	    $("#formulario_username").hide();
+	  }
 	});
 	
 	$(".aceptar").click(function(){
 		$("#anadir_elemento").hide("drop",{direction: "vertical" });
-		$("#invitar").hide("drop",{direction: "vertical" });
-		$("#administrar").hide("drop",{direction: "vertical" });
+		$("#compartir_tablon").hide("drop",{direction: "vertical" });
+		$("#permisos").hide("drop",{direction: "vertical" });
 	});
 });
 

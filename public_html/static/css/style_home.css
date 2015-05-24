@@ -8,12 +8,10 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family:'Lato',sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
 }
 .container_tablones {
-	padding: 10px 20px 10px 20px;
-  margin-left:60px;
-  margin-right:60px; 
+	padding: 10px 0px 10px 0px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -37,7 +35,6 @@
   width: 400px;
   height: 250px;
   margin: 10px;
-  background-image: url("../img/placeholder_tablon.png");
   cursor: pointer;
 }
 .titulo {
@@ -64,6 +61,30 @@
 .tablon:hover .descripcion {
   visibility: visible;
 }
+.esquina_tablon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 60px;
+  height: 60px;
+    background: url("../img/esquina_tablon.png") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.eliminar_tablon {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 18px;
+  height: 21px;
+  background: url("../img/eliminar_tablon.png") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 .titulo p{
 	padding-left: 4px;
@@ -77,16 +98,22 @@
 .anadir_tablon {
 	background-image: url("../img/placeholder_anadir_tablon.png");
 }
+.imagen_centrada {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 #div_anadir_tablon {
   background-color: white;
   border: 2px solid #ddd;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -129px;
+  margin-top: -156px;
   margin-left: -203px;
   width: 406px;
-  height: 258px;
+  height: 313px;
   z-index: 3000;
 }
 .titulo{

@@ -4,7 +4,7 @@ html,body {
   margin:0;
   padding:0;
   height:100%; /* needed for container min-height */
-  font-family:'Lato',sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
 }
 div#container {
   position:relative; /* needed for footer positioning*/
@@ -12,8 +12,14 @@ div#container {
   margin:0 auto; /* center, not in IE5 */
   height:auto !important; /* real browsers */
   height:100%; /* IE6: treaded as min-height*/
-
   min-height:100%; /* real browsers */
+  min-width: 1140px;
+
+    background: url("../img/fondo_inicio_12.jpg") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
  a {
     color:inherit;
@@ -22,11 +28,11 @@ div#container {
 /*HEADER*/
 
 div#header {
-  min-width: 1000px;
   height: 55px;
   padding-top: 10px;
   position: relative;
   z-index: 2;
+  background-color: white;
 }
 
 #container_logo {
@@ -42,17 +48,13 @@ div#header {
   margin-bottom: auto;
 }
 
+
 /*CONTENIDO*/
 div#content {
   z-index: 1;
   position: relative;
-  min-width: 1000px;
+  min-width: 1100px;
   padding:20px; /* bottom padding for footer */
-  background: url("../img/fondo_inicio_12.jpg") no-repeat center center; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 .contenido_centrado {
     margin-right:  auto;
@@ -84,47 +86,32 @@ div#content {
   margin-left: -50px;
 }
 
-.info{
-  padding: 50px 50px 50px 50px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: white;
-  text-align: justify;
-  width: 100%;
-  box-sizing: border-box;
-}
-.info h4{
-  color: #3b3b3b;
-  font-size: 20px;
-  line-height: 1.25;
-
-}
-.info h5 {
-  color: #3b3b3b;
-  font-size: 14px;
-  line-height: 1.25;
-  font-weight: normal;
-}
-.info ul {
-  list-style-type: none;
-}
 /*SEPARADOR*/
 #separador{
-  height: 68px; /*Tiene que ser igual que el footer. hace que el footer se choque con el y no se meta en el content*/
+  height: 72px; /*Tiene que ser igual que el footer. hace que el footer se choque con el y no se meta en el content*/
 }
 /*FOOTER*/
 div#footer {
-  height: 68px;
-  min-width: 1000px;
+  height: 72px;
   position:absolute;
   width:100%;
   bottom:0; /* stick to bottom */
   background-color: #212121;
 }
+.iconos_footer {
+  float: right;
+  position: absolute;
+  padding: 18px;
+  top: 0px;
+  right: 0px;
+}
+.icono {
+  border:0;
+  width:88px;
+  height:31px; 
+}
 
 .lista_horizontal_footer {
-    cursor: pointer;
     margin: 0px;
     display: block;
     margin-left: auto;
@@ -155,8 +142,8 @@ div#footer {
     text-align: center;
 }
 .copyright {
-  height: 18px;
-  display: block;
+
+  display: inline-block;
 }
 .copyright p{
   margin: 0px;
@@ -198,7 +185,7 @@ div#footer {
   background-color: white;
   border: 2px solid #ddd;
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
   margin-top: -129px;
   margin-left: -203px;
@@ -210,7 +197,7 @@ div#footer {
   background-color: white;
   border: 2px solid #ddd;
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
   margin-top: -222px;
   margin-left: -203px;
@@ -343,12 +330,12 @@ fieldset p {
     margin:10px auto;
     max-width: 400px;
     padding: 10px 12px 10px 20px;
-    font: 14px 'Lato', sans-serif;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 14px;
 }
 .form-style-1-heading {
     text-align: center;
     font-weight: bold;
-    font-style: italic;
     border-bottom: 2px solid #ddd;
     font-size: 15px;
     padding-bottom: 10px;
@@ -356,6 +343,18 @@ fieldset p {
     padding-right: 10px;
     padding-left: 10px;*/
     padding-top: 10px;
+}
+.form-style-1-heading-2 {
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    font-size: 16px;
+    padding-bottom: 10px;
+    /*
+    padding-right: 10px;
+    padding-left: 10px;*/
+    padding-top: 10px;
+    color: white;
+    background-color: #4B99AD;
 }
 .form-style-1-heading p {
   margin: 5px 0px 5px 0px;

@@ -27,20 +27,26 @@
 			<div class="categoria">
 				<img src="static/img/categoria_privados.png">
 			</div>
-			<div class="tablones">
+			<div class="tablones"> 
 				<div id="anadir_tablon_privado" class="tablon anadir_tablon hvr-grow"></div> 
 				<?php
 					if (count($tablones) > 0){
 						for ($i=0;$i<count($tablones);$i++){?>
-				<div class="tablon hvr-grow" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
-					<div class="descripcion" id="descripcion_1">
-						<p><?php echo $tablones[$i][1];?></p>
 						
+					<div style="background-image:url('<?php if(!empty($tablones[$i][4])){
+						echo $tablones[$i][4];
+						}else{ ?>static/img/placeholder_tablon.png<?php }
+						?>') " class="tablon hvr-grow imagen_centrada">
+						<div class="descripcion" id="descripcion_1" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
+							<p><?php echo $tablones[$i][1];?></p>
+						</div>
+						<div class="titulo" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablones[$i][2]; ?>, '<?php echo $tablones[$i][3]; ?>')">
+							<p><?php echo $tablones[$i][0]?></p>
+						</div>
+						<div class="esquina_tablon">
+							<div class="eliminar_tablon" id="eliminar-<?php echo $tablones[$i][2];?>"></div>
+						</div>
 					</div>
-					<div class="titulo">
-						<p><?php echo $tablones[$i][0]?></p>
-					</div>
-				</div>
 				<?php } 
 				} ?>
 			</div>
@@ -57,7 +63,10 @@
 				<?php
 					if (count($tablonesComp) > 0){
 						for ($i=0;$i<count($tablonesComp);$i++){?>
-				<div class="tablon hvr-grow">
+				<div style="background-image:url('<?php if(!empty($tablonesComp[$i][4])){
+						echo $tablonesComp[$i][4];
+						}else{ ?>static/img/placeholder_tablon.png<?php }
+						?>') " class="tablon hvr-grow imagen_centrada" onclick="openBoard(<?php echo "'$correo'"; ?>,<?php echo $tablonesComp[$i][2]; ?>, '<?php echo $tablonesComp[$i][3]; ?>')">
 					<div class="descripcion" id="descripcion_1">
 						<p><?php echo $tablonesComp[$i][1];?></p>
 						
@@ -73,7 +82,7 @@
 	</div>
 	<div class="fondo_oscurecido">
 		<div id="div_anadir_tablon">
-			<div class="form-style-1-heading">CREAR TABLÓN</div>
+			<div class="form-style-1-heading-2 ">CREAR TABLÓN</div>
 			<form action="controladores/controlador_crear_tablon.php" method="post">
 				<ul class="form-style-1">
 				    <li>
@@ -83,6 +92,10 @@
 				    <li>
 				        <label>Descripción</label>
 				        <input type="text" name="descripcion" class="field-long" />
+					</li>
+					<li>
+						<label>Imagen</label>
+				        <input type="text" name="url" placeholder="url" class="field-long" />
 				    </li>
 				    <li>
 				        <input type="submit" value="Submit" />

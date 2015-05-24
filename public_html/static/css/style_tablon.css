@@ -4,17 +4,24 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family:'Lato',sans-serif;
+    font-family: 'Didact Gothic', sans-serif;
 }
 .pointer {
   cursor: pointer;
 }
 /*TABLERO*/
+#banner_tablon {
+  position: absolute;
+  top:-32px;
+  right: 0px;
+  font-size: 26px;
+  color: white;
+}
 div#content_tablon {
     padding-top: 50px;
     padding-bottom: 50px;
     z-index: 1;
-    min-width: 1000px;
+    min-width: 1200px; /* Este tamaño es igual al del tablón*/
     position: relative;
 
     width: 100%;
@@ -51,7 +58,50 @@ div#content_tablon {
     transform-style: preserve-3d;
 }
 
+.eliminar_elemento {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  right: -30px;
+  top: -3px;
+  background-image: url("../img/eliminar_nota.png");
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 0 0 0;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.mostrar_contenido {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  right: -30px;
+  top: 24px;
+  background-image: url("../img/mostrar_contenido_6.png");
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 0 0 0;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
 /*ELEMENTOS DEL TABLERO*/
+.fondo_oscurecido {
+  position: fixed;
+  top: 0; 
+  right: 0; 
+  bottom: 0; 
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+}
 .container_nota {
   position: absolute;
   display: block;
@@ -59,10 +109,25 @@ div#content_tablon {
   height: 80px;
   background-color: #676C89;
   margin: 0 0 0 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   border: solid white;
-  transform: rotateY(40deg);
+  transform:  translateZ(0px) rotateY(0.2deg);
 }
+
+.container_nota_expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  margin: 0 0 0 0;
+  border: solid white;
+  color: white;
+  -webkit-transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%) translateZ(0px);*/
+  background-color: #4D4368;
+  z-index: 3000;
+}
+
 .container_video {
   position: absolute;
   width: 300px;
@@ -73,10 +138,28 @@ div#content_tablon {
     -o-background-size: cover;
     background-size: cover;
   margin: 0 0 0 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   border: solid white;
-  transform: rotateY(40deg);
+  transform: translateZ(0px) rotateY(0deg);
 }
+.container_video_expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 854px;
+  margin: 0 0 0 0;
+  border: solid white;
+  color: white;
+  -webkit-transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%) translateZ(0px);*/
+  background-color: #4D4368;
+  z-index: 3000;
+}
+.container_video_expanded iframe {
+  display:block;
+}
+
+
 .container_imagen {
   position: absolute;
   width: 300px;
@@ -87,10 +170,27 @@ div#content_tablon {
     -o-background-size: cover;
     background-size: cover;
   margin: 0 0 0 0;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   border: 3px solid white;
-  transform: rotateY(40deg);
+  transform:  translateZ(0px) rotateY(0deg);
 }
+.container_imagen_expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 0 0 0 0;
+  border: solid white;
+  color: white;
+  -webkit-transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%) translateZ(0px);*/
+  background-color: #4D4368;
+  z-index: 3000;
+}
+.container_imagen_expanded img {
+  max-width: 1280px;
+  max-height: 600px;
+}
+
 /*Videos e imagenes*/
 .elemento_tablon_imagen {
   width: 300px;
@@ -120,6 +220,7 @@ div#content_tablon {
 .elemento_tablon_descripcion p{
   margin: 0px;
 }
+
 /*Notas*/
 .elemento_tablon_nota{
   margin: 10px;
@@ -134,6 +235,70 @@ div#content_tablon {
   font-weight: 400;
   font-size: 14px;
 }
+
+/*Nota expanded*/
+.nota_titulo_expanded {
+  padding: 0px 15px 0px 15px;
+  text-align: center;
+  height: 40px;
+  border-bottom: 3px solid white;
+}
+.nota_titulo_expanded h5{
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 400;
+  padding: 8px 0px 8px 0px;
+}
+.nota_descripcion_expanded {
+  padding: 10px 15px 10px 15px;
+  text-align: justify;
+}
+.nota_descripcion_expanded p {
+  margin: 0;
+}
+/*Videos e imagenes expanded*/
+.video_titulo_expanded {
+  padding: 0px 15px 0px 15px;
+  height: 40px;
+  border-top: 3px solid white;
+}
+.video_titulo_expanded h5{
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 400;
+  padding: 8px 0px 8px 0px;
+}
+.video_descripcion_expanded {
+  padding: 10px 15px 10px 15px;
+  font-size: 14px;
+  text-align: justify;
+}
+.video_descripcion_expanded p {
+  margin: 0;
+}
+.imagen_expanded {
+  display: block;
+}
+.imagen_titulo_expanded {
+  padding: 0px 15px 0px 15px;
+  height: 40px;
+  border-top: 3px solid white;
+}
+.imagen_titulo_expanded h5{
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 400;
+  padding: 8px 0px 8px 0px;
+}
+.imagen_descripcion_expanded {
+  padding: 10px 15px 10px 15px;
+  font-size: 14px;
+  text-align: justify;
+}
+.imagen_descripcion_expanded p {
+  margin: 0;
+}
+
 /*Añadir elementos al tablon*/
 #anadir_elemento {
     background-color: white;
@@ -180,6 +345,19 @@ div#content_tablon {
     z-index: 3000;
 }
 #compartir_tablon_header {
+    background-color: #D6E8FF;
+}
+/*Perfil de usuario*/
+#username{
+    background-color: white;
+    border: 2px solid #ddd;
+    position: absolute;
+    width: 400px;
+    top:0px;
+    right: 0px;
+    z-index: 3000;
+}
+#username_header {
     background-color: #D6E8FF;
 }
 

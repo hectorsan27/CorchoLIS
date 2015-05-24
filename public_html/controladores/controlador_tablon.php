@@ -3,7 +3,6 @@
 	$action =  $_POST["action"];
 	require_once("../modelos/modelo.php");
 	
-
 	//crear nuevos elementos
 	if ($action == 'INSERT'){
 		//coger variables recibidas
@@ -78,17 +77,19 @@
 
 	if ($action == 'OPENBOARD'){
 		$correo = $_POST["correo"];
-		$idTablon = $_POST["idTablon"];
-		abrirTablon($id,$correo);
-		
+		$idTablon = $_POST["idTablon"];		
 		$_SESSION['tablonid']= $idTablon;
 		
 		header('Location: /public_html/tablon/'.$idTablon);
 		exit();
 	}
+	if ($action == 'DELETEBOARD'){
+		$idTablon = $_POST["idTablon"];
+		deleteboard($idTablon);
+		exit();
+	}
 
 	if ($action == 'ADMIN'){
-		
 		$correo = $_POST["correo"];
 		$idTablon = $_POST["idTablon"];
 		$privilegio = $_POST["privilegio"];
