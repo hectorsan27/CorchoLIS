@@ -11,10 +11,77 @@ $(document).ready(function(){
     });
 });
 
+/*Esconde el fondo oscurecido*/
+$(document).ready(function(){
+    $(".fondo_oscurecido").hide();
+});
+
+
+/*
+$(document).ready(function(){
+    $('[id^="mostrar_contenido_"]').each(function() {
+        $(this).click(function(){
+            var id = $(this).attr('id');
+            var id_num = id.split('_');
+            var expanded_elem = "elem_expanded_" + id_num[2];
+
+            $('[id^="elem_expanded_"]').not(":hidden").each(function() {
+                $(".fondo_oscurecido").fadeOut();
+                $(this).fadeOut();
+            });
+            $(".fondo_oscurecido").fadeIn();
+            $('#'+expanded_elem).fadeIn();
+        });
+     });
+});
+*/
+
+/*Muestra el contenido del elemento clicado*/
+function mostrarContenido(div){
+    var id = $(div).attr('id');
+    var id_num = id.split('_');
+    var expanded_elem = "elem_expanded_" + id_num[2];
+
+    $('[id^="elem_expanded_"]').not(":hidden").each(function() {
+        $(".fondo_oscurecido").fadeOut();
+        $(div).fadeOut();
+    });
+    $(".fondo_oscurecido").fadeIn();
+    $('#'+expanded_elem).fadeIn();
+}
+
+/*Cierra el contenido del elemento actual cuando se clica fuera*/
+$(document).mousedown(function(e) {
+        $('[id^="elem_expanded_"]').not(":hidden").each(function() {
+             if(e.target.id != $(this) && !$(this).find(e.target).length) {
+                $(".fondo_oscurecido").fadeOut();
+                $(this).fadeOut();
+                stopVideo('hide', $(this)[0]);
+            }
+        });
+    });
+
+
+function stopVideo(state, div){
+    var iframe = div.getElementsByTagName("iframe")[0].contentWindow;
+    div.style.display = state == 'hide' ? 'none' : '';
+    func = state == 'hide' ? 'pauseVideo' : 'playVideo';
+    iframe.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
+}
+
+
 var mydragg = function(){
     //Tamaño del container que contendra los elementos
     var tamano_container_x = 1200;
     var tamano_container_y = 550;
+    var rotacion;
+    var posicion_elemento_x;
+    var posicion_elemento_y;
+    var posicion_puntero_x;
+    var posicion_puntero_y;
+    var elemento;
+    var diffY, diffX;
+
     return {
 
         move : function(divid,xpos,ypos){
@@ -25,6 +92,7 @@ var mydragg = function(){
         },
 
         startMoving : function(divid,evt){
+            elemento = divid;
 
             //Ponemos todos los elementos atras y el elemento seleccionado se pone adelante
             var i;
@@ -45,55 +113,60 @@ var mydragg = function(){
             //Cogemos los datos de la posicion del raton
 
             evt = evt || window.event;
-            var posX = evt.clientX;
-            var posY = evt.clientY;
+            posicion_puntero_x = evt.clientX;
+            posicion_puntero_y = evt.clientY;
 
             //Cogemos los datos del elemento que ha tocado
-            var divTop = divid.style.top;
-            var divLeft = divid.style.left;
-            var width = divid.offsetWidth;
-            var height = divid.offsetHeight;
+            posicion_elemento_y = elemento.offsetTop;
+            posicion_elemento_x = elemento.offsetLeft;
 
+            rotacion = mydragg.calculateRotation(elemento, posicion_elemento_x); 
+            $('#' + elemento.id).css({"transform":"translateZ(5px) rotateY("+rotacion+"deg)"});
 
-            //Cogemos los datos del div del fondo (el corcho)
-            divTop = divTop.replace('px','');
-            divLeft = divLeft.replace('px','');
+            var width = elemento.offsetWidth;
+            var height = elemento.offsetHeight;
 
             //Estilo del raton pasa a movimiento (el "+")
             document.getElementById('container_tablon').style.cursor='move';
+
             //Calculamos la diferencia de donde hemos clicado a la esquina superior izq. del elemento clicado
-            var diffX = posX - divLeft,
-                diffY = posY - divTop;
+            diffX = posicion_puntero_x - posicion_elemento_x,
+            diffY = posicion_puntero_y - posicion_elemento_y;
 
             //Cuando muevan el raton:
             document.onmousemove = function(evt){
                 evt = evt || window.event;
 
-                //Se volverá a coger la posicion del raton
-                var posX = evt.clientX,
-                    posY = evt.clientY,
-                    // La posicion ACTUAL de la esquina del div es aX y aY
-                    aX = posX - diffX,
-                    aY = posY - diffY;
+                //Posición del puntero
+                posicion_puntero_x = evt.clientX,
+                posicion_puntero_y = evt.clientY,
+
+                //Posicion del elemento
+                    posicion_elemento_x = posicion_puntero_x - diffX,
+                    posicion_elemento_y = posicion_puntero_y - diffY;
+
                      //Calculamos la rotacion que hay que aplicar al div
-                    var rotacion = mydragg.calculateRotation(divid, aX); 
-                    $('#' + divid.id).css({"transform":"rotateY("+rotacion+"deg)"});
+                    rotacion = mydragg.calculateRotation(elemento, posicion_elemento_x); 
+                    $('#' + elemento.id).css({"transform":"translateZ(5px) rotateY("+rotacion+"deg)"});
 
                     //Controlamos que no pase de los bordes
-                    if (aX < 0) aX = 0;
-                    if (aY < 0) aY = 0;
+                    if (posicion_elemento_x < 0) posicion_elemento_x = 0;
+                    if (posicion_elemento_y < 0) posicion_elemento_y = 0;
                     // Se comprueba que este dentre de la anchura del container
-                    if (aX + width > tamano_container_x){
-                      aX = tamano_container_x - width;
+                    if (posicion_elemento_x + width > tamano_container_x){
+                      posicion_elemento_x = tamano_container_x - width;
                     }
                     //Se comprueba que este dentro d ela altura del container
-                    if (aY + height > tamano_container_y) aY = tamano_container_y -height;
+                    if (posicion_elemento_y + height > tamano_container_y) posicion_elemento_y = tamano_container_y -height;
                     // movemos el objeto a la posicion correcta
-                mydragg.move(divid,aX,aY);
+                mydragg.move(elemento,posicion_elemento_x,posicion_elemento_y);
             }
         },
 
         stopMoving : function(divid){
+            // cuando para el movimiento lo guardamos
+            rotacion = mydragg.calculateRotation(elemento, posicion_elemento_x); 
+            $('#' + elemento.id).css({"transform":"translateZ(0px) rotateY("+rotacion+"deg)"});
             document.getElementById('container_tablon').style.cursor='default';
             var idTablon = getCookie("idTablon");
             var positionx = divid.style.left;
@@ -102,16 +175,17 @@ var mydragg = function(){
             positiony = positiony.replace('px','');
             var elem = divid.id;
             elem = elem.replace('elem','');
+            // lo guardamos en la bdd
             editarPosicion(idTablon,elem,positionx,positiony);
             document.onmousemove = function(){}
         },
 
         calculateRotation : function(elemento, aX){
-            var total_rotation = -30;
+            var total_rotation = 0;
             var board_width = $('#container_tablon').outerWidth(true);
             var element_width = $('#' + elemento.id).outerWidth(true);
             var element_x = aX+(element_width/2);
-            var rotation = (((total_rotation) / board_width)*element_x) + 15;
+            var rotation = (((-total_rotation) / board_width)*element_x) + (total_rotation/2);
             return rotation;
         },
     }
@@ -135,7 +209,7 @@ function cambiar_fondo(divid, color) {
         }
     }
 }
-
+//guardamos la url a embed
 function urlToEmbed(url){
     if (url.indexOf('youtu.be/') != -1){
         return 'https://www.youtube.com/embed/' + url.substring(url.indexOf('youtu.be/') + 9);
@@ -143,18 +217,21 @@ function urlToEmbed(url){
     if (url.indexOf('/watch?v=') != -1){
         return 'https://www.youtube.com/embed/' + url.substring(url.indexOf('/watch?v=') + 9);
     }
+    return 'https://www.youtube.com/embed/dQw4w9WgXcQ';
 }
+
 
 function obtainNewId(){
     //miramos cuantos elementos hay, para saber la nueva id (si hay 3 elementos previamente, del elem0 al 2, la nueva id sera elem3)
     var elements = document.getElementsByClassName("container_nota");
     var elements2 = document.getElementsByClassName("container_imagen");
     var elements3 = document.getElementsByClassName("container_video");
-    var length = elements.length + elements2.length + elements3.length;
+    var elements4 = document.getElementsByClassName('liPapelera');
+    var length = elements.length + elements2.length + elements3.length + elements4.length;
     var id = 'elem';
-    return id+length;
+    return length;
 }
-
+//añadimos otro child dentro de la base de datos
 function appendChild(div, tamano, tipo, nombre, contenido, url){
     document.getElementById("container_tablon").appendChild(div);
 
@@ -165,71 +242,188 @@ function appendChild(div, tamano, tipo, nombre, contenido, url){
     var idTablon = getCookie("idTablon");
     var posicion_x = 0;
     var posicion_y = 0;
-
+        // aqui es donde creamos el nuevo elemento a añadir
     nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, contenido, url);
+    if (tipo == 'Texto'){
+        addDarkBackground_note(obtainNewId()-1,nombre,contenido);
+    }
+    else{
+        if (tipo == 'Imagen'){
+            addDarkBackground_image(obtainNewId()-1,nombre,contenido,url);
+        }
+        else{
+            addDarkBackground_video(obtainNewId()-1,nombre,contenido,url);
+        }
+    }
 }
-
+//comprobamos si es valida una nota
+function isValidNote(titulo){
+    if (titulo.value == ''){
+        alert('Nombre obligatorio');
+        return false;
+    }
+    return true;
+}
+// comprobamos si una imagen es valida
+function isValidImage(titulo, url){
+    if (titulo.value == '' && url.value == ''){
+        alert('Nombre y URL obligatorios');
+        return false;
+    }
+    else{
+        if (titulo.value == ''){
+            alert('Nombre obligatorio');
+        }
+        else{
+            if (url.value == ''){
+                alert('URL obligatorio');
+                return false;
+            }
+            return true;
+        }
+    }
+}
+// comprobamos si un video es valido
+function isValidVideo(titulo, url){
+    if (titulo.value == '' && url.value == ''){
+        alert('Nombre y URL obligatorios');
+        return false;
+    }
+    else{
+        if (titulo.value == ''){
+            alert('Nombre obligatorio');
+        }
+        else{
+            if (url.value == ''){
+                alert('URL obligatorio');
+                return false;
+            }
+            return true;
+        }
+    }
+}
+// comprobamos si un path es valido
+function checkImageURL(url){
+    if(url.match(/\.(jpg|gif|png|jpeg|JPG|GIF|PNG|JPEG)$/) != null){
+        return url;
+    }
+    return 'http://campinaprofessioneel.nl/wp-content/uploads/2015/01/img-not-found.jpg';
+}
+//añadimos el fondo de una nota
+function addDarkBackground_note(id,nombre,contenido){
+    var div = document.createElement('div');
+    div.style.display = "none";
+    div.id = 'elem_expanded_' + id;
+    div.className = 'container_nota_expanded';
+    div.innerHTML= '<div class="nota_titulo_expanded"><h5>' + nombre + '</h5></div><div class="nota_descripcion_expanded"><p>' + contenido + '</p></div>';
+    document.getElementsByClassName('fondo_oscurecido')[0].appendChild(div);
+}
+// añadimos el fondo de una imagen
+function addDarkBackground_image(id,nombre,contenido,url){
+    var div = document.createElement('div');
+    div.style.display = "none";
+    div.id = 'elem_expanded_' + id;
+    div.className = 'container_imagen_expanded';
+    div.innerHTML = '<img class="imagen_expanded" src="' + url + '"><div class="imagen_titulo_expanded"><h5>' + nombre + '</h5></div> <div class="imagen_descripcion_expanded"><p>' + contenido + '</p></div>';
+    document.getElementsByClassName('fondo_oscurecido')[0].appendChild(div);
+}
+// añadimos el fondo de un video
+function addDarkBackground_video(id,nombre,contenido,url){
+    var div = document.createElement('div');
+    div.style.display = "none";
+    div.id = 'elem_expanded_' + id;
+    div.className = 'container_video_expanded';
+    div.innerHTML = '<iframe width="854" height="510" src="' + url +'?enablejsapi=1" frameborder="0" allowfullscreen="true""></iframe><div class="video_titulo_expanded"><h5>' + nombre + '</h5></div><div class="video_descripcion_expanded"><p>' + contenido + '</p></div>';
+     document.getElementsByClassName('fondo_oscurecido')[0].appendChild(div);
+}
+// añadimos un elemento nota
 function addElement_note(){
     var div = document.createElement("div");
-    div.id = obtainNewId();
+    div.id = 'elem' + obtainNewId();
     div.className = 'container_nota';
 
     //nota tiene un texto de mentira porque si no, no funcionaba el editar
     var titulo = document.getElementById("nombre_nota");
     var nota = document.getElementById("contenido_nota");
 
-    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + nota.value + '</h5> </div>';
-
-    appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
+    div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.value + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido_'+ obtainNewId() + '"  class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
+    //comprobamos si es valido
+    if (isValidNote(titulo)){
+        appendChild(div,'Pequeno', 'Texto', titulo.value, nota.value, '');
+    }
 }
-
+// añadimos un elemento imagen
 function addElement_image(){
     var div = document.createElement("div");
-    div.id = obtainNewId();
+    div.id = 'elem' + obtainNewId();
     div.className = 'container_imagen';
 
     var titulo = document.getElementById("nombre_imagen");
     var url = document.getElementById("url_imagen");
     var descripcion = document.getElementById("descripcion_imagen");
-
-    div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url.value + ' ">';
-
-    appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url.value);
+    //comprobamos si es valido
+    if (isValidImage(titulo,url)){
+        url = checkImageURL(url.value);
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.value + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido_'+ obtainNewId() + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>  ';
+        appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url);
+    }
 }
-
+// añadimos un elemento de video
 function addElement_video(){
     var div = document.createElement("div");
-    div.id = obtainNewId();
+    div.id = 'elem' + obtainNewId();
     div.className = 'container_video';
 
     var titulo = document.getElementById("nombre_video");
     var url = document.getElementById("url_video");
     var descripcion = document.getElementById("descripcion_video");
-    url.value = urlToEmbed(url.value);
-
-    div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + url.value + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe>'
-
-    appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, url.value);
+    // comprobamos si es valido
+    if (isValidVideo(titulo,url)){
+        var urlEmbeded = urlToEmbed(url.value);
+        div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.value + '</h5> </div> <iframe width="300" height="156" src="' + urlEmbeded + '?enablejsapi=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div>  <div id="mostrar_contenido_'+ obtainNewId() + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
+        appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, urlEmbeded);
+    }
 }
 
 function deleteElement(divid){
     //obtiene el div del elemento y lo elimina del div del fondo
-    var idElem = divid.parentNode.parentNode.id;
+    var idElem = divid.parentNode.id;
     var idTablon = getCookie("idTablon");
     var elem = document.getElementById(idElem);
+    var titulo = elem.getElementsByTagName('h5')[0].innerHTML;
+    var li = document.createElement('li');
+    li.className = 'liPapelera';
+    li.innerHTML = document.getElementById('sampleLi').innerHTML;
+    li.getElementsByTagName('p')[0].innerHTML = titulo;
+    var elemClass;
+    if (divid.parentNode.className == 'container_nota'){
+        elemClass = 'note';
+    }
+    else{
+        if (divid.parentNode.className == 'container_imagen'){
+            elemClass = 'img';
+            li.getElementsByTagName('div')[0].innerHTML = elem.getElementsByTagName('img')[0].src;
+        }
+        else{
+            elemClass = 'video';
+            li.getElementsByTagName('div')[0].innerHTML = elem.getElementsByTagName('iframe')[0].src;
+        }
+    }
+    li.getElementsByTagName('div')[0].className = elemClass;
+
     document.getElementById("container_tablon").removeChild(elem);
     idElem = idElem.replace('elem','');
     idElem = parseInt(idElem);
+    li.id = 'li'+idElem;
+    var ul = document.getElementById('ulPapelera');
+    ul.insertBefore(li,document.getElementsByClassName('footer_papelera')[0]);
 
-    var elements = document.querySelectorAll('.elemento_tablon, .elemento_tablon_2');
-    var i;
-    var item;
-    var id;
-    for (i = idElem; i < elements.length - 2; i++){
-        id = elements[i+2].id.substring(0,4) + i;
-        elements[i+2].id = id;
-    }
     enviarPapelera(idTablon ,idElem);
+
+    if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 2){
+        var li = document.getElementsByClassName('footer_papelera')[0];
+        li.innerHTML = document.getElementById('sampleInput').innerHTML;
+    }
 }
 
 function editElement(divid){
@@ -253,7 +447,7 @@ function nuevoElemento(idTablon, posicion_x, posicion_y, tamano, tipo, nombre, c
     var type = 'POST';
     ajaxCall(data,url,type);
 }
-
+//llamamos a la funcion de php para editar la posicion
 function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     var action = "EDIT_POSITION";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&posicion_x="+posicion_x+"&posicion_y="+posicion_y+"&action="+action;;
@@ -261,24 +455,55 @@ function editarPosicion(idTablon, elem, posicion_x, posicion_y){
     var type = 'POST';
     ajaxCall(data,url,type);
 }
+// restamos la id
+function restarID(index, indexOfID,idElem, elements){
+    var id;
+    var i;
+    for (i = index; i < elements.length; i++){
+        if (parseInt(elements[i].id.substring(indexOfID)) > idElem){
+            id = parseInt(elements[i].id.substring(indexOfID))-1;
+            elements[i].id = elements[i].id.substring(0,indexOfID) + id;
+        }
+    }
+}
+// funcion para eliminar un elemento donde restamos las id y las guardamos en la bdd
+function eliminarElemento(idTablon, divid){
+    var elem = document.getElementById(divid.parentNode.id);
+    var index = Array.prototype.indexOf.call(elem.parentNode.children, elem);
+    document.getElementById("ulPapelera").removeChild(elem);
+    idElem = divid.parentNode.id;
+    idElem = idElem.replace('li','');
+    idElem = parseInt(idElem);
+    restarID(index, 2, idElem, document.getElementsByClassName('liPapelera'));
+    restarID(0, 4, idElem, document.getElementsByClassName('container_nota'));
+    restarID(0, 4, idElem, document.getElementsByClassName('container_imagen'));
+    restarID(0, 4, idElem, document.getElementsByClassName('container_video'));
+    restarID(0, 14, idElem, document.getElementsByClassName('container_nota_expanded'));
+    restarID(0, 14, idElem, document.getElementsByClassName('container_imagen_expanded'));
+    restarID(0, 14, idElem, document.getElementsByClassName('container_video_expanded'));
+    var div_fondo = document.getElementsByClassName('fondo_oscurecido')[0];
+    div_fondo.removeChild(div_fondo.children[idElem]);
 
-function deleteElement(idTablon, elem){
+    if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 1){
+        var li = document.getElementsByClassName('footer_papelera')[0];
+        li.innerHTML = '<label>La papelera se encuentra vacía</label>';
+    }
+    //hacemos llamada ajax con un delete para llamar a esa funcion
     var action = "DELETE";
-    var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
+    var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
     ajaxCall(data,url,type);
 }
-
+//añadir usuario
 function addUser(idTablon, correo) {
     var action = "SHARE";
-    var correo = document.getElementById("container_tablon");
     var data = "idTablon="+idTablon+"&correo="+correo+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
     ajaxCall(data,url,type);
 }
-
+//llamada ajax para enviar papelera
 function enviarPapelera(idTablon, elem){
     var action = "DISCARD";
     var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
@@ -286,23 +511,76 @@ function enviarPapelera(idTablon, elem){
     var type = 'POST';
     ajaxCall(data,url,type);
 }
+// funcion para recuperar elementos de la papelera
+function recuperaElemento(idTablon, divid){
+    var idElem = divid.parentNode.id;
+    var elem = document.getElementById(idElem);
+    idElem = idElem.replace('li','');
 
-function recoverElement(idTablon, elem){
+    var titulo = elem.getElementsByTagName('p')[0];
+    var elemClass = elem.getElementsByTagName('div')[0].className;
+    document.getElementById("ulPapelera").removeChild(elem);
+    if (document.getElementById('ulPapelera').getElementsByTagName('li').length == 1){
+        var li = document.getElementsByClassName('footer_papelera')[0];
+        li.innerHTML = '<label>La papelera se encuentra vacía</label>';
+    }
+    var div = document.createElement('div');
+    div.id = 'elem'+ idElem;
+    if (elemClass == 'note'){
+        div.className = 'container_nota';
+        div.innerHTML = '<div class="elemento_tablon_nota" > <h5> ' + titulo.innerHTML + '</h5> </div> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div id="mostrar_contenido_' + idElem + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
+    }
+    else{
+        if (elemClass == 'img'){
+            div.className = 'container_imagen';
+            var url = elem.getElementsByTagName('div')[0].innerHTML;
+            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5>' + titulo.innerHTML + '</h5> </div> <img class="elemento_tablon_imagen" src="' + url + ' "> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div id="mostrar_contenido_' + idElem + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
+        }
+        else{
+            div.className = 'container_video';
+            var url = elem.getElementsByTagName('div')[0].innerHTML;
+            div.innerHTML = '<div class="elemento_tablon_titulo"> <h5> ' + titulo.innerHTML + '</h5> </div> <iframe width="300" height="156" src="' + url + '?autoplay=0&showinfo=0&controls=2&autohide=1" frameborder="0" allowfullscreen></iframe> <div class="eliminar_elemento" onclick = "deleteElement(this);" ></div> <div id="mostrar_contenido_' + idElem + '" class="mostrar_contenido" onclick="mostrarContenido(this);"></div>';
+        }
+    }
+    //  donde lo ponemos una vez guardado
+    document.getElementById("container_tablon").appendChild(div);
+    div.onmousedown= document.getElementById("sample").onmousedown;
+    div.onmouseup = document.getElementById("sample").onmouseup;
+    editarPosicion(getCookie("idTablon"),idElem,0,0);
+    
     var action = "RECOVER";
-    var data = "idTablon="+idTablon+"&idElem="+elem+"&action="+action;
+    var data = "idTablon="+idTablon+"&idElem="+idElem+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
     ajaxCall(data,url,type);
 }
-
+// funcion que nos permite vaciar la papelera entera.
 function emptyTrash(idTablon){
+    var ul = document.getElementById('ulPapelera');
+    var div_fondo = document.getElementsByClassName('fondo_oscurecido')[0];
+    var li = document.getElementsByClassName('footer_papelera')[0];
+    var idElem;
+    var count = 0;
+    while (ul.children.length > 1){
+        idElem = ul.children[0].id.substring(2);
+        restarID(0, 2, idElem, document.getElementsByClassName('liPapelera'));
+        restarID(0, 4, idElem, document.getElementsByClassName('container_nota'));
+        restarID(0, 4, idElem, document.getElementsByClassName('container_imagen'));
+        restarID(0, 4, idElem, document.getElementsByClassName('container_video'));
+        restarID(0, 14, idElem, document.getElementsByClassName('container_nota_expanded'));
+        restarID(0, 14, idElem, document.getElementsByClassName('container_imagen_expanded'));
+        restarID(0, 14, idElem, document.getElementsByClassName('container_video_expanded'));
+        ul.removeChild(ul.children[0]);
+        div_fondo.removeChild(div_fondo.children[idElem]);
+    }
+    li.innerHTML = '<label>La papelera se encuentra vacía</label>';
     var action = "EMPTY";
     var data = "idTablon="+idTablon+"&action="+action;
     var url = '../controladores/controlador_tablon.php';
     var type = 'POST';
     ajaxCall(data,url,type);
 }
-
+// funcion para obtener una cookie
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -313,7 +591,7 @@ function getCookie(cname) {
     }
     return "";
 }
-
+// configurar permisos, llamada a ajax para configurar permisos
 function configPerm(idTablon, correo, privilegio){
     var action = "ADMIN";
     var data = "idTablon="+idTablon+"&correo="+correo+"&privilegio="+privilegio+"&action="+action;
@@ -322,6 +600,95 @@ function configPerm(idTablon, correo, privilegio){
     ajaxCall(data,url,type);
 }
 
+//funcion para usar el filepicker
+function addfile(){
+    var div = document.createElement("div");
+    //div.id = obtainNewId();
+    var url =  "";
+    var container = document.getElementById("container_tablon");
+    filepicker.setKey("A2bjrTOyRhL7KMmFeZJ6gz");
+    filepicker.pick(
+      {
+        mimetypes: ['image/*', 'video/*', 'text/plain'],
+        container: 'window',
+        services:['COMPUTER', 'FACEBOOK', 'GMAIL','DROPBOX','IMAGE_SEARCH','FLICKR','FTP','GITHUB','GOOGLE_DRIVE','SKYDRIVE','PICASA','URL','WEBCAM','INSTAGRAM','ALFRESCO','CUSTOMSOURCE','CLOUDDRIVE','VIDEO'],
+      },
+      //creamos una blob de memoria
+      function(Blob){
+        console.log(JSON.stringify(Blob));
+        url = Blob.url;
+        var tipo = Blob.mimetype;	
+        var idElemento = obtainNewId();
+		if (tipo == "text/plain"){
+		 var titulo = document.getElementById("nombre_nota");
+		 var descripcion = document.getElementById("contenido_nota");
+			div.innerHTML =     "<div class=\"elemento_tablon_nota\" > <h5>"+titulo.value+"</h5></div>"+
+								"<iframe width=\"300\" height=\"156\" src=\"" + url + "\"></iframe>"+
+								"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+								"<div id=\"mostrar_contenido_"+ idElemento +"\" class=\"mostrar_contenido\" onclick=\"mostrarContenido(this);\"></div>";
+			var iframe = "<iframe width=\"300\" height=\"156\" src=\"" + url + "\"></iframe>";
+			div.id = "elem"+idElemento;
+			div.className = 'container_nota';
+			div.onmousedown = "mydragg.startMoving(this);";
+			div.onmouseup = "mydragg.stopMoving(this);";
+			div.style = "left: 0px; top: 0px;"
+            appendChild(div,'Pequeno', 'Texto', titulo.value, iframe, url);
+        }else if (tipo == "image/jpeg" || tipo == "image/jpg" || tipo == "image/png" || tipo == "image/gif"){
+			var titulo = document.getElementById("nombre_nota");
+			var descripcion = document.getElementById("contenido_nota");
+			div.innerHTML =     "<div class=\"elemento_tablon_titulo\" > <h5>"+titulo.value+"</h5></div>"+
+								"<img class=\"elemento_tablon_imagen\" src=\""+ url +"\">"+
+								"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+								"<div id=\"mostrar_contenido_"+ idElemento +"\" class=\"mostrar_contenido\" onclick=\"mostrarContenido(this);\"></div>";
+							
+			div.id = "elem"+idElemento;
+			div.className = 'container_imagen';
+			div.onmousedown = "mydragg.startMoving(this);";
+			div.onmouseup = "mydragg.stopMoving(this);";
+			div.style = "left: 0px; top: 0px;"
+            appendChild(div,'Pequeno', 'Imagen', titulo.value, descripcion.value, url);
+		}if (tipo == "video/mp4" || tipo == "video/avi" || tipo == "video/flv" || tipo == "video/wmv" || tipo == "video/mpeg" || tipo == "video/mov" || tipo == "video/rm"){
+			var titulo = document.getElementById("nombre_nota");
+			var descripcion = document.getElementById("contenido_nota");
+			div.innerHTML =     "<div class=\"elemento_tablon_titulo\" > <h5>"+titulo.value+"</h5></div>"+
+								"<iframe width=\"300\" height=\"156\" src=\""+url+"?enablejsapi=1\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"+
+								"<div class=\"eliminar_elemento\" onclick = \"deleteElement(this);\" ></div>"+
+								"<div id=\"mostrar_contenido_"+ idElemento +"\" class=\"mostrar_contenido\" onclick=\"mostrarContenido(this);\"></div>";
+							
+			div.id = "elem"+idElemento;
+			div.className = 'container_video';
+			div.onmousedown = "mydragg.startMoving(this);";
+			div.onmouseup = "mydragg.stopMoving(this);";
+			div.style = "left: 0px; top: 0px;"
+            appendChild(div,'Pequeno', 'Video', titulo.value, descripcion.value, url);
+		}
+		
+        
+      },
+      function(FPError){
+        console.log(FPError.toString());
+      }
+    );
+    
+    /*Blob from a previous pick, etc.*/
+    var blob = {
+    url: 'https://www.filepicker.io/api/file/gkssQj1GQTa2AkTP0qNQ',
+    filename: 'prueba.txt',
+    mimetype: 'text/plain',
+    isWriteable: true,
+    size: 30
+    };
+
+    console.log("Loading "+blob.filename);
+    filepicker.read(blob,function(data){
+        console.log(data);
+    });
+
+    //url.value = urlToEmbed(url.value);
+    
+
+}
+// como hacemos las llamadas ajax.
 function ajaxCall(data,url,type){
     $.ajax({
         data:  data,
